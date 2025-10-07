@@ -144,7 +144,15 @@ function validateForm(data) {
 // Show error message
 function showError(fieldName, message) {
     const field = document.getElementById(fieldName);
+    if (!field) return;
+    
     const formGroup = field.parentNode;
+    
+    // Remove existing error message
+    const existingError = formGroup.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
     
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
@@ -156,7 +164,13 @@ function showError(fieldName, message) {
     formGroup.appendChild(errorDiv);
     
     field.style.borderColor = '#e74c3c';
-    field.focus();
+    
+    // Smooth scroll to error field on mobile
+    if (window.innerWidth <= 768) {
+        field.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    
+    setTimeout(() => field.focus(), 100);
 }
 
 // Email validation
