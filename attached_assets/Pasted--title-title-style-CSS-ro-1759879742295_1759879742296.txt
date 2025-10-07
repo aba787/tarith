@@ -1,0 +1,94 @@
+ <title>وريث - برامج الفريق</title>
+    <style>
+        /* أكواد CSS من الأعلى هنا */
+        :root {
+            --primary-brown: #8B4513;
+            --golden: #DAA520;
+            --dark-slate: #2F4F4F;
+            --cream: #F5F5DC;
+            --light-sand: #F0E68C;
+        }
+
+        body {
+            background-color: var(--cream);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-brown), var(--dark-slate));
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .program-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+            border-right: 5px solid var(--golden);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .program-icon {
+            font-size: 2.5em;
+            color: var(--primary-brown);
+            margin-bottom: 15px;
+        }
+
+        .program-title {
+            color: var(--dark-slate);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .program-description {
+            color: var(--primary-brown);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>برامج فريق وريث</h1>
+        <p>إرثنا وتقاليد حبة</p>
+    </div>
+
+    <div class="programs-grid">
+        <div class="program-card">
+            <div class="program-icon">📱</div>
+            <h3 class="program-title">إعداد المحتوى الرقمي والمسموع</h3>
+            <p class="program-description">تطوير محتوى رقمي ومسموع يعبر عن تراثنا الأصيل</p>
+        </div>
+
+        <div class="program-card">
+            <div class="program-icon">💬</div>
+            <h3 class="program-title">جلسة وريث</h3>
+            <p class="program-description">جلسات حوارية تناقش التراث والتقاليد</p>
+        </div>
+
+        <div class="program-card">
+            <div class="program-icon">🛠️</div>
+            <h3 class="program-title">رعاية التكنولوجيا</h3>
+            <p class="program-description">دعم وتطوير التقنيات الحديثة لخدمة التراث</p>
+        </div>
+    </div>
+</body>
+</html>
