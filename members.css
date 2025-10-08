@@ -1,4 +1,3 @@
-
 /* Members Page Styles */
 .members-main {
     margin-top: 70px;
@@ -244,9 +243,94 @@
     color: white;
 }
 
-.action-btn:hover {
+.action-btn.tertiary:hover {
+    background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
+}
+
+.action-btn.success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.action-btn.success:hover {
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+}
+
+/* News Management Styles */
+.published-news {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #eee;
+}
+
+.published-news h3 {
+    color: #2F4F4F;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.news-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.news-admin-item {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.news-admin-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.news-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.news-admin-header h4 {
+    color: #2F4F4F;
+    margin: 0;
+    font-size: 1.2rem;
+    flex: 1;
+    margin-left: 1rem;
+}
+
+.news-admin-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.news-admin-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.news-admin-date {
+    color: #6c757d;
+}
+
+.news-admin-category {
+    background: #DAA520;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.news-admin-summary {
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* Members Section */
@@ -558,52 +642,52 @@
         padding: 2rem 1.5rem;
         margin: 1rem;
     }
-    
+
     .dashboard-header {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
-    
+
     .dashboard-stats {
         grid-template-columns: 1fr;
     }
-    
+
     .action-buttons {
         flex-direction: column;
     }
-    
+
     .action-btn {
         justify-content: center;
     }
-    
+
     .section-header {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .search-filter {
         flex-direction: column;
     }
-    
+
     .members-table {
         font-size: 0.9rem;
     }
-    
+
     .members-table th,
     .members-table td {
         padding: 0.5rem;
     }
-    
+
     .modal-content {
         width: 95%;
         margin: 10% auto;
     }
-    
+
     .member-form {
         padding: 1.5rem;
     }
-    
+
     .form-actions {
         flex-direction: column;
     }
@@ -613,34 +697,34 @@
     .login-container {
         padding: 1.5rem 1rem;
     }
-    
+
     .admin-dashboard {
         padding: 1rem 0;
     }
-    
+
     .dashboard-header {
         padding: 1rem;
     }
-    
+
     .dashboard-header h1 {
         font-size: 1.5rem;
     }
-    
+
     .members-section,
     .articles-management {
         padding: 1rem;
     }
-    
+
     .stat-card {
         padding: 1rem;
     }
-    
+
     .stat-icon {
         width: 50px;
         height: 50px;
         font-size: 1.2rem;
     }
-    
+
     .stat-info h3 {
         font-size: 1.5rem;
     }

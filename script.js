@@ -88,3 +88,48 @@ function duplicatePartners() {
         marqueeTrack.innerHTML = originalItems + originalItems;
     }
 }
+
+// News management functions
+function loadMoreNews() {
+    // This function will load more news items
+    // For now, it just shows an alert
+    alert('سيتم تحميل المزيد من الأخبار');
+}
+
+// Load news from localStorage or database
+function loadNews() {
+    const newsGrid = document.getElementById('newsGrid');
+    if (!newsGrid) return;
+    
+    // Get news from localStorage (this will be populated by admin from members page)
+    const savedNews = JSON.parse(localStorage.getItem('warithNews') || '[]');
+    
+    if (savedNews.length > 0) {
+        newsGrid.innerHTML = '';
+        savedNews.slice(0, 6).forEach(news => { // Show only first 6 news items
+            const newsItem = createNewsItem(news);
+            newsGrid.appendChild(newsItem);
+        });
+    }
+}
+
+// Create news item HTML element
+function createNewsItem(news) {
+    const newsItem = document.createElement('div');
+    newsItem.className = 'news-item';
+    newsItem.innerHTML = `
+        <div class="news-date">${news.date}</div>
+        <h3>${news.title}</h3>
+        <p>${news.summary}</p>
+        <a href="#" class="read-more">اقرأ المزيد</a>
+    `;
+    return newsItem;
+}
+
+// Initialize news loading when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Load news
+    loadNews();
+});

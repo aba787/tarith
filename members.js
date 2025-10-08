@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // Login functionality
     const loginForm = document.getElementById('loginForm');

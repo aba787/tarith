@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -65,18 +64,18 @@
                         <h2>تسجيل الدخول</h2>
                         <p>قم بتسجيل الدخول للوصول إلى لوحة إدارة الأعضاء</p>
                     </div>
-                    
+
                     <form class="login-form" id="loginForm">
                         <div class="form-group">
                             <label for="username">اسم المستخدم</label>
                             <input type="text" id="username" name="username" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="password">كلمة المرور</label>
                             <input type="password" id="password" name="password" required>
                         </div>
-                        
+
                         <button type="submit" class="login-btn">
                             <i class="fas fa-sign-in-alt"></i>
                             تسجيل الدخول
@@ -112,7 +111,7 @@
                             <p>إجمالي الأعضاء</p>
                         </div>
                     </div>
-                    
+
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-user-check"></i>
@@ -122,7 +121,7 @@
                             <p>الأعضاء النشطين</p>
                         </div>
                     </div>
-                    
+
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-newspaper"></i>
@@ -132,7 +131,7 @@
                             <p>المقالات المنشورة</p>
                         </div>
                     </div>
-                    
+
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i class="fas fa-clock"></i>
@@ -158,6 +157,10 @@
                         <i class="fas fa-download"></i>
                         تصدير البيانات
                     </button>
+                    <button class="action-btn news-btn" id="manageNewsBtn">
+                        <i class="fas fa-bullhorn"></i>
+                        إدارة الأخبار والإعلانات
+                    </button>
                 </div>
 
                 <!-- Members Table -->
@@ -174,7 +177,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="table-container">
                         <table class="members-table">
                             <thead>
@@ -248,13 +251,13 @@
                             العودة للأعضاء
                         </button>
                     </div>
-                    
+
                     <div class="articles-tabs">
                         <button class="tab-btn active" data-tab="published">المنشورة</button>
                         <button class="tab-btn" data-tab="pending">في الانتظار</button>
                         <button class="tab-btn" data-tab="rejected">مرفوضة</button>
                     </div>
-                    
+
                     <div class="articles-list" id="articlesList">
                         <!-- Articles will be loaded here -->
                     </div>
@@ -262,47 +265,107 @@
             </div>
         </section>
 
-        <!-- Add Member Modal -->
-        <div class="modal" id="addMemberModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3>إضافة عضو جديد</h3>
-                    <button class="close-modal" id="closeModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <form class="member-form" id="addMemberForm">
+        <!-- News Management Modal -->
+    <div id="newsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>إدارة الأخبار والإعلانات</h2>
+                <span class="close" id="closeNewsModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="newsForm">
                     <div class="form-group">
-                        <label for="memberName">الاسم الكامل</label>
-                        <input type="text" id="memberName" name="memberName" required>
+                        <label for="newsTitle">عنوان الخبر/الإعلان</label>
+                        <input type="text" id="newsTitle" name="newsTitle" required>
                     </div>
-                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newsDate">التاريخ</label>
+                            <input type="date" id="newsDate" name="newsDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newsCategory">التصنيف</label>
+                            <select id="newsCategory" name="newsCategory" required>
+                                <option value="">اختر التصنيف</option>
+                                <option value="announcement">إعلان</option>
+                                <option value="event">فعالية</option>
+                                <option value="news">خبر</option>
+                                <option value="workshop">ورشة عمل</option>
+                                <option value="award">تكريم</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="memberEmail">البريد الإلكتروني</label>
-                        <input type="email" id="memberEmail" name="memberEmail" required>
+                        <label for="newsSummary">ملخص الخبر</label>
+                        <textarea id="newsSummary" name="newsSummary" rows="3" required></textarea>
                     </div>
-                    
                     <div class="form-group">
-                        <label for="memberRole">الدور</label>
-                        <select id="memberRole" name="memberRole" required>
-                            <option value="member">عضو</option>
-                            <option value="writer">كاتب</option>
-                            <option value="admin">مدير</option>
-                        </select>
+                        <label for="newsContent">المحتوى الكامل</label>
+                        <textarea id="newsContent" name="newsContent" rows="8" required></textarea>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="memberPhone">رقم الهاتف</label>
-                        <input type="tel" id="memberPhone" name="memberPhone">
-                    </div>
-                    
                     <div class="form-actions">
-                        <button type="submit" class="btn primary">إضافة العضو</button>
-                        <button type="button" class="btn secondary" id="cancelAdd">إلغاء</button>
+                        <button type="submit" class="btn primary">
+                            <i class="fas fa-paper-plane"></i>
+                            نشر الخبر
+                        </button>
+                        <button type="button" class="btn secondary" id="cancelNews">
+                            إلغاء
+                        </button>
                     </div>
                 </form>
+
+                <!-- Published News List -->
+                <div class="published-news">
+                    <h3>الأخبار المنشورة</h3>
+                    <div class="news-list" id="publishedNewsList">
+                        <!-- News will be populated here -->
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div class="modal" id="addMemberModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>إضافة عضو جديد</h3>
+                <button class="close-modal" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="member-form" id="addMemberForm">
+                <div class="form-group">
+                    <label for="memberName">الاسم الكامل</label>
+                    <input type="text" id="memberName" name="memberName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="memberEmail">البريد الإلكتروني</label>
+                    <input type="email" id="memberEmail" name="memberEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="memberRole">الدور</label>
+                    <select id="memberRole" name="memberRole" required>
+                        <option value="member">عضو</option>
+                        <option value="writer">كاتب</option>
+                        <option value="admin">مدير</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="memberPhone">رقم الهاتف</label>
+                    <input type="tel" id="memberPhone" name="memberPhone">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn primary">إضافة العضو</button>
+                    <button type="button" class="btn secondary" id="cancelAdd">إلغاء</button>
+                </div>
+            </form>
+        </div>
+    </div>
     </main>
 
     <!-- Footer -->
