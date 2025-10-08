@@ -4,9 +4,16 @@
     margin-top: 70px;
 }
 
+:root {
+  --light-brown: #D2B48C;     /* اللون البني الفاتح للعناوين */
+  --black: #000000;           /* اللون الأسود للخلفيات */
+  --dark-brown: #8B4513;      /* اللون البني الغامق للعناصر الداعمة */
+  --brick-red: #B22222;       /* اللون الأحمر القرميدي للزخارف والإبراز */
+}
+
 /* Join Hero Section */
 .join-hero {
-    background: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #2F4F4F 100%);
+    background: linear-gradient(135deg, var(--black) 0%, var(--dark-brown) 50%, var(--brick-red) 100%);
     color: white;
     padding: 100px 0;
     text-align: center;
