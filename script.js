@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mobile menu toggle
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
             document.body.classList.toggle('menu-open');
@@ -23,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 navMenu.classList.remove('active');
                 document.body.classList.remove('menu-open');
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
         });
     }
 
@@ -246,6 +257,8 @@ function translateContent(language) {
             // Navigation
             'الرئيسية': 'الرئيسية',
             'من نحن': 'من نحن',
+            'رسالتنا': 'رسالتنا',
+            'الهيكل التنظيمي': 'الهيكل التنظيمي',
             'البرامج': 'البرامج',
             'التكريمات والجوائز': 'التكريمات والجوائز',
             'شركاؤنا': 'شركاؤنا',
@@ -263,6 +276,8 @@ function translateContent(language) {
             // Navigation
             'الرئيسية': 'Home',
             'من نحن': 'About Us',
+            'رسالتنا': 'Our Mission',
+            'الهيكل التنظيمي': 'Organization',
             'البرامج': 'Programs',
             'التكريمات والجوائز': 'Awards & Recognition',
             'شركاؤنا': 'Our Partners',
@@ -278,16 +293,7 @@ function translateContent(language) {
         }
     };
 
-    // Apply translations
-    const elementsToTranslate = document.querySelectorAll('[data-translate]');
-    elementsToTranslate.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[language] && translations[language][key]) {
-            element.textContent = translations[language][key];
-        }
-    });
-
-    // Auto-translate common elements
+    // Auto-translate navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         const text = link.textContent.trim();
@@ -310,6 +316,15 @@ function translateContent(language) {
     if (ctaButton && translations[language][ctaButton.textContent.trim()]) {
         ctaButton.textContent = translations[language][ctaButton.textContent.trim()];
     }
+
+    // Section headings
+    const sectionHeadings = document.querySelectorAll('h2, h3');
+    sectionHeadings.forEach(heading => {
+        const text = heading.textContent.trim();
+        if (translations[language] && translations[language][text]) {
+            heading.textContent = translations[language][text];
+        }
+    });
 }
 
 // Initialize news loading when page loads

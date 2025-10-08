@@ -40,6 +40,42 @@ body.menu-open {
   overflow: hidden;
 }
 
+/* Performance optimizations */
+.hero::before,
+.news-section::before,
+.about::before,
+.programs::before,
+.partners-section::before,
+.mission-section::before,
+.organization-section::before {
+  will-change: transform;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, textarea, select {
+  transition: all 0.3s ease;
+}
+
+/* Fix for form inputs consistency */
+input, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Loading states */
+.loading-state {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Error states */
+.error-field {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25) !important;
+}
+
 body.english {
   direction: ltr;
   text-align: left;
@@ -257,6 +293,7 @@ body.english {
     .nav-container {
         padding: 0 1rem;
         height: 70px;
+        position: relative;
     }
 
     .logo-container h2 {
@@ -268,14 +305,22 @@ body.english {
     }
 
     .language-toggle {
+        position: absolute;
         right: 4rem;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 0.7rem;
         padding: 0.3rem 0.6rem;
+        z-index: 1001;
     }
 
     .hamburger {
         display: flex;
+        position: absolute;
         right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
     }
 
     .nav-menu {
@@ -296,6 +341,7 @@ body.english {
         margin-right: 0;
         justify-content: flex-start;
         overflow-y: auto;
+        z-index: 1000;
     }
 
     .nav-menu.active {
@@ -318,6 +364,7 @@ body.english {
         background: rgba(218, 165, 32, 0.05);
         border: 1px solid rgba(218, 165, 32, 0.2);
         font-size: 0.9rem;
+        white-space: nowrap;
     }
 
     .nav-link.join-btn {

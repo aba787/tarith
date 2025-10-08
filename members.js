@@ -304,23 +304,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Member data validation
     function validateMemberData(data) {
+        // Clear previous errors
+        document.querySelectorAll('.error-message').forEach(msg => msg.remove());
+        document.querySelectorAll('input').forEach(input => {
+            input.style.borderColor = '';
+        });
+
+        let isValid = true;
+
         if (!data.name || data.name.trim().length < 2) {
-            showNotification('يجب أن يكون الاسم أكثر من حرفين', 'error');
-            return false;
+            showFieldError('memberName', 'يجب أن يكون الاسم أكثر من حرفين');
+            isValid = false;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            showNotification('يرجى إدخال بريد إلكتروني صحيح', 'error');
-            return false;
+        if (!data.email || !emailRegex.test(data.email)) {
+            showFieldError('memberEmail', 'يرجى إدخال بريد إلكتروني صحيح');
+            isValid = false;
+        }
+
+        if (!data.role) {
+            showFieldError('memberRole', 'يجب اختيار دور للعضو');
+            isValid = false;
         }
 
         if (data.phone && data.phone.trim() && !data.phone.match(/^[\d+\-\s()]+$/)) {
-            showNotification('يرجى إدخال رقم هاتف صحيح', 'error');
-            return false;
+            showFieldError('memberPhone', 'يرجى إدخال رقم هاتف صحيح');
+            isValid = false;
         }
 
-        return true;
+        return isValid;
+    }
+
+    // Show field-specific error
+    function showFieldError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        if (!field) return;
+
+        const formGroup = field.parentNode;
+        
+        // Remove existing error
+        const existingError = formGroup.querySelector('.error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Add error message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.cssText = 'color: #dc3545; font-size: 0.9rem; margin-top: 0.5rem; font-weight: 600;';
+        errorDiv.textContent = message;
+        formGroup.appendChild(errorDiv);
+
+        // Style field
+        field.style.borderColor = '#dc3545';
+        field.focus();
     }
 
     // Articles management
@@ -582,6 +620,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             const formData = new FormData(e.target);
+            
+            // Validate form data
+            if (!validateNewsForm(formData)) {
+                return;
+            }
+
+            const submitBtn = newsForm.querySelector('[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري النشر...';
+            submitBtn.disabled = true;
+
             const imageFile = formData.get('newsImage');
 
             const processNewsData = (imageDataUrl = null) => {
@@ -591,10 +640,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     summary: formData.get('newsSummary'),
                     content: formData.get('newsContent'),
                     category: formData.get('newsCategory'),
-                    date: new Date().toLocaleDateString('ar-SA'),
-                    author: 'إدارة الموقع',
+                    date: formData.get('newsDate') || new Date().toISOString().split('T')[0],
+                    author: currentSession ? currentSession.fullName : 'إدارة الموقع',
                     status: 'published',
-                    image: imageDataUrl
+                    image: imageDataUrl,
+                    createdAt: new Date().toISOString()
                 };
 
                 // Save to localStorage
@@ -602,28 +652,86 @@ document.addEventListener('DOMContentLoaded', function() {
                 existingNews.unshift(newsData);
                 localStorage.setItem('warithNews', JSON.stringify(existingNews));
 
+                // Log activity
+                logActivity('news_published', `تم نشر خبر جديد: ${newsData.title}`);
+
                 // Reset form
                 e.target.reset();
-                imagePreview.style.display = 'none';
+                if (imagePreview) imagePreview.style.display = 'none';
+
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
 
                 // Show success message
-                showMessage('تم نشر الخبر بنجاح!', 'success');
+                showNotification('تم نشر الخبر بنجاح!', 'success');
 
                 // Refresh published news display
-                displayPublishedNews();
+                loadPublishedNews();
             };
 
-            // Handle image upload
+            // Handle image upload with validation
             if (imageFile && imageFile.size > 0) {
+                // Check file size (max 5MB)
+                if (imageFile.size > 5 * 1024 * 1024) {
+                    showNotification('حجم الصورة كبير جداً. الحد الأقصى 5 ميجابايت', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                // Check file type
+                if (!imageFile.type.startsWith('image/')) {
+                    showNotification('يرجى اختيار ملف صورة صحيح', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    return;
+                }
+
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     processNewsData(e.target.result);
+                };
+                reader.onerror = function() {
+                    showNotification('حدث خطأ في قراءة الصورة', 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
                 };
                 reader.readAsDataURL(imageFile);
             } else {
                 processNewsData();
             }
         });
+    }
+
+    // Validate news form
+    function validateNewsForm(formData) {
+        let isValid = true;
+        
+        // Clear previous errors
+        document.querySelectorAll('.error-message').forEach(msg => msg.remove());
+
+        if (!formData.get('newsTitle') || formData.get('newsTitle').trim() === '') {
+            showFieldError('newsTitle', 'عنوان الخبر مطلوب');
+            isValid = false;
+        }
+
+        if (!formData.get('newsSummary') || formData.get('newsSummary').trim() === '') {
+            showFieldError('newsSummary', 'ملخص الخبر مطلوب');
+            isValid = false;
+        }
+
+        if (!formData.get('newsContent') || formData.get('newsContent').trim() === '') {
+            showFieldError('newsContent', 'محتوى الخبر مطلوب');
+            isValid = false;
+        }
+
+        if (!formData.get('newsCategory') || formData.get('newsCategory').trim() === '') {
+            showFieldError('newsCategory', 'التصنيف مطلوب');
+            isValid = false;
+        }
+
+        return isValid;
     }
 });
 

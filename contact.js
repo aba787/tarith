@@ -119,7 +119,7 @@ function validateForm(data) {
         showError('email', 'البريد الإلكتروني مطلوب');
         isValid = false;
     } else if (!isValidEmail(data.email)) {
-        showError('email', 'البريد الإلكتروني غير صحيح');
+        showError('email', 'يرجى إدخال بريد إلكتروني صحيح');
         isValid = false;
     }
     
@@ -130,6 +130,15 @@ function validateForm(data) {
     
     if (!data.message || data.message.trim() === '') {
         showError('message', 'الرسالة مطلوبة');
+        isValid = false;
+    } else if (data.message.trim().length < 10) {
+        showError('message', 'الرسالة يجب أن تكون أكثر من 10 أحرف');
+        isValid = false;
+    }
+    
+    // Validate phone if provided
+    if (data.phone && data.phone.trim() && !isValidPhone(data.phone)) {
+        showError('phone', 'رقم الهاتف غير صحيح');
         isValid = false;
     }
     
@@ -177,6 +186,12 @@ function showError(fieldName, message) {
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+}
+
+// Phone validation (Saudi format)
+function isValidPhone(phone) {
+    const phoneRegex = /^(\+966|966|0)?5[0-9]{8}$/;
+    return phoneRegex.test(phone.replace(/[\s\-()]/g, ''));
 }
 
 // Show success message
