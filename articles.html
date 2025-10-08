@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المقالات - وريث</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="articles.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-container">
+                        <h2>وريث</h2>
+                        <p class="logo-subtitle">إرث باقٍ وتاريخ حي</p>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#about" class="nav-link">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#programs" class="nav-link">البرامج</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#achievements" class="nav-link">التكريمات والجوائز</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#partners" class="nav-link">شركاؤنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="articles.html" class="nav-link active">المقالات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="members.html" class="nav-link">الأعضاء</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">تواصل معنا</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="articles-main">
+        <!-- Hero Section -->
+        <section class="articles-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>مقالات وريث</h1>
+                    <p>اكتشف المحتوى التراثي والثقافي من أعضاء فريق وريث</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Form Section -->
+        <section class="article-form-section">
+            <div class="container">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>نشر مقال جديد</h2>
+                        <p>شارك معرفتك وخبراتك مع مجتمع وريث</p>
+                    </div>
+                    
+                    <form class="article-form" id="articleForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="authorName">اسم الكاتب</label>
+                                <input type="text" id="authorName" name="authorName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="authorEmail">البريد الإلكتروني</label>
+                                <input type="email" id="authorEmail" name="authorEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="articleTitle">عنوان المقال</label>
+                            <input type="text" id="articleTitle" name="articleTitle" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="articleCategory">التصنيف</label>
+                            <select id="articleCategory" name="articleCategory" required>
+                                <option value="">اختر التصنيف</option>
+                                <option value="heritage">التراث والثقافة</option>
+                                <option value="technology">التقنية والابتكار</option>
+                                <option value="crafts">الحرف اليدوية</option>
+                                <option value="history">التاريخ</option>
+                                <option value="society">المجتمع والتطوع</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="articleSummary">ملخص المقال</label>
+                            <textarea id="articleSummary" name="articleSummary" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="articleContent">محتوى المقال</label>
+                            <textarea id="articleContent" name="articleContent" rows="10" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="articleTags">الكلمات المفتاحية (مفصولة بفواصل)</label>
+                            <input type="text" id="articleTags" name="articleTags" placeholder="تراث، ثقافة، تقنية">
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            نشر المقال
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Display Section -->
+        <section class="articles-display">
+            <div class="container">
+                <div class="section-header">
+                    <h2>المقالات المنشورة</h2>
+                    <div class="filter-options">
+                        <button class="filter-btn active" data-filter="all">الكل</button>
+                        <button class="filter-btn" data-filter="heritage">التراث والثقافة</button>
+                        <button class="filter-btn" data-filter="technology">التقنية والابتكار</button>
+                        <button class="filter-btn" data-filter="crafts">الحرف اليدوية</button>
+                        <button class="filter-btn" data-filter="history">التاريخ</button>
+                        <button class="filter-btn" data-filter="society">المجتمع والتطوع</button>
+                    </div>
+                </div>
+                
+                <div class="articles-grid" id="articlesGrid">
+                    <!-- Sample Articles -->
+                    <article class="article-card" data-category="heritage">
+                        <div class="article-meta">
+                            <span class="category heritage">التراث والثقافة</span>
+                            <span class="date">15 ديسمبر 2023</span>
+                        </div>
+                        <h3>التراث السعودي في العصر الحديث</h3>
+                        <p class="article-summary">كيف يمكن الحفاظ على التراث السعودي العريق ونقله للأجيال القادمة في ظل التطور التقني المتسارع...</p>
+                        <div class="article-footer">
+                            <div class="author-info">
+                                <i class="fas fa-user"></i>
+                                <span>أحمد محمد</span>
+                            </div>
+                            <div class="article-tags">
+                                <span class="tag">تراث</span>
+                                <span class="tag">ثقافة</span>
+                                <span class="tag">سعودي</span>
+                            </div>
+                        </div>
+                        <a href="#" class="read-more">اقرأ المزيد</a>
+                    </article>
+                    
+                    <article class="article-card" data-category="technology">
+                        <div class="article-meta">
+                            <span class="category technology">التقنية والابتكار</span>
+                            <span class="date">12 ديسمبر 2023</span>
+                        </div>
+                        <h3>دور التقنية في حفظ التراث</h3>
+                        <p class="article-summary">استخدام التقنيات الحديثة مثل الذكاء الاصطناعي والواقع المعزز لحفظ ونشر التراث الثقافي...</p>
+                        <div class="article-footer">
+                            <div class="author-info">
+                                <i class="fas fa-user"></i>
+                                <span>فاطمة علي</span>
+                            </div>
+                            <div class="article-tags">
+                                <span class="tag">تقنية</span>
+                                <span class="tag">AI</span>
+                                <span class="tag">حفظ التراث</span>
+                            </div>
+                        </div>
+                        <a href="#" class="read-more">اقرأ المزيد</a>
+                    </article>
+                    
+                    <article class="article-card" data-category="crafts">
+                        <div class="article-meta">
+                            <span class="category crafts">الحرف اليدوية</span>
+                            <span class="date">8 ديسمبر 2023</span>
+                        </div>
+                        <h3>إحياء الحرف اليدوية التقليدية</h3>
+                        <p class="article-summary">رحلة في عالم الحرف اليدوية السعودية التقليدية وكيفية تطويرها لتواكب العصر الحديث...</p>
+                        <div class="article-footer">
+                            <div class="author-info">
+                                <i class="fas fa-user"></i>
+                                <span>خالد الأحمد</span>
+                            </div>
+                            <div class="article-tags">
+                                <span class="tag">حرف</span>
+                                <span class="tag">يدوية</span>
+                                <span class="tag">تقليدية</span>
+                            </div>
+                        </div>
+                        <a href="#" class="read-more">اقرأ المزيد</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <p>📧 info@warith.com</p>
+                    <p>📞 +966 50 123 4567</p>
+                    <p>📍 الرياض، المملكة العربية السعودية</p>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط مفيدة</h3>
+                    <ul>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">الدعم الفني</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا على وسائل التواصل الاجتماعي</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link">تويتر</a>
+                        <a href="#" class="social-link">إنستغرام</a>
+                        <a href="#" class="social-link">لينكد إن</a>
+                        <a href="#" class="social-link">يوتيوب</a>
+                        <a href="#" class="social-link">واتساب</a>
+                        <a href="#" class="social-link">فيسبوك</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 جميع الحقوق محفوظة - وريث</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="articles.js"></script>
+</body>
+</html>
