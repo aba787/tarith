@@ -1,0 +1,169 @@
+HTML, CSS, and JavaScript:
+html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Heir Partners</title> 
+<style> 
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;600&family=El+Messiri:wght@400;600&display=swap'); 
+
+:root { 
+--primary-brown: #8B4513; 
+--golden: #DAA520; 
+--dark-slate: #2F4F4F; 
+--cream: #F5F5DC; 
+} 
+
+body { 
+background-color: var(--cream); 
+font-family: 'El Messiri', sans-serif; 
+margin: 0; 
+padding: 40px 20px; 
+display:flex; 
+justify-content: center; 
+align-items: center; 
+min-height: 100vh; 
+} 
+
+.partners-container { 
+width: 100%; 
+max-width: 1000px; 
+text-align: center; 
+} 
+
+partners-title { 
+font-family: 'Reem Kufi', sans-serif; 
+font-size: 2.2em; 
+color: var(--dark-slate); 
+margin-bottom: 30px; 
+position:relative; 
+display:inline-block; 
+} 
+
+.partners-title::after { 
+content: ''; 
+position: absolute; 
+bottom: -8px; 
+right: 0; 
+width: 100%; 
+height: 2px; 
+background:var(--golden); 
+} 
+
+/* Animated partner bar */ 
+.partners-marquee { 
+width: 100%; 
+overflow: hidden; 
+background: white; 
+border-radius: 12px; 
+padding: 25px 0; 
+box-shadow: 0 5px 20px rgba(139, 69, 19, 0.1); 
+border: 2px solid var(--golden); 
+position:relative; 
+} 
+
+.marquee-track { 
+display:flex; 
+gap: 60px; 
+padding: 0 40px; 
+} 
+
+.partner-item { 
+flex: 0 0 auto; 
+display:flex; 
+flex-direction: column; 
+align-items: center; 
+justify-content: center; 
+gap: 8px; 
+transition: transform 0.3s ease; 
+} 
+
+.partner-item:hover { 
+transform: translateY(-5px); 
+} 
+
+.partner-logo { 
+width: 80px; 
+height: 80px; 
+background: linear-gradient(135deg, var(--cream), var(--light-sand)); 
+border-radius: 12px; 
+display:flex; 
+align-items: center; 
+justify-content: center; 
+font-size: 1.8em; 
+font-weight: bold; 
+color: var(--primary-brown); 
+border: 2px solid var(--golden); 
+} 
+
+.partner-name { 
+font-family: 'Reem Kufi', sans-serif; 
+font-size: 1.1em; 
+color: var(--dark-slate); 
+font-weight: 600; 
+white-space: nowrap; 
+} 
+
+/* Blur effect on the sides */ 
+.partners-marquee::before, 
+.partners-marquee::after { 
+content: ''; 
+position: absolute; 
+top: 0; 
+width: 100px; 
+height: 100%; 
+z-index: 2; 
+} 
+
+.partners-marquee::before { 
+right: 0; 
+background: linear-gradient(to left, white, transparent); 
+} 
+
+.partners-marquee::after { 
+left: 0; 
+background: linear-gradient(to right, white, transparent); 
+}
+</style>
+</head>
+<body>
+<div class="partners-container">
+<h2 class="partners-title">Partners and supporters we value...</h2>
+
+<div class="partners-marquee">
+<div class="marquee-track" id="marqueeTrack">
+<!-- Partners - will be copied automatically via JavaScript -->
+<div class="partner-item">
+<div class="partner-logo">B</div>
+<div class="partner-name">bonat</div>
+</div>
+
+<div class="partner-item">
+<div class="partner-logo">N</div>
+<div class="partner-name">Nexel-eep</div>
+
+</div>
+
+<div class="partner-item">
+<div class="partner-logo">D</div>
+<div class="partner-name">Discover</div>
+</div>
+
+<div class="partner-item">
+<div class="partner-logo">C</div>
+<div class="partner-name">Cas@Masters</div>
+</div>
+
+<div class="partner-item">
+<div class="partner-logo">T</div>
+<div class="partner-name">MarqueeTrack</div>
+</div>
+
+</div>
+
+<script>
+// Duplicate partners to create a continuous effect
+function duplicatePartners() {
+const marqueeTrack = document.getElementById('marqueeTrack');
