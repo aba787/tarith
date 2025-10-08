@@ -1,31 +1,94 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Language toggle functionality
     initializeLanguageToggle();
-    
-    // Mobile menu toggle
+
+    // Mobile navigation toggle and header scroll effects
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const header = document.querySelector('.header');
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+    // Mobile menu toggle
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
-      });
+
+        // Close menu when clicking on nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // Header scroll effect
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', function() {
+        const currentScrollY = window.scrollY;
+
+        if (header) {
+            if (currentScrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        lastScrollY = currentScrollY;
     });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-      hamburger.classList.remove('active');
-      navMenu.classList.remove('active');
-    }));
+    // Smooth scroll for navigation links
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+
+            if (targetSection) {
+                const headerHeight = header ? header.offsetHeight : 80;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Active navigation link highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navigationLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+    function setActiveNav() {
+        const scrollPosition = window.scrollY + 100;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                navigationLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', setActiveNav);
+    setActiveNav(); // Call once on load
+
 
     // Statistics Animation
     function animateNumbers() {
@@ -103,10 +166,10 @@ function loadMoreNews() {
 function loadNews() {
     const newsGrid = document.getElementById('newsGrid');
     if (!newsGrid) return;
-    
+
     // Get news from localStorage (this will be populated by admin from members page)
     const savedNews = JSON.parse(localStorage.getItem('warithNews') || '[]');
-    
+
     if (savedNews.length > 0) {
         newsGrid.innerHTML = '';
         savedNews.slice(0, 6).forEach(news => { // Show only first 6 news items
@@ -120,7 +183,7 @@ function loadNews() {
 function createNewsItem(news) {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
-    
+
     const imageSection = news.image ? 
         `<div class="news-image">
             <img src="${news.image}" alt="${news.title}" loading="lazy">
@@ -128,7 +191,7 @@ function createNewsItem(news) {
         `<div class="news-image">
             <img src="https://via.placeholder.com/400x250/8B4513/F5F5DC?text=${encodeURIComponent(news.title)}" alt="${news.title}" loading="lazy">
          </div>`;
-    
+
     newsItem.innerHTML = `
         ${imageSection}
         <div class="news-content">
@@ -145,11 +208,11 @@ function createNewsItem(news) {
 function initializeLanguageToggle() {
     const languageToggle = document.getElementById('languageToggle');
     if (!languageToggle) return;
-    
+
     // Check saved language preference
     const savedLanguage = localStorage.getItem('siteLanguage') || 'ar';
     setLanguage(savedLanguage);
-    
+
     languageToggle.addEventListener('click', function() {
         const currentLang = document.body.classList.contains('english') ? 'en' : 'ar';
         const newLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -161,7 +224,7 @@ function initializeLanguageToggle() {
 function setLanguage(language) {
     const body = document.body;
     const languageToggle = document.getElementById('languageToggle');
-    
+
     if (language === 'en') {
         body.classList.add('english');
         body.setAttribute('dir', 'ltr');
@@ -190,7 +253,7 @@ function translateContent(language) {
             'الأعضاء': 'الأعضاء',
             'تواصل معنا': 'تواصل معنا',
             'انضم إلينا': 'انضم إلينا',
-            
+
             // Hero section
             'حياكم الله في وريث': 'حياكم الله في وريث',
             'إرثٌ باقٍ و تقاليدُ حية': 'إرثٌ باقٍ و تقاليدُ حية',
@@ -207,14 +270,14 @@ function translateContent(language) {
             'الأعضاء': 'Members',
             'تواصل معنا': 'Contact Us',
             'انضم إلينا': 'Join Us',
-            
+
             // Hero section
             'حياكم الله في وريث': 'Welcome to Wareeth',
             'إرثٌ باقٍ و تقاليدُ حية': 'Living Heritage & Lasting Traditions',
             'ابدأ الآن': 'Get Started'
         }
     };
-    
+
     // Apply translations
     const elementsToTranslate = document.querySelectorAll('[data-translate]');
     elementsToTranslate.forEach(element => {
@@ -223,7 +286,7 @@ function translateContent(language) {
             element.textContent = translations[language][key];
         }
     });
-    
+
     // Auto-translate common elements
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -232,12 +295,12 @@ function translateContent(language) {
             link.textContent = translations[language][text];
         }
     });
-    
+
     // Hero content
     const heroTitle = document.querySelector('.hero-content h1');
     const heroSubtitle = document.querySelector('.hero-content p');
     const ctaButton = document.querySelector('.cta-button');
-    
+
     if (heroTitle && translations[language][heroTitle.textContent.trim()]) {
         heroTitle.textContent = translations[language][heroTitle.textContent.trim()];
     }
@@ -252,7 +315,7 @@ function translateContent(language) {
 // Initialize news loading when page loads
 document.addEventListener('DOMContentLoaded', function() {
     // ... existing code ...
-    
+
     // Load news
     loadNews();
 });
