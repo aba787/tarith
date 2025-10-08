@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const fullName = document.getElementById('fullName').value;
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
@@ -24,10 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Successful login
                 loginSection.style.display = 'none';
                 adminDashboard.style.display = 'block';
-                document.getElementById('adminName').textContent = username;
+                // Display the full name if provided, otherwise show username
+                document.getElementById('adminName').textContent = fullName || username;
 
                 // Show success message
-                showNotification('تم تسجيل الدخول بنجاح!', 'success');
+                showNotification(`مرحباً ${fullName || username}! تم تسجيل الدخول بنجاح!`, 'success');
             } else {
                 // Failed login
                 showNotification('اسم المستخدم أو كلمة المرور غير صحيحة', 'error');
