@@ -288,30 +288,65 @@ body.english {
 @media screen and (max-width: 768px) {
     .header {
         min-height: 70px;
+        padding: 0;
     }
 
     .nav-container {
-        padding: 0 1rem;
+        padding: 0 0.8rem;
         height: 70px;
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .logo {
+        flex: 0 0 auto;
+        max-width: 60%;
+        overflow: hidden;
+    }
+
+    .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        overflow: hidden;
     }
 
     .logo-container h2 {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        margin: 0;
+        line-height: 1.1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
 
     .logo-subtitle {
-        font-size: 0.65rem;
+        font-size: 0.55rem;
+        margin: 0;
+        line-height: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
     }
 
     .language-toggle {
         position: absolute;
-        right: 6rem;
+        right: 4.5rem;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 0.6rem;
-        padding: 0.25rem 0.5rem;
+        font-size: 0.55rem;
+        padding: 0.2rem 0.4rem;
         z-index: 1001;
+        border-radius: 8px;
+        min-width: auto;
+        white-space: nowrap;
     }
 
     .hamburger {
@@ -321,6 +356,7 @@ body.english {
         top: 50%;
         transform: translateY(-50%);
         z-index: 1002;
+        flex: 0 0 auto;
     }
 
     .nav-menu {
@@ -329,12 +365,13 @@ body.english {
         top: 0;
         flex-direction: column;
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%);
-        width: 280px;
+        width: min(280px, 85vw);
         height: 100vh;
+        height: 100dvh; /* استخدام الارتفاع الديناميكي للشاشة */
         text-align: center;
         transition: all 0.4s ease;
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3);
-        padding: 5rem 0 2rem 0;
+        padding: max(4rem, env(safe-area-inset-top, 4rem)) 0 max(2rem, env(safe-area-inset-bottom, 2rem)) 0;
         gap: 1rem;
         backdrop-filter: blur(20px);
         border-left: 3px solid #8B4513;
@@ -342,6 +379,7 @@ body.english {
         justify-content: flex-start;
         overflow-y: auto;
         z-index: 1000;
+        -webkit-overflow-scrolling: touch; /* تحسين التمرير على iOS */
     }
 
     .nav-menu.active {
@@ -402,41 +440,72 @@ body.english {
 
 @media screen and (max-width: 480px) {
     .header {
-        min-height: 65px;
+        min-height: 60px;
+        padding: 0;
     }
 
     .nav-container {
-        padding: 0 0.8rem;
-        height: 65px;
+        padding: 0 0.5rem;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .logo {
+        flex: 0 0 auto;
+        max-width: 65%;
+        overflow: hidden;
+    }
+
+    .logo-container {
+        gap: 1px;
     }
 
     .logo-container h2 {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
+        line-height: 1;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .logo-subtitle {
-        font-size: 0.6rem;
+        font-size: 0.45rem;
+        line-height: 1;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .language-toggle {
-        right: 5.5rem;
-        font-size: 0.6rem;
-        padding: 0.2rem 0.45rem;
+        right: 3.8rem;
+        font-size: 0.5rem;
+        padding: 0.15rem 0.35rem;
+        border-radius: 6px;
+        min-width: auto;
     }
 
     .hamburger {
         right: 0.3rem;
+        padding: 0.3rem;
+        flex: 0 0 auto;
     }
 
     .hamburger .bar {
-        width: 22px;
-        height: 2.5px;
-        margin: 2.5px 0;
+        width: 20px;
+        height: 2px;
+        margin: 2px 0;
     }
 
     .nav-menu {
-        width: 260px;
-        padding: 4.5rem 0 2rem 0;
+        width: 85vw;
+        max-width: 280px;
+        padding: 4rem 0 2rem 0;
     }
 
     .nav-link {
@@ -445,33 +514,61 @@ body.english {
     }
 }
 
-@media screen and (max-width: 480px) {
+/* شاشات صغيرة جداً */
+@media screen and (max-width: 360px) {
+    .header {
+        min-height: 55px;
+    }
+
     .nav-container {
-        padding: 0 0.5rem;
+        padding: 0 0.3rem;
+        height: 55px;
+    }
+
+    .logo {
+        max-width: 70%;
     }
 
     .logo-container h2 {
-        font-size: 1.6rem;
+        font-size: 1rem;
     }
 
     .logo-subtitle {
-        font-size: 0.65rem;
+        font-size: 0.4rem;
+        display: none; /* إخفاء العنوان الفرعي في الشاشات الصغيرة جداً */
     }
 
     .language-toggle {
-        right: 4rem;
-        font-size: 0.7rem;
-        padding: 0.3rem 0.6rem;
+        right: 3.2rem;
+        font-size: 0.45rem;
+        padding: 0.1rem 0.25rem;
+        border-radius: 4px;
+    }
+
+    .hamburger {
+        right: 0.2rem;
+        padding: 0.2rem;
+    }
+
+    .hamburger .bar {
+        width: 18px;
+        height: 1.5px;
+        margin: 1.5px 0;
     }
 
     .nav-menu {
-        width: 280px;
-        padding: 5rem 0 2rem 0;
+        width: 90vw;
+        max-width: 250px;
+        padding: 3.5rem 0 1.5rem 0;
+    }
+
+    .nav-item {
+        width: 90%;
     }
 
     .nav-link {
-        font-size: 0.95rem;
-        padding: 0.8rem 1.2rem;
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem;
     }
 }
 
@@ -1931,6 +2028,22 @@ body.english .join-form textarea {
   transform: translateY(-3px);
   box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
   background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-brown) 100%);
+}
+
+/* تحسينات عامة للأجهزة المحمولة */
+@media screen and (max-width: 1024px) {
+    .nav-container {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .logo {
+        max-width: 70%;
+    }
+    
+    .nav-menu {
+        width: min(320px, 90vw);
+    }
 }
 
 /* Responsive Design */
