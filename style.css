@@ -89,6 +89,21 @@ body {
   color: #DAA520;
 }
 
+.nav-link.join-btn {
+  background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.nav-link.join-btn:hover {
+  background: linear-gradient(135deg, #8B4513 0%, #DAA520 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -166,6 +181,38 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 12px 35px rgba(139, 69, 19, 0.4);
   background: linear-gradient(135deg, #8B4513 0%, #DAA520 100%);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.join-hero-btn {
+  background: transparent;
+  color: white;
+  padding: 18px 40px;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.join-hero-btn:hover {
+  background: white;
+  color: #8B4513;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 255, 255, 0.3);
 }
 
 /* Sections */

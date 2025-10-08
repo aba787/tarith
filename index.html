@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -16,7 +15,7 @@
       <div class="nav-container">
         <div class="logo">
           <div class="logo-container">
-            
+
             <h2>وريث</h2>
             <p class="logo-subtitle">إرث باقٍ وتاريخ حي</p>
           </div>
@@ -28,7 +27,7 @@
           <li class="nav-item">
             <a href="#about" class="nav-link">من نحن</a>
           </li>
-          
+
           <li class="nav-item">
             <a href="#programs" class="nav-link">البرامج</a>
           </li>
@@ -46,6 +45,9 @@
           </li>
           <li class="nav-item">
             <a href="contact.html" class="nav-link">تواصل معنا</a>
+          </li>
+          <li class="nav-item">
+            <a href="join.html" class="nav-link join-btn">انضم إلينا</a>
           </li>
         </ul>
         <div class="hamburger">
@@ -112,7 +114,7 @@
       </div>
     </section>
 
-    
+
 
     <section id="programs" class="programs">
       <div class="container">
@@ -252,27 +254,27 @@
               <div class="partner-logo">🏛️</div>
               <div class="partner-name">وزارة الثقافة</div>
             </div>
-            
+
             <div class="partner-item">
               <div class="partner-logo">🤝</div>
               <div class="partner-name">الهيئة العامة للتراث</div>
             </div>
-            
+
             <div class="partner-item">
               <div class="partner-logo">🌟</div>
               <div class="partner-name">مؤسسة محمد بن سلمان</div>
             </div>
-            
+
             <div class="partner-item">
               <div class="partner-logo">🎯</div>
               <div class="partner-name">نادي الرياض</div>
             </div>
-            
+
             <div class="partner-item">
               <div class="partner-logo">⚡</div>
               <div class="partner-name">جمعية وطن طموح</div>
             </div>
-            
+
             <div class="partner-item">
               <div class="partner-logo">🔧</div>
               <div class="partner-name">مجتمع حرفة</div>
@@ -327,7 +329,67 @@
     </div>
   </footer>
 
+  <!-- New Section for Joining -->
+  <section id="join-form-section" class="join-form-section" style="display: none;">
+    <div class="container">
+      <h2>الانضمام إلى الجمعية</h2>
+      <p>يرجى تسجيل معلوماتك لتقديم طلب الانضمام. سيتم مراجعة طلبك من قبل الجمعية.</p>
+      <form id="joinForm" action="submit_join_request.php" method="POST">
+        <div class="form-group">
+          <label for="name">الاسم الكامل:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">رقم الهاتف:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="message">رسالة مختصرة (اختياري):</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">إرسال الطلب</button>
+      </form>
+      <div id="form-message" class="form-message"></div>
+    </div>
+  </section>
+
+
   <script src="script.js"></script>
+  <script>
+    // Script to handle the join button click and form display
+    document.querySelector('.join-btn').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      document.getElementById('home').style.display = 'none';
+      document.getElementById('news').style.display = 'none';
+      document.getElementById('about').style.display = 'none';
+      document.getElementById('programs').style.display = 'none';
+      document.getElementById('statistics').style.display = 'none';
+      document.getElementById('achievements').style.display = 'none';
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('partners').style.display = 'none';
+      document.querySelector('footer').style.display = 'none';
+      document.getElementById('join-form-section').style.display = 'block';
+    });
+
+    // Basic form submission handling (replace with actual AJAX or form submission logic)
+    document.getElementById('joinForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      const form = event.target;
+      const formData = new FormData(form);
+
+      // In a real application, you would send this data to your server
+      // For now, we'll just display a success message
+      console.log('Form submitted with data:', Object.fromEntries(formData.entries()));
+
+      document.getElementById('form-message').innerText = 'تم إرسال طلبك بنجاح. سيتم التواصل معك قريباً.';
+      form.reset(); // Clear the form
+    });
+  </script>
 </body>
 
 </html>

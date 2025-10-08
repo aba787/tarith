@@ -1,0 +1,525 @@
+
+/* Join Page Styles */
+.join-main {
+    margin-top: 70px;
+}
+
+/* Join Hero Section */
+.join-hero {
+    background: linear-gradient(135deg, #8B4513 0%, #DAA520 50%, #2F4F4F 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.join-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+}
+
+.join-hero .hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+.join-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.join-hero p {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Benefits Section */
+.benefits-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #F5F5DC 0%, rgba(245, 245, 220, 0.8) 100%);
+    position: relative;
+}
+
+.benefits-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 25% 75%, rgba(218, 165, 32, 0.05) 0%, transparent 50%);
+}
+
+.benefits-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2F4F4F;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+.benefits-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+    border-radius: 2px;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, white 0%, #F5F5DC 100%);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(218, 165, 32, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(139, 69, 19, 0.15);
+}
+
+.benefit-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    color: #2F4F4F;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.benefit-card p {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Application Section */
+.application-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.form-header h2 {
+    font-size: 2.5rem;
+    color: #2F4F4F;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    position: relative;
+}
+
+.form-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+    border-radius: 2px;
+}
+
+.form-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Form Styles */
+.join-form {
+    background: linear-gradient(135deg, #F5F5DC 0%, rgba(245, 245, 220, 0.5) 100%);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.1);
+    border: 1px solid rgba(218, 165, 32, 0.2);
+}
+
+.form-section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    border: 1px solid rgba(218, 165, 32, 0.1);
+}
+
+.form-section h3 {
+    color: #2F4F4F;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #DAA520;
+    font-weight: 700;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2F4F4F;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid rgba(218, 165, 32, 0.3);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Cairo', sans-serif;
+    background: white;
+    transition: all 0.3s ease;
+    direction: rtl;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #DAA520;
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Checkbox Grid */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #2F4F4F;
+    font-weight: 500;
+}
+
+.checkbox-item input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-item .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #DAA520;
+    border-radius: 4px;
+    margin-left: 10px;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark {
+    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.checkbox-item.agreement {
+    background: rgba(218, 165, 32, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+.terms-link {
+    color: #DAA520;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Submit Button */
+.submit-btn {
+    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    color: white;
+    padding: 1.2rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 2rem auto 0;
+    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+    min-width: 250px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);
+    background: linear-gradient(135deg, #8B4513 0%, #DAA520 100%);
+}
+
+/* Process Section */
+.process-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%);
+    color: white;
+}
+
+.process-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.step-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #DAA520;
+}
+
+.step-content p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+/* Success Message */
+.success-message {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 2rem 0;
+    box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+    display: none;
+}
+
+.success-message.show {
+    display: block;
+    animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .join-hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .join-hero p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    
+    .benefits-section h2 {
+        font-size: 2rem;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .benefit-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-container {
+        padding: 0 1rem;
+    }
+    
+    .join-form {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-section {
+        padding: 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .form-header h2 {
+        font-size: 2rem;
+    }
+    
+    .submit-btn {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        min-width: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .join-hero {
+        padding: 60px 0;
+    }
+    
+    .join-hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .join-hero p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .benefits-section,
+    .application-section,
+    .process-section {
+        padding: 60px 0;
+    }
+    
+    .join-form {
+        padding: 2rem 1rem;
+    }
+    
+    .form-section {
+        padding: 1rem;
+    }
+    
+    .checkbox-item {
+        font-size: 0.9rem;
+    }
+    
+    .benefit-card {
+        padding: 1.5rem 1rem;
+    }
+    
+    .benefit-icon {
+        font-size: 3rem;
+    }
+}
