@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>طلب الانضمام - وريث</title>
+    <title>الانضمام إلى الجمعية - وريث</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <link href="join.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -66,6 +65,45 @@
             </div>
         </section>
 
+        <!-- Application Form Section -->
+        <section class="application-section">
+            <div class="container">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>الانضمام إلى الجمعية</h2>
+                        <p>يرجى تسجيل معلوماتك لتقديم طلب الانضمام. سيتم مراجعة طلبك من قبل الجمعية.</p>
+                    </div>
+
+                    <form class="join-form" id="joinForm">
+                        <div class="form-group">
+                            <label for="fullName">الاسم الكامل:</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="أدخل اسمك الكامل">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني:</label>
+                            <input type="email" id="email" name="email" required placeholder="أدخل بريدك الإلكتروني">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف:</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">رسالة مختصرة (اختياري):</label>
+                            <textarea id="message" name="message" rows="4" placeholder="اكتب رسالة مختصرة عن اهتماماتك ودوافع الانضمام"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الطلب
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <!-- Benefits Section -->
         <section class="benefits-section">
             <div class="container">
@@ -95,168 +133,7 @@
             </div>
         </section>
 
-        <!-- Application Form Section -->
-        <section class="application-section">
-            <div class="container">
-                <div class="form-container">
-                    <div class="form-header">
-                        <h2>طلب انضمام جديد</h2>
-                        <p>املأ النموذج أدناه وسنتواصل معك في أقرب وقت</p>
-                    </div>
-                    
-                    <form class="join-form" id="joinForm">
-                        <!-- Personal Information -->
-                        <div class="form-section">
-                            <h3>المعلومات الشخصية</h3>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName">الاسم الأول *</label>
-                                    <input type="text" id="firstName" name="firstName" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lastName">الاسم الأخير *</label>
-                                    <input type="text" id="lastName" name="lastName" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email">البريد الإلكتروني *</label>
-                                    <input type="email" id="email" name="email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">رقم الجوال *</label>
-                                    <input type="tel" id="phone" name="phone" required>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="age">العمر *</label>
-                                    <input type="number" id="age" name="age" min="18" max="80" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="city">المدينة *</label>
-                                    <input type="text" id="city" name="city" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Educational & Professional Background -->
-                        <div class="form-section">
-                            <h3>المؤهلات والخبرات</h3>
-                            <div class="form-group">
-                                <label for="education">المؤهل العلمي *</label>
-                                <select id="education" name="education" required>
-                                    <option value="">اختر المؤهل العلمي</option>
-                                    <option value="high-school">الثانوية العامة</option>
-                                    <option value="diploma">دبلوم</option>
-                                    <option value="bachelor">بكالوريوس</option>
-                                    <option value="master">ماجستير</option>
-                                    <option value="phd">دكتوراه</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="profession">المهنة الحالية *</label>
-                                <input type="text" id="profession" name="profession" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="experience">خبرتك في مجال التراث والثقافة</label>
-                                <textarea id="experience" name="experience" rows="4" placeholder="اكتب عن خبرتك السابقة في مجال التراث والثقافة (اختياري)"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Interest Areas -->
-                        <div class="form-section">
-                            <h3>مجالات الاهتمام</h3>
-                            <div class="form-group">
-                                <label for="interests">ما هي مجالات التراث التي تهتم بها؟ *</label>
-                                <div class="checkbox-grid">
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="traditional-crafts">
-                                        <span class="checkmark"></span>
-                                        الحرف التراثية
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="folklore">
-                                        <span class="checkmark"></span>
-                                        التراث الشعبي
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="history">
-                                        <span class="checkmark"></span>
-                                        التاريخ
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="literature">
-                                        <span class="checkmark"></span>
-                                        الأدب التراثي
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="architecture">
-                                        <span class="checkmark"></span>
-                                        العمارة التراثية
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox" name="interests[]" value="digital">
-                                        <span class="checkmark"></span>
-                                        التوثيق الرقمي
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Motivation -->
-                        <div class="form-section">
-                            <h3>دافع الانضمام</h3>
-                            <div class="form-group">
-                                <label for="motivation">لماذا تريد الانضمام إلى جمعية وريث؟ *</label>
-                                <textarea id="motivation" name="motivation" rows="5" required placeholder="اكتب عن دوافعك للانضمام وكيف تريد المساهمة في أهداف الجمعية"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="availability">ما مدى توفرك للمشاركة في الأنشطة؟ *</label>
-                                <select id="availability" name="availability" required>
-                                    <option value="">اختر مدى التوفر</option>
-                                    <option value="full-time">متفرغ تماماً</option>
-                                    <option value="part-time">جزء من الوقت</option>
-                                    <option value="weekends">في عطلة نهاية الأسبوع فقط</option>
-                                    <option value="occasional">مناسبات خاصة</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Agreement -->
-                        <div class="form-section">
-                            <div class="form-group checkbox-group">
-                                <label class="checkbox-item agreement">
-                                    <input type="checkbox" id="terms" name="terms" required>
-                                    <span class="checkmark"></span>
-                                    أوافق على <a href="#" class="terms-link">شروط وأحكام</a> الانضمام لجمعية وريث وأتعهد بالالتزام بقيمها ومبادئها
-                                </label>
-                            </div>
-                            
-                            <div class="form-group checkbox-group">
-                                <label class="checkbox-item">
-                                    <input type="checkbox" id="newsletter" name="newsletter">
-                                    <span class="checkmark"></span>
-                                    أرغب في تلقي النشرة الإخبارية وآخر أخبار الجمعية
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <button type="submit" class="submit-btn">
-                            <i class="fas fa-paper-plane"></i>
-                            إرسال طلب الانضمام
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- Application Process -->
+        <!-- Process Steps -->
         <section class="process-section">
             <div class="container">
                 <h2>خطوات عملية الانضمام</h2>
