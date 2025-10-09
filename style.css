@@ -537,7 +537,7 @@ body.english {
 
     .nav-link {
         font-size: 0.9rem;
-        padding: 0.8rem 1rem;
+        padding: 0.7rem 0.8rem;
     }
 }
 
@@ -628,6 +628,8 @@ body.english {
   align-items: center;
   justify-content: center;
   text-align: center;
+  /* Moved text to be centered */
+  height: 100%; /* Occupy full height of the hero section for centering */
 }
 
 .hero-content h1 {
@@ -658,6 +660,34 @@ body.english .hero-content h1 {
   font-weight: 600;
   position: relative;
   z-index: 2;
+}
+
+/* Moved this text to be centered */
+.hero-content .centered-text {
+  font-size: 3rem; /* Adjust font size as needed */
+  font-weight: 700;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+  line-height: 1.3;
+  color: #fff; /* White text color */
+  position: absolute; /* Absolute positioning to center within hero-content */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* Ensure it's above other elements */
+  font-family: 'Scheherazade New', serif; /* Using a suitable Arabic font */
+}
+
+/* Responsive adjustments for the centered text */
+@media screen and (max-width: 768px) {
+  .hero-content .centered-text {
+    font-size: 2rem; /* Smaller font size for mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content .centered-text {
+    font-size: 1.5rem; /* Even smaller for very small screens */
+  }
 }
 
 .cta-button {
