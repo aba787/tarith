@@ -5,15 +5,15 @@
 }
 
 :root {
-  /* الألوان التراثية الأنيقة المحدثة */
+  /* الألوان التراثية الأنيقة - وريث */
   --wareeth-primary: #8B4513;     /* بني ترابي - الأصالة */
   --wareeth-secondary: #DAA520;   /* ذهبي دافئ - الفخامة */
   --wareeth-accent: #2F4F4F;     /* رمادي أزرق - الجدية */
   --wareeth-light: #F5F5DC;      /* بيج كريمي - الخلفيات */
-  --wareeth-red: #B22222;        /* أحمر ثانوي */
-  --wareeth-white: #FFFEF7;      /* الأبيض المكسور */
-  --wareeth-text: #2F2F2F;       /* لون النص الرئيسي */
-  --wareeth-text-light: #666666; /* لون النص الثانوي */
+  --wareeth-red: #DC143C;        /* أحمر ثانوي فقط */
+  --wareeth-white: #FFFFFF;      /* الأبيض النقي */
+  --wareeth-text: #2F4F4F;       /* رمادي أزرق للنصوص */
+  --wareeth-text-light: #8B4513; /* بني ترابي للنصوص الثانوية */
 
   /* الخطوط الرسمية */
   --wareeth-font-primary: 'Tajawal', sans-serif;
@@ -53,14 +53,13 @@
 }
 
 .login-container {
-    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
     padding: 3.5rem 3rem;
     border-radius: 25px;
     box-shadow: 
         0 20px 50px rgba(139, 69, 19, 0.15),
         0 5px 20px rgba(218, 165, 32, 0.1);
-    border: 2px solid transparent;
-    border-image: linear-gradient(135deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 100%) 1;
+    border: 3px solid var(--wareeth-secondary);
     max-width: 420px;
     width: 100%;
     position: relative;
@@ -152,8 +151,8 @@
 }
 
 .login-btn {
-    background: linear-gradient(135deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 50%, var(--wareeth-accent) 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 100%);
+    color: var(--wareeth-white);
     padding: 1.3rem 2rem;
     border: none;
     border-radius: 50px;
@@ -190,8 +189,8 @@
 
 .login-btn:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.4);
-    background: linear-gradient(135deg, var(--wareeth-accent) 0%, var(--wareeth-primary) 50%, var(--wareeth-secondary) 100%);
+    box-shadow: 0 15px 40px rgba(218, 165, 32, 0.4);
+    background: linear-gradient(135deg, var(--wareeth-primary) 0%, var(--wareeth-secondary) 100%);
 }
 
 /* Admin Dashboard */
@@ -216,7 +215,7 @@
 }
 
 .dashboard-header {
-    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
     padding: 2rem 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(139, 69, 19, 0.12);
@@ -224,7 +223,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    border: 2px solid var(--wareeth-secondary);
     position: relative;
     z-index: 1;
 }
@@ -300,11 +299,11 @@
 }
 
 .stat-card {
-    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
     padding: 2rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(139, 69, 19, 0.1);
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    border: 2px solid var(--wareeth-secondary);
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
@@ -428,11 +427,11 @@
 
 /* Members Section */
 .members-section {
-    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 8px 25px rgba(139, 69, 19, 0.1);
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    border: 2px solid var(--wareeth-secondary);
     position: relative;
     z-index: 1;
     margin-bottom: 2rem;
@@ -495,7 +494,8 @@
     overflow-x: auto;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
-    background: white;
+    background: var(--wareeth-white);
+    border: 1px solid var(--wareeth-secondary);
 }
 
 .members-table {
@@ -621,7 +621,7 @@
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
     margin: 3% auto;
     padding: 0;
     border-radius: 20px;
@@ -630,7 +630,7 @@
     max-height: 90vh;
     overflow-y: auto;
     box-shadow: 0 25px 50px rgba(139, 69, 19, 0.2);
-    border: 2px solid rgba(218, 165, 32, 0.3);
+    border: 3px solid var(--wareeth-secondary);
 }
 
 .modal-header {
