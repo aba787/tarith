@@ -959,7 +959,7 @@ body.english .about-text p {
 }
 
 .placeholder-image {
-  background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-brown) 100%);
+  background: url('https://i.ibb.co/Sw3wWj0G/image.jpg') no-repeat center center/cover;
   height: 350px;
   display: flex;
   align-items: center;
@@ -970,6 +970,25 @@ body.english .about-text p {
   font-weight: 700;
   box-shadow: 0 20px 40px rgba(139, 69, 19, 0.2);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.placeholder-image::after {
+  content: '';
+  position: relative;
+  z-index: 1;
 }
 
 /* Services Grid */
