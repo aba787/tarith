@@ -739,9 +739,10 @@ body.english {
   align-items: center;
   justify-content: center;
 
-  /* إعدادات جديدة لضمان ظهور الصورة كاملة */
-  background-size: contain;
+  /* إعدادات محسنة لتغطية كامل المنطقة */
+  background-size: cover;
   background-attachment: scroll;
+  background-position: center center;
 }
 
 .hero::before {
@@ -851,7 +852,7 @@ body.english .hero-content h1 {
 /* تحسينات للاستجابة */
 @media screen and (max-width: 1200px) {
   .hero {
-    background-size: contain;
+    background-size: cover;
   }
 }
 
@@ -859,6 +860,7 @@ body.english .hero-content h1 {
   .hero {
     padding: 120px 0 80px;
     min-height: 90vh;
+    background-size: cover;
   }
 
   .hero-content h1 {
@@ -876,7 +878,8 @@ body.english .hero-content h1 {
   .hero {
     padding: 100px 0 60px;
     min-height: 80vh;
-    background-size: contain;
+    background-size: cover;
+    background-position: center center;
   }
 
   .hero-content h1 {
@@ -897,7 +900,8 @@ body.english .hero-content h1 {
   .hero {
     padding: 80px 0 40px;
     min-height: 70vh;
-    background-size: contain;
+    background-size: cover;
+    background-position: center center;
   }
 
   .hero-content h1 {
@@ -917,15 +921,16 @@ body.english .hero-content h1 {
 /* لحالات الشاشات الطويلة جداً */
 @media screen and (min-height: 1000px) {
   .hero {
-    background-size: contain;
-    background-position: center 30%;
+    background-size: cover;
+    background-position: center center;
   }
 }
 
 /* لحالات الشاشات العريضة جداً */
 @media screen and (min-width: 2000px) {
   .hero {
-    background-size: contain;
+    background-size: cover;
+    background-position: center center;
   }
 }
 
