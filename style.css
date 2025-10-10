@@ -784,20 +784,16 @@ body.english {
   font-size: 4rem;
   margin-bottom: 1rem;
   font-weight: 700;
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
   line-height: 1.2;
   color: white;
   position: absolute;
-  top: 10%; /* رفع المربع الخلفي للأعلى */
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   font-family: 'Scheherazade New', serif;
-  background: rgba(0,0,0,0.4);
-  padding: 2rem 3rem;
-  border-radius: 15px;
-  backdrop-filter: blur(5px);
-  border: 2px solid rgba(218, 165, 32, 0.3);
+  white-space: nowrap;
 }
 
 body.english .hero-content h1 {
@@ -821,19 +817,20 @@ body.english .hero-content h1 {
   border-radius: 10px;
 }
 
-/* رفع النص والمربع الخلفي أكثر للأعلى */
+/* النص الأفقي بدون مربع خلفي */
 .hero-content .centered-text {
   font-size: 3rem;
   font-weight: 700;
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
   line-height: 1.3;
   color: #fff;
   position: absolute;
-  top: 10%; /* رفع النص أكثر للأعلى */
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
   font-family: 'Scheherazade New', serif;
+  white-space: nowrap;
 }
 
 /* تحسينات متجاوبة للنص في الأعلى */
