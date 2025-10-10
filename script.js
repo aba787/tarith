@@ -193,6 +193,25 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('News updated from admin panel');
         }
     });
+
+    // Listen for custom events from admin panel
+    window.addEventListener('statsUpdated', function(e) {
+        const stats = e.detail;
+        updateStatsDisplay(stats);
+        console.log('Statistics updated from admin panel');
+    });
+
+    window.addEventListener('partnersUpdated', function(e) {
+        const partners = e.detail;
+        updatePartnersDisplay(partners);
+        console.log('Partners updated from admin panel');
+    });
+
+    window.addEventListener('contentUpdated', function(e) {
+        const content = e.detail;
+        updateContentDisplay(content);
+        console.log('Content updated from admin panel');
+    });
 });
 
 // Dynamic content update functions

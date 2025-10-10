@@ -625,11 +625,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Articles publishing
-    const manageArticlesBtn = document.getElementById('manageArticlesBtn');
+    const publishArticlesBtn = document.getElementById('publishArticlesBtn');
     const articlesPublishing = document.getElementById('articlesPublishing');
 
-    if (manageArticlesBtn && articlesPublishing) {
-        manageArticlesBtn.addEventListener('click', function() {
+    if (publishArticlesBtn && articlesPublishing) {
+        publishArticlesBtn.addEventListener('click', function() {
             hideAllSections();
             articlesPublishing.style.display = 'block';
             loadPublishedArticles();
@@ -1847,14 +1847,26 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        // Show loading notification
+        const loadingNotification = showNotification('جاري تصدير البيانات...', 'info');
+
         if (useLocalStorage || !db) {
             const members = JSON.parse(localStorage.getItem('warithMembers') || '[]');
-            if (format === 'csv') {
-                exportToCSV(members);
-            } else if (format === 'json') {
-                exportToJSON(members);
+            if (members.length === 0) {
+                loadingNotification.remove();
+                showNotification('لا توجد بيانات أعضاء للتصدير', 'warning');
+                return;
             }
-            logActivity('data_export', `تم تصدير بيانات الأعضاء بصيغة ${format.toUpperCase()} (localStorage)`);
+            
+            setTimeout(() => {
+                if (format === 'csv') {
+                    exportToCSV(members);
+                } else if (format === 'json') {
+                    exportToJSON(members);
+                }
+                logActivity('data_export', `تم تصدير بيانات الأعضاء بصيغة ${format.toUpperCase()}`);
+                loadingNotification.remove();
+            }, 1000);
             return;
         }
 
@@ -2351,24 +2363,37 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('statsForm')?.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        const submitBtn = this.querySelector('[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+        submitBtn.disabled = true;
+
         const volunteersCountField = document.getElementById('volunteersCount');
         const volunteerHoursField = document.getElementById('volunteerHours');
         const placesCountField = document.getElementById('placesCount');
         const beneficiariesCountField = document.getElementById('beneficiariesCount');
 
         const statsData = {
-            volunteersCount: volunteersCountField ? volunteersCountField.value : 200,
-            volunteerHours: volunteerHoursField ? volunteerHoursField.value : 3200,
-            placesCount: placesCountField ? placesCountField.value : 600,
-            beneficiariesCount: beneficiariesCountField ? beneficiariesCountField.value : 8040,
-            lastUpdated: new Date().toISOString()
+            volunteersCount: parseInt(volunteersCountField ? volunteersCountField.value : 200),
+            volunteerHours: parseInt(volunteerHoursField ? volunteerHoursField.value : 3200),
+            placesCount: parseInt(placesCountField ? placesCountField.value : 600),
+            beneficiariesCount: parseInt(beneficiariesCountField ? beneficiariesCountField.value : 8040),
+            lastUpdated: new Date().toISOString(),
+            updatedBy: currentSession ? currentSession.fullName : 'مدير النظام'
         };
 
-        localStorage.setItem('warithStats', JSON.stringify(statsData));
-        updateMainPageStats(statsData);
-
-        showNotification('تم تحديث الإحصائيات بنجاح!', 'success');
-        logActivity('stats_updated', 'تم تحديث إحصائيات الموقع');
+        setTimeout(() => {
+            localStorage.setItem('warithStats', JSON.stringify(statsData));
+            
+            // Trigger update event for main page
+            window.dispatchEvent(new CustomEvent('statsUpdated', { detail: statsData }));
+            
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            
+            showNotification('تم تحديث الإحصائيات بنجاح!', 'success');
+            logActivity('stats_updated', 'تم تحديث إحصائيات الموقع');
+        }, 1000);
     });
 
     function updateMainPageStats(stats) {
@@ -2409,8 +2434,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const partnerNameField = document.getElementById('partnerName');
         const partnerIconField = document.getElementById('partnerIcon');
+        const submitButton = this.querySelector('[type="submit"]');
 
-        const partnerName = partnerNameField ? partnerNameField.value : '';
+        const partnerName = partnerNameField ? partnerNameField.value.trim() : '';
         const partnerIcon = partnerIconField ? partnerIconField.value : '';
 
         if (!partnerName || !partnerIcon) {
@@ -2418,35 +2444,52 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
-        const submitButton = this.querySelector('[type="submit"]');
-        const editIndex = submitButton ? parseInt(submitButton.getAttribute('data-partner-index')) : NaN;
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+        submitButton.disabled = true;
 
-        if (!isNaN(editIndex) && editIndex >= 0 && editIndex < savedPartners.length) {
-            // Update existing partner
-            const oldName = savedPartners[editIndex].name;
-            savedPartners[editIndex].name = partnerName;
-            savedPartners[editIndex].icon = partnerIcon;
-            logActivity('partner_updated', `تم تحديث الشريك: ${oldName}`);
-            showNotification('تم تحديث الشريك بنجاح!', 'success');
-        } else {
-            // Add new partner
-            const newPartner = { name: partnerName, icon: partnerIcon, id: Date.now() };
-            savedPartners.push(newPartner);
-            logActivity('partner_added', `تم إضافة شريك جديد: ${partnerName}`);
-            showNotification('تم إضافة الشريك بنجاح!', 'success');
-        }
+        setTimeout(() => {
+            const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
+            const editIndex = submitButton ? parseInt(submitButton.getAttribute('data-partner-index')) : NaN;
 
-        localStorage.setItem('warithPartners', JSON.stringify(savedPartners));
-        displayPartnersList(savedPartners);
-        this.reset();
+            if (!isNaN(editIndex) && editIndex >= 0 && editIndex < savedPartners.length) {
+                // Update existing partner
+                const oldName = savedPartners[editIndex].name;
+                savedPartners[editIndex] = {
+                    ...savedPartners[editIndex],
+                    name: partnerName,
+                    icon: partnerIcon,
+                    updatedAt: new Date().toISOString()
+                };
+                logActivity('partner_updated', `تم تحديث الشريك: ${oldName} إلى ${partnerName}`);
+                showNotification('تم تحديث الشريك بنجاح!', 'success');
+            } else {
+                // Add new partner
+                const newPartner = { 
+                    id: Date.now(),
+                    name: partnerName, 
+                    icon: partnerIcon,
+                    createdAt: new Date().toISOString(),
+                    createdBy: currentSession ? currentSession.fullName : 'مدير النظام'
+                };
+                savedPartners.push(newPartner);
+                logActivity('partner_added', `تم إضافة شريك جديد: ${partnerName}`);
+                showNotification('تم إضافة الشريك بنجاح!', 'success');
+            }
 
-        // Reset submit button text and remove edit index attribute
-        if (submitButton) {
+            localStorage.setItem('warithPartners', JSON.stringify(savedPartners));
+            
+            // Trigger update event for main page
+            window.dispatchEvent(new CustomEvent('partnersUpdated', { detail: savedPartners }));
+            
+            displayPartnersList(savedPartners);
+            this.reset();
+
+            // Reset submit button text and remove edit index attribute
             submitButton.innerHTML = '<i class="fas fa-plus"></i> إضافة شريك';
             submitButton.removeAttribute('data-partner-index');
-        }
-        updateMainPagePartners(savedPartners);
+            submitButton.disabled = false;
+        }, 1000);
     });
 
     window.deletePartner = function(index) {
@@ -2537,31 +2580,50 @@ document.addEventListener('DOMContentLoaded', function() {
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                const savedContent = JSON.parse(localStorage.getItem('warithContent') || '{}');
+                const submitBtn = this.querySelector('[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+                submitBtn.disabled = true;
 
-                if (section === 'about') {
-                    const aboutTitleField = document.getElementById('aboutTitle');
-                    const aboutTextField = document.getElementById('aboutText');
-                    if (aboutTitleField) savedContent.aboutTitle = aboutTitleField.value;
-                    if (aboutTextField) savedContent.aboutText = aboutTextField.value;
-                } else if (section === 'vision') {
-                    const visionTextField = document.getElementById('visionText');
-                    if (visionTextField) savedContent.visionText = visionTextField.value;
-                } else if (section === 'mission') {
-                    const missionTextField = document.getElementById('missionText');
-                    if (missionTextField) savedContent.missionText = missionTextField.value;
-                } else if (section === 'hero') {
-                    const heroTextField = document.getElementById('heroText');
-                    if (heroTextField) savedContent.heroText = heroTextField.value;
-                }
+                setTimeout(() => {
+                    const savedContent = JSON.parse(localStorage.getItem('warithContent') || '{}');
 
-                savedContent.lastUpdated = new Date().toISOString();
-                localStorage.setItem('warithContent', JSON.stringify(savedContent));
+                    if (section === 'about') {
+                        const aboutTitleField = document.getElementById('aboutTitle');
+                        const aboutTextField = document.getElementById('aboutText');
+                        if (aboutTitleField) savedContent.aboutTitle = aboutTitleField.value.trim();
+                        if (aboutTextField) savedContent.aboutText = aboutTextField.value.trim();
+                    } else if (section === 'vision') {
+                        const visionTextField = document.getElementById('visionText');
+                        if (visionTextField) savedContent.visionText = visionTextField.value.trim();
+                    } else if (section === 'mission') {
+                        const missionTextField = document.getElementById('missionText');
+                        if (missionTextField) savedContent.missionText = missionTextField.value.trim();
+                    } else if (section === 'hero') {
+                        const heroTextField = document.getElementById('heroText');
+                        if (heroTextField) savedContent.heroText = heroTextField.value.trim();
+                    }
 
-                updateMainPageContent(savedContent);
+                    savedContent.lastUpdated = new Date().toISOString();
+                    savedContent.updatedBy = currentSession ? currentSession.fullName : 'مدير النظام';
+                    localStorage.setItem('warithContent', JSON.stringify(savedContent));
 
-                showNotification(`تم تحديث ${section === 'about' ? 'معلومات الفريق' : section === 'vision' ? 'الرؤية' : section === 'mission' ? 'الرسالة' : 'النص الترحيبي'} بنجاح!`, 'success');
-                logActivity('content_updated', `تم تحديث محتوى: ${section}`);
+                    // Trigger update event for main page
+                    window.dispatchEvent(new CustomEvent('contentUpdated', { detail: savedContent }));
+
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+
+                    const sectionNames = {
+                        'about': 'معلومات الفريق',
+                        'vision': 'الرؤية',
+                        'mission': 'الرسالة',
+                        'hero': 'النص الترحيبي'
+                    };
+
+                    showNotification(`تم تحديث ${sectionNames[section]} بنجاح!`, 'success');
+                    logActivity('content_updated', `تم تحديث محتوى: ${sectionNames[section]}`);
+                }, 1000);
             });
         }
     });
