@@ -149,16 +149,10 @@ body.english {
     font-family: 'Scheherazade New', serif;
     font-size: 3rem;
     margin: 0;
-    font-weight: 700;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
-    background: linear-gradient(135deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 50%, var(--wareeth-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-weight: 800;
     line-height: 1;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     position: relative;
-    filter: drop-shadow(0 0 8px rgba(218, 165, 32, 0.4));
 }
 
 .logo-container h2::after {
@@ -169,7 +163,7 @@ body.english {
     transform: translateX(-50%);
     width: 60%;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, var(--wareeth-secondary) 50%, transparent 100%);
+    background: var(--wareeth-secondary);
     border-radius: 1px;
 }
 
@@ -179,15 +173,10 @@ body.english {
     font-size: 0.8rem;
     margin: 0;
     font-style: italic;
-    opacity: 0.95;
-    font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    opacity: 1;
+    font-weight: 600;
     line-height: 1.2;
     margin-top: 2px;
-    background: linear-gradient(90deg, var(--wareeth-light) 0%, rgba(245, 245, 220, 0.8) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 /* User Menu Dropdown */
