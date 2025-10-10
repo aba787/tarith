@@ -184,6 +184,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize CTA and other buttons
     initializeCTAButtons();
+    
+    // Listen for localStorage changes (news updates from admin page)
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'warithNews') {
+            // Reload news when updated from members page
+            loadNews();
+            console.log('News updated from admin panel');
+        }
+    });
 });
 
 // Dynamic content update functions
@@ -322,22 +331,60 @@ function loadMoreNews() {
 
 // Load news from localStorage or database
 function loadNews() {
-    const newsGrid = document.getElementById('newsGrid');
-    if (!newsGrid) return;
+    const newsTrack = document.getElementById('newsTrack');
+    if (!newsTrack) return;
 
     // Get news from localStorage (this will be populated by admin from members page)
     const savedNews = JSON.parse(localStorage.getItem('warithNews') || '[]');
 
     if (savedNews.length > 0) {
-        newsGrid.innerHTML = '';
-        savedNews.slice(0, 6).forEach(news => { // Show only first 6 news items
-            const newsItem = createNewsItem(news);
-            newsGrid.appendChild(newsItem);
+        // Clear existing news slides and replace with dynamic content
+        newsTrack.innerHTML = '';
+        
+        savedNews.slice(0, 5).forEach(news => { // Show only first 5 news items
+            const newsSlide = createNewsSlide(news);
+            newsTrack.appendChild(newsSlide);
         });
+        
+        // Re-initialize slider after loading new content
+        currentNewsSlide = 0;
+        totalNewsSlides = savedNews.slice(0, 5).length;
+        const indicatorsContainer = document.getElementById('newsIndicators');
+        if (indicatorsContainer) {
+            createNewsIndicators(indicatorsContainer);
+        }
+        updateNewsSlider();
     }
 }
 
-// Create news item HTML element
+// Create news slide HTML element for slider
+function createNewsSlide(news) {
+    const newsSlide = document.createElement('div');
+    newsSlide.className = 'news-slide';
+
+    const imageSection = news.image ?
+        `<div class="news-image">
+            <img src="${news.image}" alt="${news.title}" loading="lazy">
+         </div>` :
+        `<div class="news-image">
+            <img src="https://via.placeholder.com/400x250/8B4513/F5F5DC?text=${encodeURIComponent(news.title)}" alt="${news.title}" loading="lazy">
+         </div>`;
+
+    newsSlide.innerHTML = `
+        <div class="news-item">
+            ${imageSection}
+            <div class="news-content">
+                <div class="news-date">${news.date}</div>
+                <h3>${news.title}</h3>
+                <p>${news.summary}</p>
+                <a href="#" class="read-more">اقرأ المزيد</a>
+            </div>
+        </div>
+    `;
+    return newsSlide;
+}
+
+// Create news item HTML element (for grid layout if needed)
 function createNewsItem(news) {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';

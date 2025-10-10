@@ -943,6 +943,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Refresh published news display
                 loadPublishedNews();
 
+                // Sync with main page
+                syncWithMainPage();
+                
                 // Sync with other tabs (if implemented)
                 syncWithServer();
             };
@@ -2155,6 +2158,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    // Function to sync data with main page
+    function syncWithMainPage() {
+        // Trigger storage event to update other open tabs
+        window.dispatchEvent(new StorageEvent('storage', {
+            key: 'warithNews',
+            newValue: localStorage.getItem('warithNews'),
+            url: window.location.href
+        }));
+    }
+    
     // Dummy function for syncWithServer (to be implemented if needed)
     function syncWithServer() {
         console.log("syncWithServer called - implementation needed.");
