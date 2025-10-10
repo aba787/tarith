@@ -619,12 +619,17 @@
 
 /* تحسين الجداول للأجهزة المحمولة */
 @media screen and (max-width: 768px) {
+    .members-main {
+        margin-top: 60px;
+    }
+
     .table-container {
         position: relative;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: thin;
         scrollbar-color: var(--wareeth-secondary) transparent;
+        border-radius: 10px;
     }
 
     .table-container::-webkit-scrollbar {
