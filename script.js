@@ -155,6 +155,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Partners marquee functionality
     duplicatePartners();
+
+    // Initialize news loading when page loads
+    loadNews();
+
+    // Initialize news slider
+    initializeNewsSlider();
+
+    // Initialize user menu
+    initializeUserMenu();
 });
 
 // Duplicate partners to create a continuous scrolling effect
@@ -195,10 +204,10 @@ function createNewsItem(news) {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
 
-    const imageSection = news.image ? 
+    const imageSection = news.image ?
         `<div class="news-image">
             <img src="${news.image}" alt="${news.title}" loading="lazy">
-         </div>` : 
+         </div>` :
         `<div class="news-image">
             <img src="https://via.placeholder.com/400x250/8B4513/F5F5DC?text=${encodeURIComponent(news.title)}" alt="${news.title}" loading="lazy">
          </div>`;
@@ -327,17 +336,6 @@ function translateContent(language) {
     });
 }
 
-// Initialize news loading when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    // ... existing code ...
-
-    // Load news
-    loadNews();
-    
-    // Initialize news slider
-    initializeNewsSlider();
-});
-
 // News Slider Functionality
 let currentNewsSlide = 0;
 let totalNewsSlides = 0;
@@ -388,7 +386,7 @@ function initializeNewsSlider() {
 
 function createNewsIndicators(container) {
     if (!container) return;
-    
+
     container.innerHTML = '';
     for (let i = 0; i < totalNewsSlides; i++) {
         const indicator = document.createElement('div');
@@ -469,4 +467,57 @@ function addSwipeSupport(element) {
             }
         }
     }
+}
+
+// User Menu Functionality
+function initializeUserMenu() {
+    const userMenu = document.getElementById('userMenu');
+    const userMenuToggle = document.getElementById('userMenuToggle');
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (!userMenuToggle) return;
+
+    // Toggle user menu dropdown
+    userMenuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        userMenu.classList.toggle('active');
+    });
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!userMenu.contains(e.target)) {
+            userMenu.classList.remove('active');
+        }
+    });
+
+    // Handle logout button
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Add logout logic here
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                // Clear any stored user data
+                localStorage.removeItem('userLoggedIn');
+                localStorage.removeItem('currentUser');
+
+                // Show logout message
+                alert('تم تسجيل الخروج بنجاح');
+
+                // Close dropdown
+                userMenu.classList.remove('active');
+
+                // Redirect to home page or reload
+                window.location.href = 'index.html';
+            }
+        });
+    }
+
+    // Close dropdown when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            userMenu.classList.remove('active');
+        }
+    });
 }
