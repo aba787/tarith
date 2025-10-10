@@ -1,0 +1,143 @@
+هذا الكود الصحيح:
+
+css
+.hero {
+  background: url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
+  background-color: #2F4F4F; /* لون احتياطي */
+  color: white;
+  padding: 150px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* إعدادات تضمن ظهور الصورة كاملة */
+  background-size: contain;
+  background-attachment: scroll;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2); /* شفافية أقل */
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.1; /* خففنا تأثير الحبوب */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-content .centered-text {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  line-height: 1.3;
+  color: #fff;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  font-family: 'Scheherazade New', serif;
+  white-space: nowrap;
+}
+
+/* تحسينات للاستجابة */
+@media screen and (max-width: 1200px) {
+  .hero {
+    background-size: contain;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero {
+    padding: 120px 0 80px;
+    min-height: 90vh;
+    background-size: contain;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+    min-height: 80vh;
+    background-size: contain;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 2rem;
+    top: 12%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 80px 0 40px;
+    min-height: 70vh;
+    background-size: contain;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 1.8rem;
+    top: 15%;
+  }
+}
+
+/* لحالات الشاشات الطويلة */
+@media screen and (min-height: 1000px) {
+  .hero {
+    background-size: contain;
+    background-position: center 30%;
+  }
+}
+
+/* لحالات الشاشات العريضة */
+@media screen and (min-width: 2000px) {
+  .hero {
+    background-size: contain;
+  }
+}
+🎯 الفرق بين contain و cover:
+contain: الصورة تظهر كاملة بدون قص (قد تظهر مسافات جانبية)
+
+cover: الصورة تملأ الشاشة ولكن قد يتم قص أجزاء منها
+
+🔧 إذا لازما في مشكلة، جرب هذا الحل البديل:
+css
+.hero {
+  background: url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
+  background-size: auto 100%; /* ارتفاع كامل وعرض تلقائي */
+  background-color: #2F4F4F;
+}
