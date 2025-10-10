@@ -164,7 +164,128 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize user menu
     initializeUserMenu();
+
+    // Load and display saved content on initial load
+    loadSavedContent();
 });
+
+// Dynamic content update functions
+function updateStatsDisplay(stats) {
+    // Update statistics on main page
+    const statNumbers = document.querySelectorAll('.stat-number');
+    if (statNumbers.length >= 4) {
+        statNumbers[0].setAttribute('data-target', stats.volunteerHours);
+        statNumbers[1].setAttribute('data-target', stats.volunteersCount);
+        statNumbers[2].setAttribute('data-target', stats.placesCount);
+        statNumbers[3].setAttribute('data-target', stats.beneficiariesCount);
+
+        // Re-animate numbers
+        animateNumbers();
+    }
+}
+
+function updatePartnersDisplay(partners) {
+    const marqueeTrack = document.getElementById('marqueeTrack');
+    if (marqueeTrack && partners.length > 0) {
+        const partnersHTML = partners.map(partner => `
+            <div class="partner-item">
+                <div class="partner-logo">${partner.icon}</div>
+                <div class="partner-name">${partner.name}</div>
+            </div>
+        `).join('');
+
+        marqueeTrack.innerHTML = partnersHTML + partnersHTML; // Duplicate for smooth scrolling
+    }
+}
+
+function updateContentDisplay(content) {
+    // Update hero text
+    const heroTitle = document.querySelector('.hero-content h1'); // Assuming h1 is used for hero title
+    if (heroTitle && content.heroText) {
+        heroTitle.textContent = content.heroText;
+    }
+
+    // Update about section
+    if (content.aboutTitle) {
+        const aboutTitle = document.querySelector('#about h2');
+        if (aboutTitle) aboutTitle.textContent = content.aboutTitle;
+    }
+
+    if (content.aboutText) {
+        const aboutText = document.querySelector('.about-text');
+        if (aboutText) {
+            const paragraphs = content.aboutText.split('\n').filter(p => p.trim());
+            aboutText.innerHTML = paragraphs.map(p => `<p>${p.trim()}</p>`).join('');
+        }
+    }
+
+    // Update vision
+    if (content.visionText) {
+        const visionText = document.querySelector('.vision-text');
+        if (visionText) visionText.textContent = content.visionText;
+    }
+
+    // Update mission
+    if (content.missionText) {
+        const missionText = document.querySelector('.mission-text');
+        if (missionText) missionText.textContent = content.missionText;
+    }
+}
+
+function updateSettingsDisplay(settings) {
+    // Update site title and subtitle
+    const logo = document.querySelector('.logo h2');
+    const logoSubtitle = document.querySelector('.logo-subtitle');
+
+    if (logo && settings.siteTitle) {
+        logo.textContent = settings.siteTitle.split(' - ')[0] || settings.siteTitle;
+    }
+
+    if (logoSubtitle && settings.siteSubtitle) {
+        logoSubtitle.textContent = settings.siteSubtitle;
+    }
+
+    // Update contact info in footer
+    const footerSections = document.querySelectorAll('.footer-section');
+    footerSections.forEach(section => {
+        if (section.querySelector('h3')?.textContent === 'معلومات الاتصال') {
+            const contactInfo = section.querySelectorAll('p');
+            if (contactInfo.length >= 2) {
+                if (settings.contactEmail) {
+                    contactInfo[0].textContent = `📧 ${settings.contactEmail}`;
+                }
+                if (settings.contactPhone) {
+                    contactInfo[1].textContent = `📞 ${settings.contactPhone}`;
+                }
+            }
+        }
+    });
+}
+
+function loadSavedContent() {
+    // Load and apply saved content
+    const savedStats = JSON.parse(localStorage.getItem('warithStats') || '{}');
+    const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
+    const savedContent = JSON.parse(localStorage.getItem('warithContent') || '{}');
+    const savedSettings = JSON.parse(localStorage.getItem('warithSettings') || '{}');
+
+    if (Object.keys(savedStats).length > 0) {
+        updateStatsDisplay(savedStats);
+    }
+
+    if (savedPartners.length > 0) {
+        updatePartnersDisplay(savedPartners);
+    }
+
+    if (Object.keys(savedContent).length > 0) {
+        updateContentDisplay(savedContent);
+    }
+
+    if (Object.keys(savedSettings).length > 0) {
+        updateSettingsDisplay(savedSettings);
+    }
+}
+
 
 // Duplicate partners to create a continuous scrolling effect
 function duplicatePartners() {
@@ -521,3 +642,9 @@ function initializeUserMenu() {
         }
     });
 }
+
+// Function to show notifications
+function showNotification(message, type) {
+    // Remove existing notifications
+    const existingNotifications = document.querySelectorAll('.notification');
+    existingNotifications.forEach(notification => notification.remove());

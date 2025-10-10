@@ -490,6 +490,50 @@
     background: linear-gradient(135deg, #8B0000 0%, var(--wareeth-red) 100%);
 }
 
+.action-btn.stats-btn {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    color: white;
+}
+
+.action-btn.stats-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(23, 162, 184, 0.3);
+    background: linear-gradient(135deg, #138496 0%, #17a2b8 100%);
+}
+
+.action-btn.partners-btn {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.action-btn.partners-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+    background: linear-gradient(135deg, #20c997 0%, #28a745 100%);
+}
+
+.action-btn.content-btn {
+    background: linear-gradient(135deg, #fd7e14 0%, #e55a4e 100%);
+    color: white;
+}
+
+.action-btn.content-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(253, 126, 20, 0.3);
+    background: linear-gradient(135deg, #e55a4e 0%, #fd7e14 100%);
+}
+
+.action-btn.settings-btn {
+    background: linear-gradient(135deg, #6f42c1 0%, #9a3bb0 100%);
+    color: white;
+}
+
+.action-btn.settings-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(111, 66, 193, 0.3);
+    background: linear-gradient(135deg, #9a3bb0 0%, #6f42c1 100%);
+}
+
 /* Members Section */
 .members-section {
     background: linear-gradient(135deg, var(--wareeth-white) 0%, var(--wareeth-light) 100%);
@@ -1031,6 +1075,130 @@
 .tab-btn:hover:not(.active) {
     background: rgba(218, 165, 32, 0.1);
     color: var(--wareeth-primary);
+}
+
+/* Management Sections */
+.stats-management,
+.partners-management,
+.content-management,
+.site-settings {
+    background: linear-gradient(135deg, #fff 0%, var(--wareeth-light) 100%);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.1);
+    border: 1px solid rgba(218, 165, 32, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.stats-management::before,
+.partners-management::before,
+.content-management::before,
+.site-settings::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.stats-editor,
+.partners-editor,
+.content-editor,
+.settings-content {
+    margin-top: 2rem;
+}
+
+.current-partners {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(218, 165, 32, 0.2);
+}
+
+.current-partners h3 {
+    color: var(--wareeth-primary);
+    margin-bottom: 1.5rem;
+    font-family: var(--wareeth-font-primary);
+}
+
+.partners-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.partner-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, rgba(245, 245, 220, 0.3) 100%);
+    border: 2px solid rgba(218, 165, 32, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.partner-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+}
+
+.partner-card .partner-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.partner-card .partner-name {
+    color: var(--wareeth-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.partner-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.content-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid rgba(218, 165, 32, 0.1);
+}
+
+.content-tabs .tab-btn {
+    padding: 1rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: var(--wareeth-accent);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-family: var(--wareeth-font-secondary);
+    border-radius: 10px 10px 0 0;
+}
+
+.content-tabs .tab-btn.active {
+    background: linear-gradient(135deg, var(--wareeth-secondary) 0%, var(--wareeth-primary) 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.content-tabs .tab-btn:hover:not(.active) {
+    background: rgba(218, 165, 32, 0.1);
+    color: var(--wareeth-primary);
+}
+
+.content-tab-content {
+    padding: 1.5rem 0;
+}
+
+.content-tab-content textarea {
+    min-height: 150px;
+    resize: vertical;
 }
 
 /* News Management */

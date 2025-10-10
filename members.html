@@ -175,6 +175,22 @@
                         <i class="fas fa-bullhorn"></i>
                         إدارة الأخبار والإعلانات
                     </button>
+                     <button class="action-btn stats-btn" id="manageStatsBtn">
+                        <i class="fas fa-chart-bar"></i>
+                        إدارة الإحصائيات
+                    </button>
+                    <button class="action-btn partners-btn" id="managePartnersBtn">
+                        <i class="fas fa-handshake"></i>
+                        إدارة الشركاء
+                    </button>
+                    <button class="action-btn content-btn" id="manageContentBtn">
+                        <i class="fas fa-file-alt"></i>
+                        إدارة المحتوى
+                    </button>
+                    <button class="action-btn settings-btn" id="manageSettingsBtn">
+                        <i class="fas fa-cog"></i>
+                        إعدادات الموقع
+                    </button>
                 </div>
 
                 <!-- Members Table -->
@@ -260,9 +276,9 @@
                 <div class="articles-management" id="articlesManagement" style="display: none;">
                     <div class="section-header">
                         <h2>إدارة المقالات</h2>
-                        <button class="back-btn" id="backToMembers">
+                        <button class="back-btn" id="backToDashboard">
                             <i class="fas fa-arrow-right"></i>
-                            العودة للأعضاء
+                            العودة للوحة الرئيسية
                         </button>
                     </div>
 
@@ -275,6 +291,217 @@
                     <div class="articles-list" id="articlesList">
                         <!-- Articles will be loaded here -->
                     </div>
+                </div>
+            </div>
+
+            <!-- Statistics Management Section -->
+            <div class="stats-management" id="statsManagement" style="display: none;">
+                <div class="section-header">
+                    <h2>إدارة الإحصائيات</h2>
+                    <button class="back-btn" id="backFromStats">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة للوحة الرئيسية
+                    </button>
+                </div>
+
+                <div class="stats-editor">
+                    <form id="statsForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="volunteersCount">عدد المتطوعين</label>
+                                <input type="number" id="volunteersCount" value="200" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="volunteerHours">ساعات التطوع</label>
+                                <input type="number" id="volunteerHours" value="3200" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="placesCount">عدد الأماكن</label>
+                                <input type="number" id="placesCount" value="600" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="beneficiariesCount">المستفيدون</label>
+                                <input type="number" id="beneficiariesCount" value="8040" required>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">
+                                <i class="fas fa-save"></i>
+                                حفظ الإحصائيات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Partners Management Section -->
+            <div class="partners-management" id="partnersManagement" style="display: none;">
+                <div class="section-header">
+                    <h2>إدارة الشركاء</h2>
+                    <button class="back-btn" id="backFromPartners">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة للوحة الرئيسية
+                    </button>
+                </div>
+
+                <div class="partners-editor">
+                    <form id="partnersForm">
+                        <h3>إضافة شريك جديد</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="partnerName">اسم الشريك</label>
+                                <input type="text" id="partnerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="partnerIcon">أيقونة الشريك</label>
+                                <select id="partnerIcon" required>
+                                    <option value="">اختر أيقونة</option>
+                                    <option value="🏛️">🏛️ مؤسسة حكومية</option>
+                                    <option value="🤝">🤝 شراكة</option>
+                                    <option value="🌟">🌟 مؤسسة خيرية</option>
+                                    <option value="🎯">🎯 نادي</option>
+                                    <option value="⚡">⚡ جمعية</option>
+                                    <option value="🔧">🔧 مجتمع مهني</option>
+                                    <option value="🏢">🏢 شركة</option>
+                                    <option value="📚">📚 مؤسسة تعليمية</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">
+                                <i class="fas fa-plus"></i>
+                                إضافة شريك
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="current-partners">
+                        <h3>الشركاء الحاليون</h3>
+                        <div class="partners-list" id="partnersList">
+                            <!-- شركاء موجودين -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Management Section -->
+            <div class="content-management" id="contentManagement" style="display: none;">
+                <div class="section-header">
+                    <h2>إدارة المحتوى</h2>
+                    <button class="back-btn" id="backFromContent">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة للوحة الرئيسية
+                    </button>
+                </div>
+
+                <div class="content-tabs">
+                    <button class="tab-btn active" data-content-tab="about">عن الفريق</button>
+                    <button class="tab-btn" data-content-tab="vision">الرؤية</button>
+                    <button class="tab-btn" data-content-tab="mission">الرسالة</button>
+                    <button class="tab-btn" data-content-tab="hero">النص الترحيبي</button>
+                </div>
+
+                <div class="content-editor">
+                    <div class="content-tab-content" id="aboutContent">
+                        <form id="aboutForm">
+                            <div class="form-group">
+                                <label for="aboutTitle">عنوان القسم</label>
+                                <input type="text" id="aboutTitle" value="وريث" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="aboutText">النص الأساسي</label>
+                                <textarea id="aboutText" rows="8" required>انطلقت مسيرة فريقنا منذ عام 2021 م ولا تزال مستمرة إلى اليوم
+تهدف إلى تعزيز الهوية السعودية والمساهمة في تسجيل الإرث وإعادة إحياء العادات والتقاليد
+يمثل فريق وريث مجموعة من الأفراد الذين استثمروا بعمق في تعزيز الهوية السعودية والمساهمة في تسجيل التراث وإحياء العادات والتقاليد ذات القيمة الثقافية الكبرى</textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">حفظ التغييرات</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="content-tab-content" id="visionContent" style="display: none;">
+                        <form id="visionForm">
+                            <div class="form-group">
+                                <label for="visionText">نص الرؤية</label>
+                                <textarea id="visionText" rows="4" required>أن نكون الفريق الرائد في توثيق وحفظ التراث السعودي ونشره للأجيال القادمة بأساليب عصرية ومبتكرة</textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">حفظ التغييرات</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="content-tab-content" id="missionContent" style="display: none;">
+                        <form id="missionForm">
+                            <div class="form-group">
+                                <label for="missionText">نص الرسالة</label>
+                                <textarea id="missionText" rows="4" required>نعمل على توثيق التراث السعودي ونشره</textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">حفظ التغييرات</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="content-tab-content" id="heroContent" style="display: none;">
+                        <form id="heroForm">
+                            <div class="form-group">
+                                <label for="heroText">النص الترحيبي</label>
+                                <input type="text" id="heroText" value="حياكم الله في وريث" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn primary">حفظ التغييرات</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Site Settings Section -->
+            <div class="site-settings" id="siteSettings" style="display: none;">
+                <div class="section-header">
+                    <h2>إعدادات الموقع</h2>
+                    <button class="back-btn" id="backFromSettings">
+                        <i class="fas fa-arrow-right"></i>
+                        العودة للوحة الرئيسية
+                    </button>
+                </div>
+
+                <div class="settings-content">
+                    <form id="settingsForm">
+                        <div class="form-group">
+                            <label for="siteTitle">عنوان الموقع</label>
+                            <input type="text" id="siteTitle" value="وريث - فريق تطوعي" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="siteSubtitle">العنوان الفرعي</label>
+                            <input type="text" id="siteSubtitle" value="إرث باقٍ وتاريخ حي" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">البريد الإلكتروني</label>
+                            <input type="email" id="contactEmail" value="Wareethofficial@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">رقم الهاتف</label>
+                            <input type="text" id="contactPhone" value="+966 59 511 4884" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maintenanceMode">وضع الصيانة</label>
+                            <select id="maintenanceMode">
+                                <option value="false">الموقع متاح</option>
+                                <option value="true">وضع الصيانة</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn primary">
+                                <i class="fas fa-save"></i>
+                                حفظ الإعدادات
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

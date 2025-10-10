@@ -414,9 +414,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // News management functionality
+    // Management sections functionality
     const manageNewsBtn = document.getElementById('manageNewsBtn');
+    const manageStatsBtn = document.getElementById('manageStatsBtn');
+    const managePartnersBtn = document.getElementById('managePartnersBtn');
+    const manageContentBtn = document.getElementById('manageContentBtn');
+    const siteSettingsBtn = document.getElementById('siteSettingsBtn');
+
     const newsModal = document.getElementById('newsModal');
+    const statsManagement = document.getElementById('statsManagement');
+    const partnersManagement = document.getElementById('partnersManagement');
+    const contentManagement = document.getElementById('contentManagement');
+    const siteSettings = document.getElementById('siteSettings');
+
     const closeNewsModal = document.getElementById('closeNewsModal');
     
     if (manageNewsBtn && newsModal) {
@@ -436,6 +446,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Statistics management
+    if (manageStatsBtn) {
+        manageStatsBtn.addEventListener('click', function() {
+            hideAllSections();
+            statsManagement.style.display = 'block';
+            loadCurrentStats();
+        });
+    }
+
+    // Partners management
+    if (managePartnersBtn) {
+        managePartnersBtn.addEventListener('click', function() {
+            hideAllSections();
+            partnersManagement.style.display = 'block';
+            loadCurrentPartners();
+        });
+    }
+
+    // Content management
+    if (manageContentBtn) {
+        manageContentBtn.addEventListener('click', function() {
+            hideAllSections();
+            contentManagement.style.display = 'block';
+            loadCurrentContent();
+        });
+    }
+
+    // Site settings
+    if (siteSettingsBtn) {
+        siteSettingsBtn.addEventListener('click', function() {
+            hideAllSections();
+            siteSettings.style.display = 'block';
+            loadSiteSettings();
+        });
+    }
+
+    // Back buttons
+    document.getElementById('backFromStats')?.addEventListener('click', () => showMainDashboard());
+    document.getElementById('backFromPartners')?.addEventListener('click', () => showMainDashboard());
+    document.getElementById('backFromContent')?.addEventListener('click', () => showMainDashboard());
+    document.getElementById('backFromSettings')?.addEventListener('click', () => showMainDashboard());
 
     function showExportOptions() {
         const exportModal = document.createElement('div');
@@ -1574,6 +1626,272 @@ function showNotification(message, type) {
     setTimeout(() => {
         notification.remove();
     }, 3000);
+}
+
+// Management functions
+function hideAllSections() {
+    membersSection.style.display = 'none';
+    articlesManagement.style.display = 'none';
+    if (statsManagement) statsManagement.style.display = 'none';
+    if (partnersManagement) partnersManagement.style.display = 'none';
+    if (contentManagement) contentManagement.style.display = 'none';
+    if (siteSettings) siteSettings.style.display = 'none';
+}
+
+function showMainDashboard() {
+    hideAllSections();
+    membersSection.style.display = 'block';
+}
+
+// Statistics Management
+function loadCurrentStats() {
+    const savedStats = JSON.parse(localStorage.getItem('warithStats') || '{}');
+    
+    document.getElementById('volunteersCount').value = savedStats.volunteersCount || 200;
+    document.getElementById('volunteerHours').value = savedStats.volunteerHours || 3200;
+    document.getElementById('placesCount').value = savedStats.placesCount || 600;
+    document.getElementById('beneficiariesCount').value = savedStats.beneficiariesCount || 8040;
+}
+
+// Statistics form handler
+document.getElementById('statsForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const statsData = {
+        volunteersCount: document.getElementById('volunteersCount').value,
+        volunteerHours: document.getElementById('volunteerHours').value,
+        placesCount: document.getElementById('placesCount').value,
+        beneficiariesCount: document.getElementById('beneficiariesCount').value,
+        lastUpdated: new Date().toISOString()
+    };
+    
+    localStorage.setItem('warithStats', JSON.stringify(statsData));
+    updateMainPageStats(statsData);
+    
+    showNotification('تم تحديث الإحصائيات بنجاح!', 'success');
+    logActivity('stats_updated', 'تم تحديث إحصائيات الموقع');
+});
+
+function updateMainPageStats(stats) {
+    // Update statistics on main page
+    const script = document.createElement('script');
+    script.textContent = `
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'updateStats',
+                data: ${JSON.stringify(stats)}
+            }, '*');
+        }
+    `;
+    document.head.appendChild(script);
+    setTimeout(() => document.head.removeChild(script), 100);
+}
+
+// Partners Management
+function loadCurrentPartners() {
+    const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
+    displayPartnersList(savedPartners);
+}
+
+function displayPartnersList(partners) {
+    const partnersList = document.getElementById('partnersList');
+    if (!partnersList) return;
+
+    partnersList.innerHTML = partners.map((partner, index) => `
+        <div class="partner-card">
+            <div class="partner-icon">${partner.icon}</div>
+            <div class="partner-name">${partner.name}</div>
+            <div class="partner-actions">
+                <button class="btn-icon edit" onclick="editPartner(${index})" title="تعديل">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn-icon delete" onclick="deletePartner(${index})" title="حذف">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Partners form handler
+document.getElementById('partnersForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const partnerName = document.getElementById('partnerName').value;
+    const partnerIcon = document.getElementById('partnerIcon').value;
+    
+    if (!partnerName || !partnerIcon) {
+        showNotification('يرجى ملء جميع الحقول', 'error');
+        return;
+    }
+    
+    const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
+    const newPartner = {
+        name: partnerName,
+        icon: partnerIcon,
+        id: Date.now()
+    };
+    
+    savedPartners.push(newPartner);
+    localStorage.setItem('warithPartners', JSON.stringify(savedPartners));
+    
+    displayPartnersList(savedPartners);
+    this.reset();
+    
+    showNotification('تم إضافة الشريك بنجاح!', 'success');
+    logActivity('partner_added', `تم إضافة شريك جديد: ${partnerName}`);
+    
+    updateMainPagePartners(savedPartners);
+});
+
+function deletePartner(index) {
+    if (!confirm('هل أنت متأكد من حذف هذا الشريك؟')) return;
+    
+    const savedPartners = JSON.parse(localStorage.getItem('warithPartners') || '[]');
+    const partnerName = savedPartners[index].name;
+    
+    savedPartners.splice(index, 1);
+    localStorage.setItem('warithPartners', JSON.stringify(savedPartners));
+    
+    displayPartnersList(savedPartners);
+    updateMainPagePartners(savedPartners);
+    
+    showNotification('تم حذف الشريك بنجاح', 'success');
+    logActivity('partner_deleted', `تم حذف الشريك: ${partnerName}`);
+}
+
+function updateMainPagePartners(partners) {
+    // Update partners on main page
+    const script = document.createElement('script');
+    script.textContent = `
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'updatePartners',
+                data: ${JSON.stringify(partners)}
+            }, '*');
+        }
+    `;
+    document.head.appendChild(script);
+    setTimeout(() => document.head.removeChild(script), 100);
+}
+
+// Content Management
+function loadCurrentContent() {
+    const savedContent = JSON.parse(localStorage.getItem('warithContent') || '{}');
+    
+    document.getElementById('aboutTitle').value = savedContent.aboutTitle || 'وريث';
+    document.getElementById('aboutText').value = savedContent.aboutText || 'انطلقت مسيرة فريقنا منذ عام 2021 م...';
+    document.getElementById('visionText').value = savedContent.visionText || 'أن نكون الفريق الرائد...';
+    document.getElementById('missionText').value = savedContent.missionText || 'نعمل على توثيق التراث السعودي ونشره';
+    document.getElementById('heroText').value = savedContent.heroText || 'حياكم الله في وريث';
+}
+
+// Content tabs functionality
+const contentTabs = document.querySelectorAll('[data-content-tab]');
+contentTabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Remove active class from all tabs
+        contentTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Hide all content
+        document.querySelectorAll('.content-tab-content').forEach(content => {
+            content.style.display = 'none';
+        });
+        
+        // Show selected content
+        const tabId = this.getAttribute('data-content-tab');
+        document.getElementById(tabId + 'Content').style.display = 'block';
+    });
+});
+
+// Content forms handlers
+['about', 'vision', 'mission', 'hero'].forEach(section => {
+    document.getElementById(section + 'Form')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const savedContent = JSON.parse(localStorage.getItem('warithContent') || '{}');
+        
+        if (section === 'about') {
+            savedContent.aboutTitle = document.getElementById('aboutTitle').value;
+            savedContent.aboutText = document.getElementById('aboutText').value;
+        } else if (section === 'vision') {
+            savedContent.visionText = document.getElementById('visionText').value;
+        } else if (section === 'mission') {
+            savedContent.missionText = document.getElementById('missionText').value;
+        } else if (section === 'hero') {
+            savedContent.heroText = document.getElementById('heroText').value;
+        }
+        
+        savedContent.lastUpdated = new Date().toISOString();
+        localStorage.setItem('warithContent', JSON.stringify(savedContent));
+        
+        updateMainPageContent(savedContent);
+        
+        showNotification(`تم تحديث ${section === 'about' ? 'معلومات الفريق' : section === 'vision' ? 'الرؤية' : section === 'mission' ? 'الرسالة' : 'النص الترحيبي'} بنجاح!`, 'success');
+        logActivity('content_updated', `تم تحديث محتوى: ${section}`);
+    });
+});
+
+function updateMainPageContent(content) {
+    // Update content on main page
+    const script = document.createElement('script');
+    script.textContent = `
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'updateContent',
+                data: ${JSON.stringify(content)}
+            }, '*');
+        }
+    `;
+    document.head.appendChild(script);
+    setTimeout(() => document.head.removeChild(script), 100);
+}
+
+// Site Settings
+function loadSiteSettings() {
+    const savedSettings = JSON.parse(localStorage.getItem('warithSettings') || '{}');
+    
+    document.getElementById('siteTitle').value = savedSettings.siteTitle || 'وريث - فريق تطوعي';
+    document.getElementById('siteSubtitle').value = savedSettings.siteSubtitle || 'إرث باقٍ وتاريخ حي';
+    document.getElementById('contactEmail').value = savedSettings.contactEmail || 'Wareethofficial@gmail.com';
+    document.getElementById('contactPhone').value = savedSettings.contactPhone || '+966 59 511 4884';
+    document.getElementById('maintenanceMode').value = savedSettings.maintenanceMode || 'false';
+}
+
+// Settings form handler
+document.getElementById('settingsForm')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const settingsData = {
+        siteTitle: document.getElementById('siteTitle').value,
+        siteSubtitle: document.getElementById('siteSubtitle').value,
+        contactEmail: document.getElementById('contactEmail').value,
+        contactPhone: document.getElementById('contactPhone').value,
+        maintenanceMode: document.getElementById('maintenanceMode').value,
+        lastUpdated: new Date().toISOString()
+    };
+    
+    localStorage.setItem('warithSettings', JSON.stringify(settingsData));
+    updateMainPageSettings(settingsData);
+    
+    showNotification('تم حفظ إعدادات الموقع بنجاح!', 'success');
+    logActivity('settings_updated', 'تم تحديث إعدادات الموقع');
+});
+
+function updateMainPageSettings(settings) {
+    // Update settings on main page
+    const script = document.createElement('script');
+    script.textContent = `
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({
+                type: 'updateSettings',
+                data: ${JSON.stringify(settings)}
+            }, '*');
+        }
+    `;
+    document.head.appendChild(script);
+    setTimeout(() => document.head.removeChild(script), 100);
 }
 
 // Dummy functions to avoid errors if they are not defined elsewhere
