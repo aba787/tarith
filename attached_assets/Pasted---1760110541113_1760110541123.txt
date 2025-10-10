@@ -1,0 +1,176 @@
+ممتاز! راح أصلح المشكلة وأزيل اللون الأخضر وأضمن ظهور الصورة كاملة بدون أي ألوان غير مرغوب فيها:
+
+css
+.hero {
+  background: url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
+  background-color: #2F4F4F; /* لون احتياطي يطابق الألوان التراثية */
+  color: white;
+  padding: 150px 0 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* إعدادات جديدة تضمن ظهور الصورة كاملة بدون ألوان غير مرغوبة */
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* شفافية متوسطة */
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  line-height: 1.2;
+  color: white;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-family: 'Scheherazade New', serif;
+  white-space: nowrap;
+}
+
+body.english .hero-content h1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+}
+
+/* النص الأفقي بدون مربع خلفي */
+.hero-content .centered-text {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  line-height: 1.3;
+  color: #fff;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  font-family: 'Scheherazade New', serif;
+  white-space: nowrap;
+}
+
+/* تحسينات متجاوبة للنص في الأعلى */
+@media screen and (max-width: 768px) {
+  .hero-content .centered-text {
+    font-size: 2rem;
+    top: 12%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content .centered-text {
+    font-size: 1.8rem;
+    top: 15%;
+  }
+}
+
+/* تحسينات للاستجابة - كلها cover الآن */
+@media screen and (max-width: 1200px) {
+  .hero {
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero {
+    padding: 120px 0 80px;
+    min-height: 90vh;
+    background-size: cover;
+  }
+
+  .hero-content h1 {
+    font-size: 3.2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    padding: 100px 0 60px;
+    min-height: 80vh;
+    background-size: cover;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 80px 0 40px;
+    min-height: 70vh;
+    background-size: cover;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+}
+
+/* لحالات الشاشات الطويلة جداً */
+@media screen and (min-height: 1000px) {
+  .hero {
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+/* لحالات الشاشات العريضة جداً */
+@media screen and (min-width: 2000px) {
+  .hero {
+    background-size: cover;
+  }
+}
+
+/* إعدادات إضافية لضمان عدم ظهور أي ألوان خلفية */
+.hero {
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+🎯 التغييرات الرئيسية:
+background-size: contain → cover في جميع الاستعلامات
+
+لون
