@@ -1,0 +1,99 @@
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <!-- الشعار على اليسار -->
+                <div class="logo">
+                    <div class="logo-container">
+                        <h2>وريث</h2>
+                        <p class="logo-subtitle">إرث باقٍ وتاريخ حي</p>
+                    </div>
+                </div>
+                
+                <!-- السهم في المنتصف -->
+                <div class="nav-arrow-container">
+                    <button class="nav-arrow" id="navArrow">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="nav-dropdown" id="navDropdown">
+                        <a href="index.html" class="dropdown-item">
+                            <i class="fas fa-home"></i>
+                            الرئيسية
+                        </a>
+                        <a href="index.html#about" class="dropdown-item">
+                            <i class="fas fa-info-circle"></i>
+                            من نحن
+                        </a>
+                        <a href="index.html#programs" class="dropdown-item">
+                            <i class="fas fa-laptop-code"></i>
+                            البرامج
+                        </a>
+                        <a href="index.html#achievements" class="dropdown-item">
+                            <i class="fas fa-trophy"></i>
+                            التكريمات والجوائز
+                        </a>
+                        <a href="index.html#partners" class="dropdown-item">
+                            <i class="fas fa-handshake"></i>
+                            شركاؤنا
+                        </a>
+                        <a href="articles.html" class="dropdown-item">
+                            <i class="fas fa-newspaper"></i>
+                            المقالات
+                        </a>
+                        <a href="members.html" class="dropdown-item">
+                            <i class="fas fa-users"></i>
+                            الأعضاء
+                        </a>
+                        <a href="contact.html" class="dropdown-item">
+                            <i class="fas fa-envelope"></i>
+                            تواصل معنا
+                        </a>
+                    </div>
+                </div>
+
+                <!-- العناصر على اليمين -->
+                <div class="nav-right">
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-menu-toggle" id="userMenuToggle">
+                            <i class="fas fa-user"></i>
+                            حسابي
+                        </button>
+                    </div>
+                    
+                    <button class="language-toggle" id="languageToggle">
+                        <i class="fas fa-globe"></i>
+                        EN
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main style="margin-top: 80px;">
+        <!-- باقي محتوى الصفحة هنا -->
+    </main>
+
+    <script>
+        // التحكم في السهم
+        document.getElementById('navArrow').addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+            document.getElementById('navDropdown').classList.toggle('active');
+        });
+
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function() {
+            const navArrow = document.getElementById('navArrow');
+            const dropdown = document.getElementById('navDropdown');
+            
+            navArrow.classList.remove('active');
+            dropdown.classList.remove('active');
+        });
+
+        // منع إغلاق القائمة عند النقر داخلها
+        document.getElementById('navDropdown').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    </script>
+</body>

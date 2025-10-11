@@ -1,0 +1,299 @@
+/* Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1000;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, #8B4513 0%, #DAA520 50%, #8B4513 100%) 1;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    height: 80px;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Logo على اليسار */
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    flex: 0 0 auto;
+    min-width: 120px;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.logo-container h2 {
+    color: #DAA520;
+    font-family: 'Scheherazade New', serif;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.logo-subtitle {
+    color: #F5F5DC;
+    font-family: 'Amiri', serif;
+    font-size: 0.7rem;
+    margin: 0;
+    font-style: italic;
+    font-weight: 500;
+}
+
+/* السهم في المنتصف */
+.nav-arrow-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+.nav-arrow {
+    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(218, 165, 32, 0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background: linear-gradient(135deg, #8B4513 0%, #DAA520 100%);
+    transform: translateY(-2px) scale(1.1);
+    box-shadow: 0 6px 20px rgba(218, 165, 32, 0.6);
+}
+
+.nav-arrow.active {
+    transform: translateY(-2px) scale(1.1) rotate(180deg);
+}
+
+/* القائمة المنسدلة */
+.nav-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(25px);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1002;
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    padding: 0.8rem 0;
+}
+
+.nav-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    text-decoration: none;
+    color: #F5F5DC;
+    font-weight: 500;
+    font-size: 0.85rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: right;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(135deg, rgba(218, 165, 32, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%);
+    color: #DAA520;
+}
+
+.dropdown-item i {
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    color: #DAA520;
+}
+
+/* العناصر على اليمين */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 0 0 auto;
+}
+
+/* User Menu */
+.user-menu {
+    position: relative;
+    z-index: 1001;
+}
+
+.user-menu-toggle {
+    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(218, 165, 32, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.user-menu-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+}
+
+/* Language Toggle */
+.language-toggle {
+    background: linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(47, 79, 79, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    white-space: nowrap;
+}
+
+.language-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(47, 79, 79, 0.4);
+}
+
+/* Hamburger Menu - إخفاء لأنه صار عندنا سهم واحد */
+.hamburger {
+    display: none;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+    .header {
+        height: 70px;
+        padding: 0;
+    }
+    
+    .nav-container {
+        padding: 0 1rem;
+    }
+    
+    .logo-container h2 {
+        font-size: 1.8rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.6rem;
+    }
+    
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .nav-dropdown {
+        min-width: 180px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    
+    .nav-right {
+        gap: 0.5rem;
+    }
+    
+    .user-menu-toggle {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
+    }
+    
+    .language-toggle {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.65rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-container {
+        padding: 0 0.8rem;
+    }
+    
+    .logo-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.5rem;
+    }
+    
+    .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    
+    .nav-dropdown {
+        min-width: 160px;
+    }
+    
+    .dropdown-item {
+        padding: 0.7rem 1rem;
+        font-size: 0.8rem;
+    }
+}
