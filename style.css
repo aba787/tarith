@@ -453,9 +453,9 @@ body.english .form-group {
 /* Hero Section */
 .hero {
   background: url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
-  background-color: #2F4F4F; /* لون احتياطي */
+  background-color: #2F4F4F; /* لون احتياطي متناسق */
   color: white;
-  padding: 150px 0 100px;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -463,10 +463,12 @@ body.english .form-group {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* إعدادات تضمن ظهور الصورة كاملة */
-  background-size: contain;
-  background-attachment: scroll;
+  
+  /* إعدادات تضمن ظهور الصورة كاملة بدون ألوان غير مرغوبة */
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .hero::before {
@@ -476,7 +478,7 @@ body.english .form-group {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2); /* شفافية أقل */
+  background: rgba(0, 0, 0, 0.3); /* شفافية متوسطة */
   z-index: 1;
 }
 
@@ -487,8 +489,8 @@ body.english .form-group {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.1; /* خففنا تأثير الحبوب */
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.1;
   z-index: 1;
 }
 
@@ -503,22 +505,20 @@ body.english .form-group {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 20px;
 }
 
-.hero-content h1 {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+.hero-title {
+  font-size: 4.5rem;
   font-weight: 700;
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
   line-height: 1.2;
   color: white;
-  position: absolute;
-  top: -4%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+  margin: 0;
   font-family: 'Scheherazade New', serif;
-  white-space: nowrap;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
 }
 
 body.english .hero-content h1 {
@@ -584,102 +584,62 @@ body.english .hero-content h1 {
 /* تحسينات للاستجابة */
 @media screen and (max-width: 1200px) {
   .hero {
-    background-size: contain;
+    background-size: cover;
+    background-position: center center;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
   }
 }
 
 @media screen and (max-width: 992px) {
   .hero {
-    padding: 120px 0 80px;
     min-height: 90vh;
-    background-size: contain;
+    background-attachment: scroll; /* إزالة fixed للموبايل */
   }
-
-  .hero-content .centered-text {
-    font-size: 2.5rem;
-    top: 0%;
-  }
-
-  .hero-content h1 {
-    font-size: 3.2rem;
-    padding: 1.5rem 2.5rem;
-    margin: 0 1rem;
-    top: 0%;
-  }
-
-  .hero-content p {
-    font-size: 1.6rem;
-    padding: 0.8rem 1.5rem;
-    margin: 0 1rem;
+  
+  .hero-title {
+    font-size: 3.5rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .hero {
-    padding: 100px 0 60px;
     min-height: 80vh;
-    background-size: contain;
+    background-size: cover;
   }
-
-  .hero-content .centered-text {
-    font-size: 2rem;
-    top: 1%;
-  }
-
-  .hero-content h1 {
-    font-size: 2.5rem;
-    line-height: 1.3;
-    padding: 1.2rem 2rem;
-    margin: 0 1rem;
-    top: 1%;
-  }
-
-  .hero-content p {
-    font-size: 1.4rem;
-    padding: 0.8rem 1.2rem;
-    margin: 0 1rem;
+  
+  .hero-title {
+    font-size: 3rem;
+    padding: 0 15px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .hero {
-    padding: 80px 0 40px;
     min-height: 70vh;
-    background-size: contain;
   }
-
-  .hero-content .centered-text {
-    font-size: 1.8rem;
-    top: 3%;
-  }
-
-  .hero-content h1 {
-    font-size: 2rem;
-    line-height: 1.2;
-    padding: 1rem 1.5rem;
-    margin: 0 0.5rem;
-    top: 3%;
-  }
-
-  .hero-content p {
-    font-size: 1.2rem;
-    padding: 0.6rem 1rem;
-    margin: 0 0.5rem;
+  
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.3;
+    padding: 0 10px;
   }
 }
 
 /* لحالات الشاشات الطويلة جداً */
 @media screen and (min-height: 1000px) {
   .hero {
-    background-size: contain;
-    background-position: center 30%;
+    background-size: cover;
+    background-position: center center;
   }
 }
 
 /* لحالات الشاشات العريضة جداً */
 @media screen and (min-width: 2000px) {
   .hero {
-    background-size: contain;
+    background-size: cover;
   }
 }
 
