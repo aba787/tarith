@@ -1,0 +1,155 @@
+معي
+المشكلة في الـ JavaScript. جرب هذا الكود البسيط والمباشر:
+
+javascript
+// التحكم في سهم القائمة الرئيسي
+document.addEventListener('DOMContentLoaded', function() {
+    const navArrow = document.getElementById('navArrow');
+    const navDropdown = document.getElementById('navDropdown');
+    
+    if (navArrow && navDropdown) {
+        console.log('تم تحميل سهم القائمة');
+        
+        // عند الضغط على السهم
+        navArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            console.log('تم الضغط على السهم');
+            
+            // تبديل الحالة
+            this.classList.toggle('active');
+            navDropdown.classList.toggle('active');
+            
+            console.log('الحالة الجديدة:', this.classList.contains('active') ? 'مفتوح' : 'مغلق');
+        });
+        
+        // إغلاق القائمة عند النقر خارجها
+        document.addEventListener('click', function(e) {
+            if (!navArrow.contains(e.target) && !navDropdown.contains(e.target)) {
+                navArrow.classList.remove('active');
+                navDropdown.classList.remove('active');
+                console.log('تم إغلاق القائمة بالنقر خارجها');
+            }
+        });
+        
+        // منع إغلاق القائمة عند النقر داخلها
+        navDropdown.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        
+        // إغلاق القائمة عند النقر على رابط
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function() {
+                navArrow.classList.remove('active');
+                navDropdown.classList.remove('active');
+                console.log('تم إغلاق القائمة بعد النقر على رابط');
+            });
+        });
+        
+        // إغلاق القائمة بمفتاح Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                navArrow.classList.remove('active');
+                navDropdown.classList.remove('active');
+                console.log('تم إغلاق القائمة بمفتاح Escape');
+            }
+        });
+    } else {
+        console.error('لم يتم العثور على السهم أو القائمة:', {
+            navArrow: !!navArrow,
+            navDropdown: !!navDropdown
+        });
+    }
+});
+إذا ما زال لا يعمل، جرب هذا الكود البديل:
+
+javascript
+// كود بديل أكثر بساطة
+function initNavArrow() {
+    const arrow = document.getElementById('navArrow');
+    const dropdown = document.getElementById('navDropdown');
+    
+    if (!arrow || !dropdown) {
+        console.log('❌ لم يتم العثور على العناصر');
+        return;
+    }
+    
+    console.log('✅ تم العثور على سهم القائمة');
+    
+    // حدث الضغط على السهم
+    arrow.onclick = function(e) {
+        e.stopPropagation();
+        console.log('🟡 تم الضغط على السهم');
+        
+        // تبديل الحالة
+        const isOpen = dropdown.classList.contains('active');
+        
+        if (isOpen) {
+            // إغلاق
+            arrow.classList.remove('active');
+            dropdown.classList.remove('active');
+            console.log('🔴 تم إغلاق القائمة');
+        } else {
+            // فتح
+            arrow.classList.add('active');
+            dropdown.classList.add('active');
+            console.log('🟢 تم فتح القائمة');
+        }
+    };
+    
+    // إغلاق عند النقر خارج القائمة
+    document.onclick = function(e) {
+        if (!arrow.contains(e.target) && !dropdown.contains(e.target)) {
+            arrow.classList.remove('active');
+            dropdown.classList.remove('active');
+            console.log('🔴 تم إغلاق القائمة (نقر خارجي)');
+        }
+    };
+}
+
+// تشغيل عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', initNavArrow);
+
+// وإذا فشل، جرب بعد تحميل الصفحة بالكامل
+window.addEventListener('load', initNavArrow);
+للتأكد من أن HTML صحيح:
+
+html
+<div class="nav-arrow-container">
+    <button class="nav-arrow" id="navArrow">
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="nav-dropdown" id="navDropdown">
+        <a href="index.html" class="dropdown-item">
+            <i class="fas fa-home"></i>
+            الرئيسية
+        </a>
+        <a href="index.html#about" class="dropdown-item">
+            <i class="fas fa-info-circle"></i>
+            من نحن
+        </a>
+        <!-- باقي الروابط -->
+    </div>
+</div>
+الـ CSS التأكيدي:
+
+css
+.nav-arrow {
+    /* تأكد من هذه الخصائص */
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+}
+
+.nav-dropdown {
+    /* تأكد من هذه الخصائص */
+    position: absolute;
+    z-index: 1002;
+    display: block; /* مهم */
+}
+
+.nav-dropdown:not(.active) {
+    display: none; /* إخفاء عندما لا تكون نشطة */
+}
+
+.nav-dropdown.active {
+    display: block; /* إظهار عندما تكون نشطة */
