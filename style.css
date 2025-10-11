@@ -88,7 +88,71 @@ input, textarea, select {
 body.english {
   direction: ltr;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Arial', sans-serif;
+}
+
+body.english .nav-container {
+  flex-direction: row;
+}
+
+body.english .nav-dropdown {
+  text-align: left;
+}
+
+body.english .dropdown-item {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+body.english .dropdown-item i {
+  margin-left: 0.8rem;
+  margin-right: 0;
+}
+
+body.english .hero-content h1,
+body.english .hero-content p {
+  text-align: center;
+}
+
+body.english .about-text {
+  text-align: left;
+}
+
+body.english .stats-section,
+body.english .news-section,
+body.english .partners-section {
+  text-align: center;
+}
+
+body.english .footer-section {
+  text-align: left;
+}
+
+body.english .achievement-list {
+  text-align: left;
+}
+
+body.english .join-section {
+  text-align: center;
+}
+
+body.english .program-card,
+body.english .service-card,
+body.english .department-card {
+  text-align: center;
+}
+
+body.english .news-content,
+body.english .article-card {
+  text-align: left;
+}
+
+body.english .contact-form label {
+  text-align: left;
+}
+
+body.english .form-group {
+  text-align: left;
 }
 
 .container {
@@ -310,11 +374,22 @@ body.english {
     align-items: center;
     gap: 0.3rem;
     white-space: nowrap;
+    min-width: 60px;
+    justify-content: center;
 }
 
 .language-toggle:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(47, 79, 79, 0.4);
+    background: linear-gradient(135deg, #8B4513 0%, #2F4F4F 100%);
+}
+
+body.english .language-toggle {
+    background: linear-gradient(135deg, #8B4513 0%, #2F4F4F 100%);
+}
+
+body.english .language-toggle:hover {
+    background: linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%);
 }
 
 /* إخفاء القائمة القديمة والهامبرغر */
