@@ -1,32 +1,60 @@
 
 // Navigation Arrow Control - ملف مشترك لجميع الصفحات
 document.addEventListener('DOMContentLoaded', function() {
+    // تأكد من عدم إضافة المستمعات أكثر من مرة
+    if (window.navControlInitialized) {
+        return;
+    }
+    window.navControlInitialized = true;
+
     const navArrow = document.getElementById('navArrow');
     const navDropdown = document.getElementById('navDropdown');
 
     if (navArrow && navDropdown) {
         console.log('✅ تم تحميل سهم القائمة بنجاح');
         
+        // إزالة أي مستمعات أحداث موجودة مسبقاً
+        navArrow.onclick = null;
+        
         // Toggle dropdown
         navArrow.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
             console.log('🟡 تم الضغط على السهم');
             
-            // تبديل الحالة بطريقة بسيطة
-            this.classList.toggle('active');
-            navDropdown.classList.toggle('active');
+            // فحص الحالة الحالية
+            const isActive = this.classList.contains('active');
             
-            console.log('الحالة الجديدة:', this.classList.contains('active') ? 'مفتوح' : 'مغلق');
+            if (isActive) {
+                // إغلاق القائمة
+                this.classList.remove('active');
+                navDropdown.classList.remove('active');
+                console.log('الحالة الجديدة: مغلق');
+            } else {
+                // فتح القائمة
+                this.classList.add('active');
+                navDropdown.classList.add('active');
+                console.log('الحالة الجديدة: مفتوح');
+            }
         });
 
+        // إزالة المستمعات السابقة إذا وجدت
+        if (window.outsideClickHandler) {
+            document.removeEventListener('click', window.outsideClickHandler);
+        }
+        if (window.escapeKeyHandler) {
+            document.removeEventListener('keydown', window.escapeKeyHandler);
+        }
+
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        window.outsideClickHandler = function(e) {
             if (!navArrow.contains(e.target) && !navDropdown.contains(e.target)) {
                 navArrow.classList.remove('active');
                 navDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (نقر خارجي)');
             }
-        });
+        };
+        document.addEventListener('click', window.outsideClickHandler);
 
         // Prevent dropdown from closing when clicking inside it
         navDropdown.addEventListener('click', function(e) {
@@ -35,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close dropdown when clicking on a link
         document.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', function() {
+            // إزالة المستمعات السابقة
+            item.onclick = null;
+            item.addEventListener('click', function(e) {
                 navArrow.classList.remove('active');
                 navDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (نقر على رابط)');
@@ -43,13 +73,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Close dropdown when pressing Escape key
-        document.addEventListener('keydown', function(e) {
+        window.escapeKeyHandler = function(e) {
             if (e.key === 'Escape') {
                 navArrow.classList.remove('active');
                 navDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (مفتاح Escape)');
             }
-        });
+        };
+        document.addEventListener('keydown', window.escapeKeyHandler);
     } else {
         console.error('❌ لم يتم العثور على السهم أو القائمة:', {
             navArrow: !!navArrow,
