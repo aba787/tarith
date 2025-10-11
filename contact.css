@@ -337,6 +337,7 @@
     font-size: 2.5rem;
     margin-bottom: 3rem;
     font-weight: 700;
+    color: var(--dark-brown);
 }
 
 .social-section .social-links {
@@ -354,7 +355,7 @@
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     text-decoration: none;
-    color: white;
+    color: var(--dark-brown);
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);

@@ -1836,7 +1836,7 @@ body.english .partner-name {
 
 .footer-section h3 {
   margin-bottom: 1rem;
-  color: var(--light-brown); /* Light brown for footer headings */
+  color: var(--dark-brown); /* Dark brown for footer headings */
 }
 
 body.english .footer-section h3 {
@@ -1875,17 +1875,17 @@ body.english .footer-section h3 {
   height: 45px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: var(--light-brown);
+  color: var(--dark-brown);
   font-size: 1.5rem;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .social-links .social-link:hover {
-  background: var(--light-brown);
-  color: var(--dark-brown);
+  background: var(--dark-brown);
+  color: var(--light-brown);
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(210, 180, 140, 0.3);
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
 }
 
 .footer-bottom {
