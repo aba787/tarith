@@ -473,27 +473,61 @@ function translateContent(language) {
     const translations = {
         ar: {
             // Navigation
-            'الرئيسية': 'الرئيسية',
-            'من نحن': 'من نحن',
-            'رسالتنا': 'رسالتنا',
-            'الهيكل التنظيمي': 'الهيكل التنظيمي',
-            'البرامج': 'البرامج',
-            'التكريمات والجوائز': 'التكريمات والجوائز',
-            'شركاؤنا': 'شركاؤنا',
-            'المقالات': 'المقالات',
-            'الأعضاء': 'الأعضاء',
-            'تواصل معنا': 'تواصل معنا',
-            'انضم إلينا': 'انضم إلينا',
+            'Home': 'الرئيسية',
+            'About Us': 'من نحن',
+            'Our Vision': 'رؤيتنا',
+            'Our Mission': 'رسالتنا',
+            'Organization': 'الهيكل التنظيمي',
+            'Programs': 'البرامج',
+            'Awards & Recognition': 'التكريمات والجوائز',
+            'Our Partners': 'شركاؤنا',
+            'Articles': 'المقالات',
+            'Members': 'الأعضاء',
+            'Contact Us': 'تواصل معنا',
+            'Join Us': 'انضم إلينا',
 
             // Hero section
-            'حياكم الله في وريث': 'حياكم الله في وريث',
-            'إرثٌ باقٍ و تقاليدُ حية': 'إرثٌ باقٍ و تقاليدُ حية',
-            'ابدأ الآن': 'ابدأ الآن'
+            'Welcome to Wareeth': 'حياكم الله في وريث',
+            'Living Heritage & Lasting Traditions': 'إرثٌ باقٍ و تقاليدُ حية',
+            'Get Started': 'ابدأ الآن',
+
+            // Sections
+            'Wareeth': 'وريث',
+            'Vision': 'الرؤية',
+            'Mission': 'الرسالة',
+            'News and Announcements': 'الأخبار والإعلانات',
+            'Wareeth Team Statistics': 'إحصائيات فريق وريث',
+            'Our Partners and Supporters': 'شركاؤنا والداعمون',
+            'Join Wareeth Volunteer Team': 'انضم إلى فريق وريث التطوعي',
+
+            // Statistics
+            'Total Volunteer Hours': 'إجمالي ساعات التطوع',
+            'Number of Volunteers': 'عدد المتطوعين',
+            'Number of Places': 'عدد الأماكن',
+            'Program Beneficiaries': 'المستفيدون من البرامج والمساهمات',
+
+            // News
+            'Read More': 'اقرأ المزيد',
+            'View All News': 'عرض جميع الأخبار',
+
+            // Join section
+            'Be part of our journey in preserving heritage and spreading authentic Arab culture': 'كن جزءاً من رحلتنا في حفظ التراث ونشر الثقافة العربية الأصيلة',
+            'Join the Team': 'الانضمام للفريق',
+
+            // Footer
+            'Contact Information': 'معلومات الاتصال',
+            'Useful Links': 'روابط مفيدة',
+            'Follow us on social media': 'تابعنا على وسائل التواصل الاجتماعي',
+            'Privacy Policy': 'سياسة الخصوصية',
+            'Terms of Use': 'شروط الاستخدام',
+            'Technical Support': 'الدعم الفني',
+            'All rights reserved - Wareeth': 'جميع الحقوق محفوظة - وريث'
         },
         en: {
-            // Navigation
+            // Navigation  
             'الرئيسية': 'Home',
             'من نحن': 'About Us',
+            'رؤيتنا': 'Our Vision',
             'رسالتنا': 'Our Mission',
             'الهيكل التنظيمي': 'Organization',
             'البرامج': 'Programs',
@@ -507,40 +541,111 @@ function translateContent(language) {
             // Hero section
             'حياكم الله في وريث': 'Welcome to Wareeth',
             'إرثٌ باقٍ و تقاليدُ حية': 'Living Heritage & Lasting Traditions',
-            'ابدأ الآن': 'Get Started'
+            'ابدأ الآن': 'Get Started',
+
+            // Sections
+            'وريث': 'Wareeth',
+            'الرؤية': 'Vision',
+            'الرسالة': 'Mission',
+            'الأخبار والإعلانات': 'News and Announcements',
+            'إحصائيات فريق وريث': 'Wareeth Team Statistics',
+            'شركاؤنا والداعمون': 'Our Partners and Supporters',
+            'انضم إلى فريق وريث التطوعي': 'Join Wareeth Volunteer Team',
+
+            // Statistics
+            'إجمالي ساعات التطوع': 'Total Volunteer Hours',
+            'عدد المتطوعين': 'Number of Volunteers',
+            'عدد الأماكن': 'Number of Places',
+            'المستفيدون من البرامج والمساهمات': 'Program Beneficiaries',
+
+            // News
+            'اقرأ المزيد': 'Read More',
+            'عرض جميع الأخبار': 'View All News',
+
+            // Join section
+            'كن جزءاً من رحلتنا في حفظ التراث ونشر الثقافة العربية الأصيلة': 'Be part of our journey in preserving heritage and spreading authentic Arab culture',
+            'الانضمام للفريق': 'Join the Team',
+
+            // Footer
+            'معلومات الاتصال': 'Contact Information',
+            'روابط مفيدة': 'Useful Links',
+            'تابعنا على وسائل التواصل الاجتماعي': 'Follow us on social media',
+            'سياسة الخصوصية': 'Privacy Policy',
+            'شروط الاستخدام': 'Terms of Use',
+            'الدعم الفني': 'Technical Support',
+            'جميع الحقوق محفوظة - وريث': 'All rights reserved - Wareeth'
         }
     };
 
-    // Auto-translate navigation links
+    // Function to translate element text
+    function translateElement(element, translations) {
+        const text = element.textContent.trim();
+        if (translations[text]) {
+            element.textContent = translations[text];
+            element.setAttribute('data-translated', 'true');
+        }
+    }
+
+    // Get current translations
+    const currentTranslations = translations[language] || {};
+
+    // Translate navigation links
     const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        const text = link.textContent.trim();
-        if (translations[language] && translations[language][text]) {
-            link.textContent = translations[language][text];
+    navLinks.forEach(link => translateElement(link, currentTranslations));
+
+    // Translate user menu items
+    const userMenuItems = document.querySelectorAll('.user-menu-item');
+    userMenuItems.forEach(item => translateElement(item, currentTranslations));
+
+    // Translate buttons
+    const buttons = document.querySelectorAll('button, .btn, .cta-button, .join-btn, .view-all-btn');
+    buttons.forEach(button => {
+        if (!button.querySelector('i')) { // Skip buttons with icons only
+            translateElement(button, currentTranslations);
         }
     });
 
-    // Hero content
-    const heroTitle = document.querySelector('.hero-content h1');
-    const heroSubtitle = document.querySelector('.hero-content p');
-    const ctaButton = document.querySelector('.cta-button');
+    // Translate headings
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    headings.forEach(heading => translateElement(heading, currentTranslations));
 
-    if (heroTitle && translations[language][heroTitle.textContent.trim()]) {
-        heroTitle.textContent = translations[language][heroTitle.textContent.trim()];
-    }
-    if (heroSubtitle && translations[language][heroSubtitle.textContent.trim()]) {
-        heroSubtitle.textContent = translations[language][heroSubtitle.textContent.trim()];
-    }
-    if (ctaButton && translations[language][ctaButton.textContent.trim()]) {
-        ctaButton.textContent = translations[language][ctaButton.textContent.trim()];
+    // Translate paragraphs in specific sections
+    const paragraphs = document.querySelectorAll('.about-text p, .vision-text, .mission-text, .join-section p');
+    paragraphs.forEach(p => translateElement(p, currentTranslations));
+
+    // Translate footer content
+    const footerSections = document.querySelectorAll('.footer-section h3, .footer-bottom p');
+    footerSections.forEach(section => translateElement(section, currentTranslations));
+
+    // Translate statistics labels
+    const statLabels = document.querySelectorAll('.stat-label');
+    statLabels.forEach(label => translateElement(label, currentTranslations));
+
+    // Translate read more links
+    const readMoreLinks = document.querySelectorAll('.read-more');
+    readMoreLinks.forEach(link => translateElement(link, currentTranslations));
+
+    // Translate footer links
+    const footerLinks = document.querySelectorAll('.footer-section ul li a');
+    footerLinks.forEach(link => translateElement(link, currentTranslations));
+
+    // Translate logo subtitle if needed
+    const logoSubtitle = document.querySelector('.logo-subtitle');
+    if (logoSubtitle) {
+        const subtitleText = logoSubtitle.textContent.trim();
+        if (language === 'en' && subtitleText === 'فريق تطوعي - إرث باقٍ وتاريخ حي') {
+            logoSubtitle.textContent = 'Volunteer Team - Living Heritage & History';
+        } else if (language === 'ar' && subtitleText === 'Volunteer Team - Living Heritage & History') {
+            logoSubtitle.textContent = 'فريق تطوعي - إرث باقٍ وتاريخ حي';
+        }
     }
 
-    // Section headings
-    const sectionHeadings = document.querySelectorAll('h2, h3');
-    sectionHeadings.forEach(heading => {
-        const text = heading.textContent.trim();
-        if (translations[language] && translations[language][text]) {
-            heading.textContent = translations[language][text];
+    // Update placeholder texts for forms if they exist
+    const inputs = document.querySelectorAll('input[placeholder], textarea[placeholder]');
+    inputs.forEach(input => {
+        const placeholder = input.getAttribute('placeholder');
+        if (currentTranslations[placeholder]) {
+            input.setAttribute('placeholder', currentTranslations[placeholder]);
         }
     });
 }
