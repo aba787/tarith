@@ -1,108 +1,98 @@
-
 // Navigation Arrow Control - ملف مشترك لجميع الصفحات
-document.addEventListener('DOMContentLoaded', function() {
-    // تأكد من عدم إضافة المستمعات أكثر من مرة
-    if (window.navControlInitialized) {
-        return;
-    }
-    window.navControlInitialized = true;
-
+function initializeNavigation() {
     const navArrow = document.getElementById('navArrow');
     const navDropdown = document.getElementById('navDropdown');
 
     if (navArrow && navDropdown) {
         console.log('✅ تم تحميل سهم القائمة بنجاح');
-        
-        // إزالة أي مستمعات أحداث موجودة مسبقاً
-        navArrow.onclick = null;
-        
+
+        // إزالة أي مستمعات أحداث موجودة مسبقاً لمنع التكرار
+        navArrow.replaceWith(navArrow.cloneNode(true));
+        navDropdown.replaceWith(navDropdown.cloneNode(true));
+
+        // الحصول على العناصر الجديدة
+        const newNavArrow = document.getElementById('navArrow');
+        const newNavDropdown = document.getElementById('navDropdown');
+
         // Toggle dropdown
-        navArrow.addEventListener('click', function(e) {
+        newNavArrow.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             console.log('🟡 تم الضغط على السهم');
-            
+
             // فحص الحالة الحالية
             const isActive = this.classList.contains('active');
-            
+
             if (isActive) {
                 // إغلاق القائمة
                 this.classList.remove('active');
-                navDropdown.classList.remove('active');
+                newNavDropdown.classList.remove('active');
                 console.log('الحالة الجديدة: مغلق');
             } else {
                 // فتح القائمة
                 this.classList.add('active');
-                navDropdown.classList.add('active');
+                newNavDropdown.classList.add('active');
                 console.log('الحالة الجديدة: مفتوح');
             }
         });
 
-        // إزالة المستمعات السابقة إذا وجدت
-        if (window.outsideClickHandler) {
-            document.removeEventListener('click', window.outsideClickHandler);
-        }
-        if (window.escapeKeyHandler) {
-            document.removeEventListener('keydown', window.escapeKeyHandler);
-        }
-
         // Close dropdown when clicking outside
-        window.outsideClickHandler = function(e) {
-            if (!navArrow.contains(e.target) && !navDropdown.contains(e.target)) {
-                navArrow.classList.remove('active');
-                navDropdown.classList.remove('active');
+        document.addEventListener('click', function(e) {
+            if (!newNavArrow.contains(e.target) && !newNavDropdown.contains(e.target)) {
+                newNavArrow.classList.remove('active');
+                newNavDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (نقر خارجي)');
             }
-        };
-        document.addEventListener('click', window.outsideClickHandler);
+        });
 
         // Prevent dropdown from closing when clicking inside it
-        navDropdown.addEventListener('click', function(e) {
+        newNavDropdown.addEventListener('click', function(e) {
             e.stopPropagation();
         });
 
         // Close dropdown when clicking on a link
         document.querySelectorAll('.dropdown-item').forEach(item => {
-            // إزالة المستمعات السابقة
-            item.onclick = null;
-            item.addEventListener('click', function(e) {
-                navArrow.classList.remove('active');
-                navDropdown.classList.remove('active');
+            item.addEventListener('click', function() {
+                newNavArrow.classList.remove('active');
+                newNavDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (نقر على رابط)');
             });
         });
 
         // Close dropdown when pressing Escape key
-        window.escapeKeyHandler = function(e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                navArrow.classList.remove('active');
-                navDropdown.classList.remove('active');
+                newNavArrow.classList.remove('active');
+                newNavDropdown.classList.remove('active');
                 console.log('🔴 تم إغلاق القائمة (مفتاح Escape)');
             }
-        };
-        document.addEventListener('keydown', window.escapeKeyHandler);
+        });
     } else {
         console.error('❌ لم يتم العثور على السهم أو القائمة:', {
             navArrow: !!navArrow,
             navDropdown: !!navDropdown
         });
     }
+}
 
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (header) {
-            if (window.scrollY > 100) {
-                header.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.99) 0%, rgba(20, 20, 20, 0.99) 100%)';
-                header.style.backdropFilter = 'blur(25px)';
-            } else {
-                header.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%)';
-                header.style.backdropFilter = 'blur(20px)';
-            }
-        }
-    });
+// تهيئة كل شيء عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🔄 تهيئة الصفحة...');
+    initializeNavigation();
+    initializeLanguage();
+    initializeUserMenu();
+});
 
-    // Language toggle functionality
+// وإذا فشل DOMContentLoaded، جرب load
+window.addEventListener('load', function() {
+    console.log('🔄 تهيئة الصفحة (بعد التحميل الكامل)...');
+    initializeNavigation();
+    initializeLanguage();
+    initializeUserMenu();
+});
+
+// تهيئة اللغة
+function initializeLanguage() {
     const languageToggle = document.getElementById('languageToggle');
     if (languageToggle) {
         // تحديد اللغة المحفوظة أو الافتراضية
@@ -118,20 +108,71 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('siteLanguage', newLang);
         });
     }
+}
 
-    // User menu toggle functionality
+// User Menu Functionality
+function initializeUserMenu() {
+    const userMenu = document.getElementById('userMenu');
     const userMenuToggle = document.getElementById('userMenuToggle');
-    if (userMenuToggle) {
-        userMenuToggle.addEventListener('click', function(e) {
+    const userMenuDropdown = document.getElementById('userMenuDropdown');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    if (!userMenuToggle) return;
+
+    // إزالة المستمعات القديمة
+    userMenuToggle.replaceWith(userMenuToggle.cloneNode(true));
+    const newUserMenuToggle = document.getElementById('userMenuToggle');
+
+    // Toggle user menu dropdown
+    newUserMenuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isActive = userMenu.classList.contains('active');
+
+        // إغلاق القائمة الرئيسية أولاً
+        closeAllDropdowns();
+
+        // تبديل حالة قائمة المستخدم
+        if (!isActive) {
+            userMenu.classList.add('active');
+        } else {
+            userMenu.classList.remove('active');
+        }
+    });
+
+    // Close user menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!userMenu.contains(e.target)) {
+            userMenu.classList.remove('active');
+        }
+    });
+
+    // Handle logout button
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Add user menu logic here
-            console.log('User menu toggle clicked');
+            if (confirm('هل تريد تسجيل الخروج؟')) {
+                localStorage.removeItem('userLoggedIn');
+                localStorage.removeItem('currentUser');
+                alert('تم تسجيل الخروج بنجاح');
+                userMenu.classList.remove('active');
+                window.location.href = 'index.html';
+            }
         });
     }
+}
 
-    // Initialize user menu
-    initializeUserMenu();
-});
+// دالة لإغلاق جميع القوائم المنسدلة
+function closeAllDropdowns() {
+    const navArrow = document.getElementById('navArrow');
+    const navDropdown = document.getElementById('navDropdown');
+    const userMenu = document.getElementById('userMenu');
+
+    if (navArrow) navArrow.classList.remove('active');
+    if (navDropdown) navDropdown.classList.remove('active');
+    if (userMenu) userMenu.classList.remove('active');
+}
 
 // Language switching functions
 function setLanguage(language) {
@@ -155,14 +196,14 @@ function setLanguage(language) {
         }
         translateContent('ar');
     }
-    
+
     // حفظ اللغة المختارة
     localStorage.setItem('siteLanguage', language);
 }
 
 function translateContent(language) {
     console.log('Translating to:', language);
-    
+
     const translations = {
         en: {
             // Navigation
@@ -421,77 +462,17 @@ function translateContent(language) {
     console.log('Translation completed for language:', language);
 }
 
-// دالة لإغلاق جميع القوائم المنسدلة
-function closeAllDropdowns() {
-    const navArrow = document.getElementById('navArrow');
-    const navDropdown = document.getElementById('navDropdown');
-    const userMenu = document.getElementById('userMenu');
-    
-    if (navArrow) navArrow.classList.remove('active');
-    if (navDropdown) navDropdown.classList.remove('active');
-    if (userMenu) userMenu.classList.remove('active');
-}
 
-// User Menu Functionality
-function initializeUserMenu() {
-    const userMenu = document.getElementById('userMenu');
-    const userMenuToggle = document.getElementById('userMenuToggle');
-    const userMenuDropdown = document.getElementById('userMenuDropdown');
-    const logoutBtn = document.getElementById('logoutBtn');
-
-    if (!userMenuToggle) return;
-
-    // Toggle user menu dropdown
-    userMenuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const isActive = userMenu.classList.contains('active');
-        
-        // إغلاق القائمة الرئيسية أولاً
-        closeAllDropdowns();
-        
-        // تبديل حالة قائمة المستخدم
-        if (!isActive) {
-            userMenu.classList.add('active');
+// Header scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('.header');
+    if (header) {
+        if (window.scrollY > 100) {
+            header.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.99) 0%, rgba(20, 20, 20, 0.99) 100%)';
+            header.style.backdropFilter = 'blur(25px)';
         } else {
-            userMenu.classList.remove('active');
+            header.style.background = 'linear-gradient(135deg, rgba(0, 0, 0, 0.98) 0%, rgba(20, 20, 20, 0.98) 100%)';
+            header.style.backdropFilter = 'blur(20px)';
         }
-    });
-
-    // Close user menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!userMenu.contains(e.target)) {
-            userMenu.classList.remove('active');
-        }
-    });
-
-    // Handle logout button
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Add logout logic here
-            if (confirm('هل تريد تسجيل الخروج؟')) {
-                // Clear any stored user data
-                localStorage.removeItem('userLoggedIn');
-                localStorage.removeItem('currentUser');
-
-                // Show logout message
-                alert('تم تسجيل الخروج بنجاح');
-
-                // Close dropdown
-                userMenu.classList.remove('active');
-
-                // Redirect to home page or reload
-                window.location.href = 'index.html';
-            }
-        });
     }
-
-    // Close dropdown when pressing Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            userMenu.classList.remove('active');
-        }
-    });
-}
+});
