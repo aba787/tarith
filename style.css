@@ -358,39 +358,7 @@ body.english .form-group {
     box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
 }
 
-/* Language Toggle */
-.language-toggle {
-    background: linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%);
-    color: white;
-    border: none;
-    padding: 0.4rem 0.7rem;
-    border-radius: 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(47, 79, 79, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    white-space: nowrap;
-    min-width: 60px;
-    justify-content: center;
-}
-
-.language-toggle:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(47, 79, 79, 0.4);
-    background: linear-gradient(135deg, #8B4513 0%, #2F4F4F 100%);
-}
-
-body.english .language-toggle {
-    background: linear-gradient(135deg, #8B4513 0%, #2F4F4F 100%);
-}
-
-body.english .language-toggle:hover {
-    background: linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%);
-}
+/* Language Toggle removed */
 
 /* إخفاء القائمة القديمة والهامبرغر */
 .nav-menu {
@@ -2326,12 +2294,7 @@ body.english .join-form textarea {
     margin-right: 10px;
   }
 
-  .language-toggle {
-    order: 2;
-    margin: 0 10px;
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
-  }
+  /* Language toggle removed */
 
   .nav-menu {
     position: fixed;
@@ -2712,11 +2675,7 @@ body.english .join-form textarea {
     font-size: 0.7rem;
   }
 
-  .language-toggle {
-    padding: 0.5rem 1rem;
-    font-size: 0.75rem;
-    margin: 0 5px;
-  }
+  /* Language toggle removed */
 
   .hamburger {
     padding: 0.5rem;
