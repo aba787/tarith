@@ -75,7 +75,37 @@
     line-height: 1.8;
     color: #666;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 3rem;
+}
+
+.organization-chart {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.chart-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);
+    border: 2px solid rgba(218, 165, 32, 0.3);
+    transition: all 0.3s ease;
+}
+
+.chart-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(139, 69, 19, 0.2);
+}
+
+@media screen and (max-width: 768px) {
+    .organization-chart {
+        margin: 2rem 0;
+    }
+    
+    .chart-image {
+        border-radius: 10px;
+        border: 1px solid rgba(218, 165, 32, 0.3);
+    }
 }
 
 /* Departments Section */
