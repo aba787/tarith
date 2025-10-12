@@ -228,12 +228,7 @@ body.english .form-group {
 }
 
 .logo-text h2 {
-    color: #DAA520;
-    font-family: 'Scheherazade New', serif;
-    font-size: 2.2rem;
-    margin: 0;
-    font-weight: 800;
-    line-height: 1;
+    display: none;
 }
 
 .logo-subtitle {
