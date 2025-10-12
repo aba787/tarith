@@ -208,12 +208,26 @@ body.english .form-group {
 
 .logo-container {
     display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-image {
+    width: 50px;
+    height: 50px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="30" height="30" fill="%23b8743b" rx="5"/><rect x="40" y="20" width="30" height="30" fill="%23b8743b" rx="5"/><rect x="25" y="35" width="30" height="30" fill="%23b8743b" rx="5"/></svg>') no-repeat center center;
+    background-size: contain;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.logo-text {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 2px;
 }
 
-.logo-container h2 {
+.logo-text h2 {
     color: #DAA520;
     font-family: 'Scheherazade New', serif;
     font-size: 2.2rem;
@@ -354,7 +368,12 @@ body.english .form-group {
         padding: 0 1rem;
     }
 
-    .logo-container h2 {
+    .logo-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text h2 {
         font-size: 1.8rem;
     }
 
@@ -394,7 +413,12 @@ body.english .form-group {
         padding: 0 0.8rem;
     }
 
-    .logo-container h2 {
+    .logo-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .logo-text h2 {
         font-size: 1.5rem;
     }
 
