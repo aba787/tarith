@@ -452,8 +452,12 @@ body.english .form-group {
 
 /* Hero Section */
 .hero {
-  background: url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
-  background-color: #2F4F4F; /* لون احتياطي متناسق */
+  background: 
+    /* لون احتياطي يطابق ألوان الموقع */
+    linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%),
+    /* الصورة فوق اللون الاحتياطي */
+    url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
+  
   color: white;
   padding: 0;
   text-align: center;
@@ -464,11 +468,10 @@ body.english .form-group {
   align-items: center;
   justify-content: center;
   
-  /* إعدادات تضمن ظهور الصورة كاملة بدون ألوان غير مرغوبة */
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-position: center center;
+  /* إعدادات تضمن ظهور الصورة كاملة */
+  background-size: contain, contain;
+  background-blend-mode: normal;
+  background-attachment: scroll;
 }
 
 .hero::before {
@@ -478,7 +481,7 @@ body.english .form-group {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3); /* شفافية متوسطة */
+  background: rgba(0, 0, 0, 0.2); /* شفافية خفيفة */
   z-index: 1;
 }
 
@@ -584,8 +587,7 @@ body.english .hero-content h1 {
 /* تحسينات للاستجابة */
 @media screen and (max-width: 1200px) {
   .hero {
-    background-size: cover;
-    background-position: center center;
+    background-size: contain, contain;
   }
   
   .hero-title {
@@ -596,18 +598,17 @@ body.english .hero-content h1 {
 @media screen and (max-width: 992px) {
   .hero {
     min-height: 90vh;
-    background-attachment: scroll; /* إزالة fixed للموبايل */
   }
   
   .hero-title {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
   }
 }
 
 @media screen and (max-width: 768px) {
   .hero {
     min-height: 80vh;
-    background-size: cover;
+    background-size: contain, contain;
   }
   
   .hero-title {
@@ -619,10 +620,12 @@ body.english .hero-content h1 {
 @media screen and (max-width: 480px) {
   .hero {
     min-height: 70vh;
+    /* للهواتف الصغيرة، يمكن استخدام cover لتجنب المساحات الكبيرة */
+    background-size: cover, cover;
   }
   
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     line-height: 1.3;
     padding: 0 10px;
   }
@@ -631,15 +634,15 @@ body.english .hero-content h1 {
 /* لحالات الشاشات الطويلة جداً */
 @media screen and (min-height: 1000px) {
   .hero {
-    background-size: cover;
-    background-position: center center;
+    background-size: contain, contain;
+    background-position: center 30%;
   }
 }
 
 /* لحالات الشاشات العريضة جداً */
 @media screen and (min-width: 2000px) {
   .hero {
-    background-size: cover;
+    background-size: contain, contain;
   }
 }
 
