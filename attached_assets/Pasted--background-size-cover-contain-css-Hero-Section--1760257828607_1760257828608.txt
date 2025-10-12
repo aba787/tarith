@@ -1,0 +1,206 @@
+المشكلة في استخدام background-size: cover بدل contain. هذا الكود المصحح:
+
+css
+/* Hero Section - الصورة كاملة بدون قص */
+.hero {
+  background: 
+    /* لون احتياطي يطابق ألوان الموقع */
+    linear-gradient(135deg, #2F4F4F 0%, #8B4513 100%),
+    /* الصورة فوق اللون الاحتياطي */
+    url('https://i.ibb.co/8DKcxkjG/image.jpg') no-repeat center center;
+  
+  color: white;
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* إعدادات تضمن ظهور الصورة كاملة بدون قص */
+  background-size: contain;
+  background-blend-mode: normal;
+  background-attachment: scroll;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2); /* شفافية خفيفة */
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 12px rgba(0,0,0,0.8);
+  line-height: 1.2;
+  color: white;
+  margin: 0;
+  font-family: 'Scheherazade New', serif;
+  text-align: center;
+  position: relative;
+  padding: 0 20px;
+}
+
+body.english .hero-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+}
+
+/* النص في الأعلى */
+.hero-content .centered-text {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 8px rgba(0,0,0,0.9);
+  line-height: 1.3;
+  color: #fff;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  font-family: 'Scheherazade New', serif;
+  white-space: nowrap;
+}
+
+/* تحسينات للاستجابة */
+@media screen and (max-width: 1200px) {
+  .hero {
+    background-size: contain;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 2.8rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero {
+    min-height: 90vh;
+    background-size: contain;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 2.5rem;
+    top: 12%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    min-height: 80vh;
+    background-size: contain;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    padding: 0 15px;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 2.2rem;
+    top: 10%;
+    white-space: normal;
+    text-align: center;
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero {
+    min-height: 70vh;
+    background-size: contain;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.3;
+    padding: 0 10px;
+  }
+  
+  .hero-content .centered-text {
+    font-size: 1.8rem;
+    top: 8%;
+    white-space: normal;
+    line-height: 1.2;
+  }
+}
+
+/* لحالات الشاشات الطويلة جداً */
+@media screen and (min-height: 1000px) {
+  .hero {
+    background-size: contain;
+    background-position: center 30%;
+  }
+}
+
+/* لحالات الشاشات العريضة جداً */
+@media screen and (min-width: 2000px) {
+  .hero {
+    background-size: contain;
+  }
+}
+
+/* التأكد من عدم ظهور أي ألوان خلفية */
+.hero {
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* إزالة أي تأثيرات إضافية قد تسبب مشاكل */
+.hero-content p {
+  display: none; /* إخفاء النص الإضافي إذا كان يسبب مشاكل */
+}
+التغييرات الرئيسية:
+
+background-size: cover → contain - يضمن ظهور الصورة كاملة بدون قص
+
+إضافة linear-gradient كخلفية احتياطية - يمنع ظهور اللون الأخضر
+
+تحسين موضع النص top: 15% - يجعل النص في الأعلى بشكل مناسب
+
+إضافة background-blend-mode: normal - يمنع خلط الألوان غير المرغوب
+
+النتيجة النهائية:
+

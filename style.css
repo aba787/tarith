@@ -1832,6 +1832,14 @@ body.english .footer-section h3 {
   font-weight: 500;
 }
 
+.footer-section p i {
+  margin-left: 0.8rem;
+  color: #DAA520;
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
 .social-links {
   display: flex;
   gap: 1rem;
