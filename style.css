@@ -1055,7 +1055,7 @@ body.english .about-content {
 .about-text p {
   font-size: 1.2rem;
   margin-bottom: 2rem;
-  color: var(--dark-brown); /* Dark brown for text */
+  color: #1a1a1a; /* لون أغمق للنص */
   line-height: 1.8;
 }
 
