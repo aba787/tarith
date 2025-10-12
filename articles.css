@@ -21,7 +21,7 @@
 
 /* Articles Hero Section */
 .articles-hero {
-    background: linear-gradient(135deg, var(--black) 0%, var(--dark-brown) 50%, var(--light-brown) 100%);
+    background: #b8743b;
     color: white;
     padding: 100px 0;
     text-align: center;
@@ -62,7 +62,7 @@
 /* Article Form Section */
 .article-form-section {
     padding: 80px 0;
-    background: linear-gradient(135deg, #F5F5DC 0%, rgba(245, 245, 220, 0.8) 100%);
+    background: #b8743b;
 }
 
 .form-container {
@@ -91,7 +91,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+    background: white;
     border-radius: 2px;
 }
 
@@ -101,11 +101,11 @@
 }
 
 .article-form {
-    background: linear-gradient(135deg, #fff 0%, #F5F5DC 100%);
+    background: rgba(255, 255, 255, 0.95);
     padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.1);
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .form-row {
@@ -156,7 +156,7 @@
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    background: #b8743b;
     color: white;
     padding: 1.2rem 3rem;
     border: none;
@@ -170,14 +170,14 @@
     justify-content: center;
     gap: 10px;
     margin: 2rem auto 0;
-    box-shadow: 0 10px 25px rgba(139, 69, 19, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     min-width: 200px;
 }
 
 .submit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.4);
-    background: linear-gradient(135deg, #8B4513 0%, #DAA520 100%);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    background: #a0632f;
 }
 
 /* Articles Display Section */
@@ -207,7 +207,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+    background: #b8743b;
     border-radius: 2px;
 }
 
@@ -234,10 +234,10 @@
 
 .filter-btn.active,
 .filter-btn:hover {
-    background: linear-gradient(135deg, #DAA520 0%, #8B4513 100%);
+    background: #b8743b;
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Articles Grid */
@@ -249,11 +249,11 @@
 }
 
 .article-card {
-    background: linear-gradient(135deg, #fff 0%, #F5F5DC 100%);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 15px 35px rgba(139, 69, 19, 0.1);
-    border: 1px solid rgba(218, 165, 32, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -266,7 +266,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #8B4513 0%, #DAA520 100%);
+    background: #b8743b;
 }
 
 .article-card:hover {
@@ -363,7 +363,7 @@
 
 /* Success Message */
 .success-message {
-    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    background: #28a745;
     color: white;
     padding: 1rem 2rem;
     border-radius: 10px;
