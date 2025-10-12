@@ -452,8 +452,11 @@ body.english .form-group {
 
 /* Hero Section */
 .hero {
-  background: #ffffff; /* خلفية بيضاء */
-  color: #2F4F4F; /* تغيير لون النص إلى رمادي أزرق ليكون واضحاً على الخلفية البيضاء */
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url('https://i.ibb.co/bgNC279b/image.jpg') no-repeat center center;
+  background-size: cover;
+  color: white; /* لون النص أبيض ليكون واضحاً على الصورة */
   padding: 0;
   text-align: center;
   position: relative;
@@ -505,9 +508,9 @@ body.english .form-group {
 .hero-title {
   font-size: 4.5rem;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(184, 116, 59, 0.3); /* ظل برتقالي خفيف */
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8); /* ظل أسود قوي ليكون واضحاً على الصورة */
   line-height: 1.2;
-  color: #2F4F4F; /* رمادي أزرق ليكون واضحاً على الخلفية البيضاء */
+  color: white; /* لون أبيض ليكون واضحاً على الصورة */
   margin: 0;
   font-family: 'Scheherazade New', serif;
   text-align: center;
@@ -525,25 +528,25 @@ body.english .hero-content h1 {
   margin-bottom: 2rem;
   max-width: 600px;
   line-height: 1.6;
-  text-shadow: 1px 1px 3px rgba(184, 116, 59, 0.2); /* ظل برتقالي خفيف */
-  color: #2F4F4F; /* رمادي أزرق */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); /* ظل أسود قوي */
+  color: white; /* لون أبيض */
   font-weight: 600;
   position: relative;
   z-index: 2;
   font-family: 'El Messiri', sans-serif;
-  background: rgba(184, 116, 59, 0.1); /* خلفية برتقالية شفافة */
+  background: rgba(0, 0, 0, 0.3); /* خلفية سوداء شفافة للوضوح */
   padding: 1rem 2rem;
   border-radius: 10px;
-  border: 2px solid rgba(184, 116, 59, 0.2); /* حدود برتقالية خفيفة */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* حدود بيضاء شفافة */
 }
 
 /* النص الترحيبي في الأعلى */
 .hero-content .centered-text {
   font-size: 3rem;
   font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(184, 116, 59, 0.3); /* ظل برتقالي خفيف */
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); /* ظل أسود قوي */
   line-height: 1.3;
-  color: #b8743b; /* لون برتقالي للنص الترحيبي */
+  color: white; /* لون أبيض للنص الترحيبي */
   position: absolute;
   top: 15%;
   left: 50%;
