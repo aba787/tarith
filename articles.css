@@ -13,10 +13,10 @@
   --wareeth-text: #2F4F4F;        /* رمادي أزرق للنصوص */
   --wareeth-text-light: #b8743b;  /* برتقالي للنصوص الثانوية */
 
-  /* الخطوط الرسمية */
-  --wareeth-font-primary: 'Tajawal', sans-serif;
+  /* الخطوط الرسمية - موحدة */
+  --wareeth-font-primary: 'Cairo', sans-serif;
   --wareeth-font-secondary: 'Cairo', sans-serif;
-  --wareeth-font-decorative: 'Amiri', serif;
+  --wareeth-font-decorative: 'Cairo', sans-serif;
 }
 
 /* Articles Hero Section */

@@ -12,10 +12,10 @@
   --wareeth-text-light: #5a3c23; /* بني متوسط للنصوص الثانوية */
   --wareeth-dark: #1f140a;      /* غامق جدًا للعناوين */
 
-  /* الخطوط الرسمية */
-  --wareeth-font-primary: 'Tajawal', sans-serif;     /* الخط الرئيسي للعناوين */
-  --wareeth-font-secondary: 'Cairo', sans-serif;      /* الخط الثانوي للنصوص */
-  --wareeth-font-decorative: 'Amiri', serif;          /* الخط الزخرفي للعناوين المميزة */
+  /* الخطوط الرسمية - موحدة */
+  --wareeth-font-primary: 'Cairo', sans-serif;       /* خط موحد لجميع العناوين */
+  --wareeth-font-secondary: 'Cairo', sans-serif;      /* خط موحد لجميع النصوص */
+  --wareeth-font-decorative: 'Cairo', sans-serif;     /* خط موحد للعناوين المميزة */
 
   /* الألوان الإضافية للتوافق مع الكود القديم */
   --light-brown: #c98241; /* برتقالي أفتح */
@@ -38,7 +38,7 @@ html {
 }
 
 body {
-  font-family: var(--wareeth-font-secondary);
+  font-family: 'Cairo', sans-serif;
   line-height: 1.6;
   color: var(--wareeth-text);
   direction: rtl;
@@ -65,6 +65,12 @@ body.menu-open {
 /* Smooth transitions for all interactive elements */
 a, button, input, textarea, select {
   transition: all 0.3s ease;
+  font-family: 'Cairo', sans-serif;
+}
+
+/* تطبيق الخط الموحد على جميع العناصر */
+* {
+  font-family: 'Cairo', sans-serif;
 }
 
 /* Fix for form inputs consistency */
@@ -677,13 +683,15 @@ body.english .hero-content h1 {
 h1, h2, h3, h4, h5, h6 {
   color: var(--wareeth-text);
   font-weight: 700;
+  font-family: 'Cairo', sans-serif;
 }
 
 /* النصوص الأساسية */
-body, p, span, div, li, td, th, label {
+body, p, span, div, li, td, th, label, input, textarea, select, button {
   color: var(--wareeth-text);
   font-weight: 600;
   line-height: 1.6;
+  font-family: 'Cairo', sans-serif;
 }
 
 /* الروابط */
@@ -691,6 +699,7 @@ a {
   color: var(--wareeth-accent);
   text-decoration: none;
   transition: 0.2s ease;
+  font-family: 'Cairo', sans-serif;
 }
 
 a:hover {

@@ -11,10 +11,10 @@
     --wareeth-cream: #F5F5DC;
     --wareeth-accent: #B22222; /* This was the accent color, now updated to match the user's request for grey-blue */
 
-    /* الخطوط الرسمية */
-    --wareeth-font-primary: 'Tajawal', sans-serif;
+    /* الخطوط الرسمية - موحدة */
+    --wareeth-font-primary: 'Cairo', sans-serif;
     --wareeth-font-secondary: 'Cairo', sans-serif;
-    --wareeth-font-decorative: 'Amiri', serif;
+    --wareeth-font-decorative: 'Cairo', sans-serif;
 }
 
 /* Hero Section */
