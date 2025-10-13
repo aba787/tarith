@@ -554,18 +554,18 @@ body.english .hero-content h1 {
 
 /* النص الترحيبي في الأعلى */
 .hero-content .centered-text {
-  font-size: 3rem;
+  font-size: 2.4rem; /* أصغر شوي */
   font-weight: 700;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9); /* ظل أسود قوي */
+  color: white; 
   line-height: 1.3;
-  color: white; /* لون أبيض للنص الترحيبي */
   position: absolute;
-  top: 15%;
+  top: 8%; /* فوق شوي */
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
   font-family: 'Scheherazade New', serif;
   white-space: nowrap;
+  text-shadow: none; /* حذف الظل */
 }
 
 /* تحسينات متجاوبة للنص في الأعلى */
