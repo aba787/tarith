@@ -1,0 +1,110 @@
+يشيل الطبقة السوداء الشفافة.
+
+النص يصير بلون بيج فاتح (لون الموقع العام) بدل الأبيض.
+
+خلفية الصورة تكون منسجمة مع لون الصفحة الأساسي، ما تطغى عليه أو تكون غامقة.
+
+إليك الكود بعد التعديلات — كامل وجاهز.
+
+🔸 index.html
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">حياكم الله في وريث</h1>
+  </div>
+</section>
+
+🔸 style.css
+/* Hero Section */
+.hero {
+  background: 
+    url('https://i.ibb.co/bgNC279b/image.jpg') no-repeat center center;
+  background-size: cover;
+  color: var(--wareeth-primary); /* بيج فاتح */
+  padding: 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* إزالة الطبقة السوداء – فقط برتقالي شفاف خفيف */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--wareeth-light); /* برتقالي */
+  opacity: 0.05; /* شفافية بسيطة جدًا */
+  z-index: 1;
+}
+
+/* إزالة الحبيبات لأنها تغيّر لون الخلفية */
+.hero::after {
+  content: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* النص الرئيسي */
+.hero-title {
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--wareeth-primary); /* بيج ترابي فاتح */
+  margin: 0;
+  font-family: 'Scheherazade New', serif;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  padding: 0 20px;
+}
+
+/* تحسينات متجاوبة */
+@media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem;
+    top: 18%;
+    white-space: normal;
+    text-align: center;
+    padding: 0 15px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+    top: 15%;
+    white-space: normal;
+    line-height: 1.2;
+    padding: 0 10px;
+  }
+}
+
+🎯 النتيجة:
+
+الصورة تبقى خلفية لكن بدون الظلمة أو التدرج الأسود.
+
+النص صار بلون البيج الفاتح (#F5F5DC) عشان ينسجم مع بقية الموقع.
+
+الخلفية الآن طبيعية وناعمة، ما فيها أي تأثير داكن أو طبقة مزعجة.
+
+يعطي إحساس أن الصورة جزء من الصفحة وليس طبقة منفصلة
