@@ -525,7 +525,7 @@ body.english .form-group {
   line-height: 1.2;
   color: #FFFFFF; /* أبيض نقي */
   margin: 0;
-  font-family: 'Scheherazade New', serif;
+  font-family: 'Cairo', sans-serif !important;
   text-align: center;
   position: absolute;
   top: 20%;
@@ -541,20 +541,8 @@ body.english .form-group {
 }
 
 body.english .hero-content h1 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-weight: 900;
-}
-
-.hero-content p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-  color: #1a1a1a;
-  font-weight: 600;
-  text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
 }
 
 /* النص الترحيبي في الأعلى */
@@ -568,7 +556,7 @@ body.english .hero-content h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
-  font-family: 'Scheherazade New', serif;
+  font-family: 'Cairo', sans-serif !important;
   white-space: nowrap;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   background: rgba(218, 165, 32, 0.7); /* خلفية ذهبية شفافة */
@@ -587,7 +575,7 @@ body.english .hero-content h1 {
     text-align: center;
     padding: 0 15px;
   }
-  
+
   .hero-content .centered-text {
     font-size: 2.2rem;
     top: 10%;
@@ -605,7 +593,7 @@ body.english .hero-content h1 {
     line-height: 1.2;
     padding: 0 10px;
   }
-  
+
   .hero-content .centered-text {
     font-size: 1.8rem;
     top: 8%;
@@ -1562,7 +1550,7 @@ body.english .program-technology .program-description {
 }
 
 .stats-section h2 {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 2.8rem;
   margin-bottom: 3rem;
   color: var(--light-brown); /* Light brown for headings */
@@ -1572,7 +1560,7 @@ body.english .program-technology .program-description {
 }
 
 body.english .stats-section h2 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-weight: 900;
 }
 
@@ -1617,7 +1605,7 @@ body.english .stats-section h2 {
 }
 
 .stat-number {
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 3.5rem;
   font-weight: bold;
   color: var(--light-brown); /* Light brown for numbers */
@@ -1627,12 +1615,12 @@ body.english .stats-section h2 {
 }
 
 body.english .stat-number {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-weight: 900;
 }
 
 .stat-label {
-  font-family: 'Scheherazade New', serif;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 1.4rem;
   color: white;
   line-height: 1.5;
@@ -1640,7 +1628,7 @@ body.english .stat-number {
 }
 
 body.english .stat-label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
 }
 
 .stat-icon {
@@ -1744,7 +1732,7 @@ body.english .content-card p {
 }
 
 .partners-title {
-  font-family: 'Reem Kufi', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 2.5em;
   color: var(--wareeth-text);
   margin-bottom: 50px;
@@ -1753,7 +1741,7 @@ body.english .content-card p {
 }
 
 body.english .partners-title {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-weight: 900;
 }
 
@@ -1834,7 +1822,7 @@ body.english .partners-title {
 }
 
 .partner-name {
-  font-family: 'El Messiri', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
   font-size: 1.2em;
   color: var(--wareeth-text);
   font-weight: 600;
@@ -1843,7 +1831,7 @@ body.english .partners-title {
 }
 
 body.english .partner-name {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Cairo', sans-serif !important;
 }
 
 /* Blur effect on the sides */

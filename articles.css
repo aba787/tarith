@@ -136,7 +136,7 @@
     border: 2px solid rgba(218, 165, 32, 0.3);
     border-radius: 10px;
     font-size: 1rem;
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Cairo', sans-serif !important;
     background: white;
     transition: all 0.3s ease;
     direction: rtl;
@@ -230,7 +230,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-family: 'Cairo', sans-serif;
+    font-family: 'Cairo', sans-serif !important;
 }
 
 .filter-btn.active,
