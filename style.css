@@ -671,62 +671,60 @@ body.english .hero-content h1 {
   }
 }
 
-/* ===== توحيد جميع النصوص باللون البني الغامق #8B4513 ===== */
+/* ===== الألوان الأصلية الواضحة للنصوص ===== */
 
-/* كل النصوص الأساسية */
-body, p, span, a, h1, h2, h3, h4, h5, h6, div, li, td, th, label, input, textarea, select, button {
-  color: #8B4513 !important;
+/* العناوين الرئيسية */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--wareeth-text);
+  font-weight: 700;
+}
+
+/* النصوص الأساسية */
+body, p, span, div, li, td, th, label {
+  color: var(--wareeth-text);
   font-weight: 600;
   line-height: 1.6;
 }
 
-/* العناوين الرئيسية */
-h1, h2, h3, h4, h5, h6 {
-  color: #8B4513 !important;
-  font-weight: 700;
-}
-
-/* النصوص الثانوية */
-small, .subtitle, .note {
-  color: #8B4513 !important;
-}
-
 /* الروابط */
 a {
-  color: #8B4513 !important;
+  color: var(--wareeth-accent);
   text-decoration: none;
   transition: 0.2s ease;
 }
 
 a:hover {
-  color: #8B4513 !important;
+  color: var(--wareeth-primary);
   opacity: 0.8;
 }
 
-/* النصوص داخل الخلفيات البرتقالية - تبقى بيضاء للوضوح */
-.bg-orange, .message, .stats, .hero {
+/* النصوص في الخلفيات الملونة - تبقى بيضاء للوضوح */
+.stats-section, .stats-section *, 
+.mission-section, .mission-section *,
+.hero, .hero * {
   color: var(--wareeth-white) !important;
 }
 
-/* الفوتر */
-footer, footer * {
-  color: #8B4513 !important;
+/* الفوتر - نصوص فاتحة على خلفية داكنة */
+.footer, .footer * {
+  color: #E8E8E8 !important;
 }
 
-/* تطبيق اللون على جميع عناصر النصوص المتخصصة */
-.news-item h3, .news-item p, .news-date,
-.article-card h3, .article-summary,
+.footer-section h3 {
+  color: #F5F5DC !important;
+}
+
+/* الأقسام ذات الخلفيات الفاتحة - نصوص داكنة واضحة */
+.about-text p,
 .service-card h3, .service-card p,
 .program-title, .program-description,
 .department-card h3, .department-card p,
-.stat-label, .partner-name,
-.achievement-card h3, .achievement-list li,
-.footer-section h3, .footer-section p, .footer-section a,
+.news-item h3, .news-item p,
+.article-card h3, .article-summary,
 .vision-text, .mission-text,
-.about-text p,
-.form-group label,
-.contact-card h3, .contact-card p {
-  color: #8B4513 !important;
+.partner-name,
+.join-section h2, .join-section p {
+  color: var(--wareeth-text) !important;
 }
 
 .cta-button {
@@ -809,7 +807,7 @@ section {
   font-size: 3rem;
   text-align: center;
   margin-bottom: 4rem;
-  color: var(--dark-brown); /* Dark brown for headings */
+  color: var(--wareeth-text);
   font-weight: 700;
   position: relative;
 }
@@ -1739,7 +1737,7 @@ body.english .content-card p {
 .partners-title {
   font-family: 'Reem Kufi', sans-serif;
   font-size: 2.5em;
-  color: var(--dark-brown); /* Dark brown for title */
+  color: var(--wareeth-text);
   margin-bottom: 50px;
   position: relative;
   z-index: 1;
@@ -1829,7 +1827,7 @@ body.english .partners-title {
 .partner-name {
   font-family: 'El Messiri', sans-serif;
   font-size: 1.2em;
-  color: var(--dark-brown); /* Dark brown for names */
+  color: var(--wareeth-text);
   font-weight: 600;
   white-space: nowrap;
   text-align: center;
