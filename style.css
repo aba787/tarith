@@ -667,6 +667,37 @@ body.english .hero-content h1 {
   }
 }
 
+/* ===== تحسين النصوص بشكل عام ===== */
+body, p, span, a, h1, h2, h3, h4, h5, h6 {
+  color: var(--wareeth-text);
+  font-weight: 600;
+}
+
+/* النصوص الثانوية (داخل الأقسام الفاتحة) */
+section, .card, .box, .content {
+  color: var(--wareeth-text-light);
+}
+
+/* عناوين الأقسام */
+h1, h2, h3 {
+  color: var(--wareeth-accent);
+}
+
+/* الروابط */
+a {
+  color: var(--wareeth-light);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--brick-red);
+}
+
+/* النصوص داخل الخلفيات البرتقالية أو الداكنة */
+.bg-orange, .bg-dark, .hero, .stats, .message {
+  color: var(--wareeth-white);
+}
+
 .cta-button {
   background: #b8743b;
   color: white;
