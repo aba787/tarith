@@ -520,14 +520,18 @@ body.english .form-group {
 }
 
 .hero-title {
-  font-size: 4.5rem;
+  font-size: 3.8rem;
   font-weight: 700;
   line-height: 1.2;
   color: white; /* لون أبيض ليكون واضحاً على الصورة */
   margin: 0;
   font-family: 'Scheherazade New', serif;
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
   padding: 0 20px;
 }
 
@@ -566,6 +570,14 @@ body.english .hero-content h1 {
 
 /* تحسينات متجاوبة للنص في الأعلى */
 @media screen and (max-width: 768px) {
+  .hero-title {
+    font-size: 2.8rem;
+    top: 18%;
+    white-space: normal;
+    text-align: center;
+    padding: 0 15px;
+  }
+  
   .hero-content .centered-text {
     font-size: 2.2rem;
     top: 10%;
@@ -576,6 +588,14 @@ body.english .hero-content h1 {
 }
 
 @media screen and (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+    top: 15%;
+    white-space: normal;
+    line-height: 1.2;
+    padding: 0 10px;
+  }
+  
   .hero-content .centered-text {
     font-size: 1.8rem;
     top: 8%;
