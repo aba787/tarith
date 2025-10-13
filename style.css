@@ -668,45 +668,62 @@ body.english .hero-content h1 {
   }
 }
 
-/* ===== توحيد النصوص كلها بنغمة غامقة وواضحة ===== */
+/* ===== توحيد جميع النصوص باللون البني الغامق #8B4513 ===== */
 
 /* كل النصوص الأساسية */
-body, p, span, a, h1, h2, h3, h4, h5, h6 {
-  color: var(--wareeth-text);
+body, p, span, a, h1, h2, h3, h4, h5, h6, div, li, td, th, label, input, textarea, select, button {
+  color: #8B4513 !important;
   font-weight: 600;
   line-height: 1.6;
 }
 
 /* العناوين الرئيسية */
-h1, h2, h3 {
-  color: var(--wareeth-dark);
+h1, h2, h3, h4, h5, h6 {
+  color: #8B4513 !important;
   font-weight: 700;
 }
 
 /* النصوص الثانوية */
 small, .subtitle, .note {
-  color: var(--wareeth-text-light);
+  color: #8B4513 !important;
 }
 
 /* الروابط */
 a {
-  color: var(--wareeth-accent);
+  color: #8B4513 !important;
   text-decoration: none;
   transition: 0.2s ease;
 }
 
 a:hover {
-  color: var(--wareeth-light);
+  color: #8B4513 !important;
+  opacity: 0.8;
 }
 
-/* النصوص داخل الخلفيات البرتقالية */
+/* النصوص داخل الخلفيات البرتقالية - تبقى بيضاء للوضوح */
 .bg-orange, .message, .stats, .hero {
-  color: var(--wareeth-white);
+  color: var(--wareeth-white) !important;
 }
 
 /* الفوتر */
-footer {
-  color: var(--wareeth-secondary);
+footer, footer * {
+  color: #8B4513 !important;
+}
+
+/* تطبيق اللون على جميع عناصر النصوص المتخصصة */
+.news-item h3, .news-item p, .news-date,
+.article-card h3, .article-summary,
+.service-card h3, .service-card p,
+.program-title, .program-description,
+.department-card h3, .department-card p,
+.stat-label, .partner-name,
+.achievement-card h3, .achievement-list li,
+.footer-section h3, .footer-section p, .footer-section a,
+.vision-text, .mission-text,
+.about-text p,
+.form-group label,
+.contact-card h3, .contact-card p {
+  color: #8B4513 !important;
 }
 
 .cta-button {
