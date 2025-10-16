@@ -44,7 +44,7 @@ body {
   direction: rtl;
   text-align: right;
   transition: all 0.3s ease;
-  background: #ffffff; /* خلفية بيضاء عادية للصفحة */
+  background: linear-gradient(135deg, var(--wareeth-light) 0%, rgba(245, 245, 220, 0.8) 100%); /* نفس خلفية قسم قصة وريث */
 }
 
 body.menu-open {
@@ -493,14 +493,15 @@ body.english .form-group {
     url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center center;
   background-size: cover;
   color: var(--wareeth-primary); /* بيج فاتح */
-  padding: 0;
+  padding: 80px 0 0; /* إضافة padding علوي لرفع المحتوى تحت الشريط */
   text-align: center;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* تقليل الارتفاع بمقدار ارتفاع الشريط العلوي */
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 80px; /* إضافة margin علوي لرفع القسم تحت الشريط */
 }
 
 /* إزالة الطبقة السوداء – فقط برتقالي شفاف خفيف */
