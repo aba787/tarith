@@ -66,6 +66,13 @@ function createArticleElement(data) {
     article.setAttribute('data-category', data.category);
     
     const categoryNames = {
+        'folk-heritage': 'التراث الشعبي',
+        'historical-sites': 'المواقع التاريخية',
+        'heritage-figures': 'الشخصيات التراثية',
+        'traditional-arts': 'الفنون التقليدية',
+        'research-studies': 'الأبحاث والدراسات',
+        'wareeth-news': 'أخبار وريث',
+        // الاحتفاظ بالتصنيفات القديمة للتوافق مع المقالات المنشورة سابقاً
         'heritage': 'التراث والثقافة',
         'culture': 'ثقافة', 
         'history': 'التاريخ',

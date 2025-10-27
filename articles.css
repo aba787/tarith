@@ -283,11 +283,12 @@
     color: white;
 }
 
-.category.heritage { background: #8B4513; }
-.category.technology { background: #2F4F4F; }
-.category.crafts { background: #DAA520; }
-.category.history { background: #A0522D; }
-.category.society { background: #228B22; }
+.category.folk-heritage { background: #8B4513; }
+.category.historical-sites { background: #A0522D; }
+.category.heritage-figures { background: #2F4F4F; }
+.category.traditional-arts { background: #DAA520; }
+.category.research-studies { background: #228B22; }
+.category.wareeth-news { background: #B8860B; }
 
 .date {
     color: #333333;
