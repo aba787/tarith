@@ -300,16 +300,16 @@ body.english .form-group {
     top: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%) translateY(-10px);
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(25px);
     border-radius: 15px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     min-width: 200px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
     z-index: 1002;
-    border: 1px solid rgba(218, 165, 32, 0.3);
+    border: 1px solid rgba(139, 69, 19, 0.2);
     padding: 0.8rem 0;
 }
 
@@ -326,7 +326,7 @@ body.english .form-group {
     width: 100%;
     padding: 0.8rem 1.2rem;
     text-decoration: none;
-    color: #F5F5DC;
+    color: #000000;
     font-weight: 500;
     font-size: 0.85rem;
     border: none;
@@ -338,15 +338,15 @@ body.english .form-group {
 }
 
 .dropdown-item:hover {
-    background: linear-gradient(135deg, rgba(218, 165, 32, 0.15) 0%, rgba(139, 69, 19, 0.1) 100%);
-    color: #DAA520;
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(218, 165, 32, 0.1) 100%);
+    color: #8B4513;
 }
 
 .dropdown-item i {
     font-size: 1rem;
     width: 20px;
     text-align: center;
-    color: #DAA520;
+    color: #8B4513;
 }
 
 /* عناصر على اليمين */
