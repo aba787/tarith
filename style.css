@@ -502,7 +502,7 @@ body.english .form-group {
   align-items: center;
   justify-content: center;
   margin-top: 0; /* إزالة margin العلوي */
-  top: -40px; /* إنزال الصورة قليلاً - تقليل القيمة من -80px إلى -40px */
+  top: -20px; /* إنزال الصورة أكثر للأسفل - تقليل القيمة من -40px إلى -20px */
   z-index: -1; /* وضع الصورة خلف الشريط العلوي */
 }
 
