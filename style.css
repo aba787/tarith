@@ -507,16 +507,20 @@ body.english .form-group {
   z-index: -1; /* وضع الصورة خلف الشريط العلوي */
 }
 
-/* إزالة الطبقة السوداء – فقط برتقالي شفاف خفيف */
+/* طبقة التدرج اللوني التي تمتد من المقدمة إلى قسم قصة وريث */
 .hero::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  background: var(--wareeth-light); /* برتقالي */
-  opacity: 0.05; /* شفافية بسيطة جدًا */
+  bottom: -100vh; /* تمديد التدرج للأسفل لتغطية قسم قصة وريث */
+  background: linear-gradient(180deg, 
+    rgba(245, 245, 220, 0.1) 0%,    /* شفاف جداً في الأعلى */
+    rgba(245, 245, 220, 0.3) 30%,   /* تدرج تدريجي */
+    rgba(245, 245, 220, 0.6) 70%,   /* زيادة الشفافية */
+    rgba(245, 245, 220, 0.85) 100%  /* شفافية أكثر في الأسفل */
+  );
   z-index: 1;
 }
 
@@ -1081,7 +1085,7 @@ body.english .news-item p {
   background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-brown) 100%);
 }
 
-/* About Section مع نفس خلفية المقدمة */
+/* About Section مع نفس خلفية المقدمة المستمرة */
 .about {
   background: 
     url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center top;
@@ -1089,6 +1093,7 @@ body.english .news-item p {
   background-attachment: fixed;
   position: relative;
   padding: 80px 0;
+  margin-top: -50px; /* تقليل المسافة لضمان الاستمرارية البصرية */
 }
 
 .about::before {
@@ -1098,7 +1103,11 @@ body.english .news-item p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(245, 245, 220, 0.85); /* طبقة بيضاء شفافة لضمان وضوح النص */
+  background: linear-gradient(180deg, 
+    rgba(245, 245, 220, 0.85) 0%,   /* يكمل التدرج من قسم المقدمة */
+    rgba(245, 245, 220, 0.9) 50%,   /* تدرج تدريجي */
+    rgba(245, 245, 220, 0.95) 100%  /* شفافية أكثر في نهاية القسم */
+  );
   z-index: 1;
 }
 
