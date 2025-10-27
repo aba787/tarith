@@ -471,6 +471,7 @@ body.english .form-group {
     transition: all 0.3s ease;
     box-shadow: 0 3px 10px rgba(218, 165, 32, 0.3);
     white-space: nowrap;
+    margin-left: 20px; /* إضافة هامش يسار لإزاحة الزر قليلاً */
 }
 
 .join-header-btn:hover {
