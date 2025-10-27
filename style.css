@@ -490,18 +490,20 @@ body.english .form-group {
 /* Hero Section */
 .hero {
   background: 
-    url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center center;
+    url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center top;
   background-size: cover;
-  color: var(--wareeth-primary); /* بيج فاتح */
-  padding: 80px 0 0; /* إضافة padding علوي لرفع المحتوى تحت الشريط */
+  color: var(--wareeth-primary);
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 80px); /* تقليل الارتفاع بمقدار ارتفاع الشريط العلوي */
+  height: 100vh; /* ارتفاع كامل للشاشة */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 80px; /* إضافة margin علوي لرفع القسم تحت الشريط */
+  margin-top: 0; /* إزالة margin العلوي */
+  top: -80px; /* رفع الصورة لأعلى الشريط العلوي */
+  z-index: -1; /* وضع الصورة خلف الشريط العلوي */
 }
 
 /* إزالة الطبقة السوداء – فقط برتقالي شفاف خفيف */
@@ -524,7 +526,7 @@ body.english .form-group {
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 10; /* رقم z-index عالي للظهور فوق الصورة */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -533,7 +535,7 @@ body.english .form-group {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 80px 20px 20px; /* إضافة padding علوي للمحتوى */
 }
 
 .hero-title {
