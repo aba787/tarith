@@ -839,7 +839,7 @@ section {
 /* News Section */
 .news-section {
   padding: 80px 0;
-  background: #FFFFFF; /* خلفية بيضاء */
+  background: linear-gradient(135deg, var(--wareeth-light) 0%, rgba(245, 245, 220, 0.9) 100%);
   position: relative;
 }
 
@@ -850,14 +850,15 @@ section {
   left: 0;
   right: 0;
   bottom: 0;
-  background: none; /* إزالة التدرجات اللونية */
+  background: radial-gradient(circle at 30% 70%, rgba(218, 165, 32, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
 }
 
 .news-section h2 {
   font-size: 3rem;
   text-align: center;
   margin-bottom: 4rem;
-  color: var(--wareeth-primary); /* لون بني للعنوان */
+  color: var(--wareeth-primary);
   font-weight: 700;
   position: relative;
 }
@@ -908,7 +909,7 @@ body.english .news-section h2 {
 }
 
 .news-item {
-  background: linear-gradient(135deg, white 0%, var(--wareeth-primary) 100%);
+  background: linear-gradient(135deg, white 0%, rgba(139, 69, 19, 0.05) 100%);
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(139, 69, 19, 0.15);
   transition: all 0.3s ease;
@@ -1040,11 +1041,11 @@ body.english .news-section h2 {
 }
 
 .news-date {
-  color: var(--brick-red); /* Brick red for emphasis */
+  color: var(--wareeth-primary);
   font-size: 0.95rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  background: rgba(178, 34, 34, 0.1); /* Brick red background */
+  background: rgba(139, 69, 19, 0.1);
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 15px;
@@ -1052,7 +1053,7 @@ body.english .news-section h2 {
 
 .news-item h3 {
   font-size: 1.5rem;
-  color: var(--light-brown); /* Light brown for headings */
+  color: var(--wareeth-primary);
   margin-bottom: 1.5rem;
   font-weight: 700;
   line-height: 1.3;
@@ -1075,7 +1076,7 @@ body.english .news-item p {
 }
 
 .news-item .read-more {
-  color: var(--brick-red); /* Brick red for emphasis */
+  color: var(--wareeth-secondary);
   text-decoration: none;
   font-weight: 600;
   display: inline-flex;
@@ -1085,7 +1086,7 @@ body.english .news-item p {
 }
 
 .news-item .read-more:hover {
-  color: var(--dark-brown); /* Dark brown on hover */
+  color: var(--wareeth-primary);
   text-decoration: underline;
 }
 
@@ -1781,8 +1782,8 @@ body.english .program-technology .program-description {
 .stats-section {
   text-align: center;
   padding: 80px 0;
-  background: #FFFFFF;
-  color: var(--wareeth-text);
+  background: linear-gradient(135deg, var(--wareeth-primary) 0%, var(--wareeth-secondary) 100%);
+  color: var(--wareeth-white);
   position: relative;
   overflow: hidden;
 }
@@ -1794,14 +1795,14 @@ body.english .program-technology .program-description {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
 }
 
 .stats-section h2 {
   font-family: 'Cairo', sans-serif !important;
   font-size: 2.8rem;
   margin-bottom: 3rem;
-  color: var(--wareeth-primary);
+  color: var(--wareeth-white);
   font-weight: 600;
   position: relative;
   z-index: 1;
@@ -1837,30 +1838,31 @@ body.english .stats-section h2 {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, var(--wareeth-light) 0%, rgba(245, 245, 220, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.1) 100%);
   padding: 2rem 1.5rem;
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 2px solid var(--wareeth-primary);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   position: relative;
-  box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
 
 .stat-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .stat-number {
   font-family: 'Cairo', sans-serif !important;
   font-size: 3.5rem;
   font-weight: bold;
-  color: var(--wareeth-primary);
+  color: var(--wareeth-white);
   margin-bottom: 1rem;
   display: block;
-  text-shadow: 2px 2px 4px rgba(139, 69, 19, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 body.english .stat-number {
@@ -1871,9 +1873,9 @@ body.english .stat-number {
 .stat-label {
   font-family: 'Cairo', sans-serif !important;
   font-size: 1.4rem;
-  color: var(--wareeth-text);
+  color: var(--wareeth-white);
   line-height: 1.5;
-  text-shadow: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 body.english .stat-label {
@@ -1884,8 +1886,8 @@ body.english .stat-label {
   font-size: 2.5rem;
   margin-bottom: 1rem;
   display: block;
-  color: var(--wareeth-primary);
-  filter: drop-shadow(0 4px 8px rgba(139, 69, 19, 0.3));
+  color: var(--wareeth-white);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 /* Animation for counting numbers */
