@@ -115,43 +115,82 @@ document.addEventListener('DOMContentLoaded', function() {
     setActiveNav(); // Call once on load
 
 
-    // Statistics Animation
-    function animateNumbers() {
-      const numberElements = document.querySelectorAll('.stat-number');
+    // Statistics Animation - Enhanced Version
+    let statsAnimated = false; // Flag to prevent multiple animations
 
-      numberElements.forEach(element => {
+    function animateNumbers() {
+      if (statsAnimated) return; // Prevent re-animation
+      
+      const numberElements = document.querySelectorAll('.stat-number');
+      console.log('🎯 بدء تحريك الإحصائيات:', numberElements.length, 'عنصر');
+
+      numberElements.forEach((element, index) => {
         const target = parseInt(element.getAttribute('data-target'));
-        const duration = 2000; // Count duration in milliseconds
-        const steps = 60; // Number of steps
+        console.log(`📊 تحريك الرقم ${index + 1}: من 0 إلى ${target}`);
+        
+        const duration = 2500; // مدة التحريك
+        const steps = 80; // عدد الخطوات
         const stepValue = target / steps;
         let current = 0;
-
-        const timer = setInterval(() => {
-          current += stepValue;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-          }
-          element.textContent = Math.floor(current) + '+';
-        }, duration / steps);
+        
+        // إضافة تأخير تدريجي لكل رقم
+        setTimeout(() => {
+          const timer = setInterval(() => {
+            current += stepValue;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+              element.textContent = target.toLocaleString('ar-SA') + '+';
+              console.log(`✅ انتهى تحريك الرقم: ${target}`);
+            } else {
+              element.textContent = Math.floor(current).toLocaleString('ar-SA');
+            }
+          }, duration / steps);
+        }, index * 200); // تأخير 200ms لكل رقم
 
         element.classList.add('animated');
       });
+      
+      statsAnimated = true; // تحديد أن التحريك تم
     }
 
-    // Intersection Observer for statistics animation
+    // تحسين Intersection Observer للإحصائيات
     const statsSection = document.querySelector('.stats-section');
     if (statsSection) {
+      console.log('🔍 تم العثور على قسم الإحصائيات');
+      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateNumbers();
-            observer.unobserve(entry.target); // Run animation only once
+          if (entry.isIntersecting && !statsAnimated) {
+            console.log('👁️ قسم الإحصائيات أصبح مرئياً - بدء التحريك');
+            // تأخير قصير قبل بدء التحريك
+            setTimeout(() => {
+              animateNumbers();
+            }, 300);
           }
         });
-      }, { threshold: 0.5 });
+      }, { 
+        threshold: 0.3, // بدء التحريك عندما يكون 30% من القسم مرئي
+        rootMargin: '0px 0px -50px 0px' // هامش إضافي
+      });
 
       observer.observe(statsSection);
+    } else {
+      console.warn('⚠️ لم يتم العثور على قسم الإحصائيات');
+    }
+
+    // إضافة إمكانية إعادة تشغيل التحريك عند النقر على قسم الإحصائيات
+    if (statsSection) {
+      statsSection.addEventListener('dblclick', function() {
+        statsAnimated = false;
+        const numbers = statsSection.querySelectorAll('.stat-number');
+        numbers.forEach(num => {
+          num.textContent = '0';
+          num.classList.remove('animated');
+        });
+        console.log('🔄 إعادة تعيين الإحصائيات');
+        setTimeout(() => animateNumbers(), 100);
+      });
     }
 
 
