@@ -542,20 +542,21 @@ body.english .form-group {
   z-index: -1; /* وضع الصورة خلف الشريط العلوي */
 }
 
-/* طبقة التدرج اللوني التي تمتد من المقدمة إلى قسم من نحن والأهداف */
+/* طبقة التدرج اللوني التي تمتد من المقدمة لتشمل أقسام من نحن والأهداف */
 .hero::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  bottom: -250vh; /* تمديد التدرج أكثر للأسفل لتغطية جميع الأقسام */
+  bottom: -400vh; /* تمديد التدرج أكثر لتغطية قسم من نحن والأهداف */
   background: linear-gradient(180deg, 
     rgba(139, 69, 19, 0.1) 0%,      /* بني ترابي شفاف جداً في الأعلى */
-    rgba(139, 69, 19, 0.2) 15%,     /* تدرج تدريجي بني */
-    rgba(232, 232, 208, 0.4) 30%,   /* كريمي فاتح */
-    rgba(232, 232, 208, 0.6) 50%,   /* زيادة الكريمي */
-    rgba(245, 245, 220, 0.8) 70%,   /* كريمي أكثر وضوحاً */
+    rgba(139, 69, 19, 0.15) 10%,    /* تدرج تدريجي بني خفيف */
+    rgba(232, 232, 208, 0.3) 25%,   /* كريمي فاتح */
+    rgba(232, 232, 208, 0.5) 40%,   /* كريمي متوسط */
+    rgba(245, 245, 220, 0.7) 60%,   /* كريمي واضح */
+    rgba(245, 245, 220, 0.9) 80%,   /* كريمي قوي */
     rgba(245, 245, 220, 0.95) 100%  /* كريمي كامل في النهاية */
   );
   z-index: 1;
@@ -1122,31 +1123,17 @@ body.english .news-item p {
   background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-brown) 100%);
 }
 
-/* About Section مع نفس خلفية المقدمة المستمرة */
+/* About Section - بدون خلفية منفصلة، يعتمد على تدرج المقدمة */
 .about {
-  background: 
-    url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center top;
-  background-size: cover;
-  background-attachment: fixed;
   position: relative;
-  padding: 80px 0;
-  margin-top: -80px; /* تقليل المسافة أكثر لضمان الاستمرارية البصرية المثالية */
+  padding: 120px 0 80px;
+  margin-top: -80px; /* ربط سلس مع قسم المقدمة */
+  z-index: 2;
 }
 
+/* إزالة الطبقة المنفصلة - الاعتماد على تدرج hero */
 .about::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, 
-    rgba(245, 245, 220, 0.95) 0%,   /* يكمل التدرج من قسم المقدمة بسلاسة */
-    rgba(232, 232, 208, 0.9) 30%,   /* كريمي متوسط */
-    rgba(139, 69, 19, 0.15) 60%,    /* لمسة من البني الترابي */
-    rgba(139, 69, 19, 0.25) 100%    /* بني ترابي فاتح في النهاية */
-  );
-  z-index: 1;
+  display: none;
 }
 
 .about h2,
@@ -1535,35 +1522,21 @@ body.english .program-description {
   color: var(--dark-brown);
   font-weight: 600;
 
-/* Objectives Section */
+/* Objectives Section - بدون خلفية منفصلة، يعتمد على تدرج المقدمة */
 .objectives-section {
-  padding: 120px 0;
-  background: 
-    url('https://i.postimg.cc/RZxmKXQX/image.jpg') no-repeat center top;
-  background-size: cover;
-  background-attachment: fixed;
+  padding: 100px 0;
   min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   margin-top: -40px; /* ربط سلس مع القسم السابق */
+  z-index: 2;
 }
 
+/* إزالة الطبقة المنفصلة - الاعتماد على تدرج hero */
 .objectives-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, 
-    rgba(139, 69, 19, 0.25) 0%,     /* يكمل من قسم من نحن */
-    rgba(139, 69, 19, 0.4) 30%,     /* بني ترابي متوسط */
-    rgba(232, 232, 208, 0.7) 60%,   /* كريمي واضح */
-    rgba(245, 245, 220, 0.9) 100%   /* كريمي فاتح في النهاية */
-  );
-  z-index: 1;
+  display: none;
 }
 
 .objectives-content {
