@@ -11,7 +11,7 @@
   --wareeth-text: #3b2a1a;      /* بني غامق للنصوص */
   --wareeth-text-light: #5a3c23; /* بني متوسط للنصوص الثانوية */
   --wareeth-dark: #654321;      /* بني ترابي غامق */
-  
+
   /* ألوان إضافية للتناسق */
   --wareeth-gold: #D2691E;      /* بني ترابي ذهبي */
   --wareeth-gray-blue: #A0522D; /* بني ترابي ثانوي */
@@ -1794,7 +1794,6 @@ body.english .program-description {
   }
 }
 
-
 }
 
 body.english .program-digital .program-title {
@@ -2599,16 +2598,17 @@ body.english .footer-bottom {
   z-index: 1;
 }
 
-.mission-section h2 {
+.mission-content h2 {
   font-family: 'Cairo', sans-serif;
   font-size: 3.5rem;
-  color: #8B4513;
+  color: #2C1810; /* Darker brown for mission heading */
   margin-bottom: 30px;
   font-weight: 700;
   position: relative;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Darker shadow */
 }
 
-.mission-section h2::after {
+.mission-content h2::after {
   content: '';
   position: absolute;
   bottom: -10px;
