@@ -2639,7 +2639,7 @@ body.english .footer-bottom {
   font-family: var(--wareeth-font-secondary);
   font-size: 1.8rem;
   line-height: 1.8;
-  color: var(--wareeth-text);
+  color: #8B4513;
   font-weight: 600;
   margin: 0;
   text-align: center;
@@ -3545,7 +3545,7 @@ body.english .join-form textarea {
   font-family: var(--wareeth-font-secondary);
   font-size: 1.8rem;
   line-height: 1.8;
-  color: var(--wareeth-text);
+  color: #8B4513;
   font-weight: 600;
   margin: 0;
   text-align: center;
