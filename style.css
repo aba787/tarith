@@ -185,10 +185,23 @@ body.english .form-group {
   padding: 0 20px;
 }
 
+/* Top Bar Styles */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #FFFFFF;
+    height: 40px;
+    z-index: 1001;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 /* Header Styles */
 .header {
     position: fixed;
-    top: 0;
+    top: 40px;
     left: 0;
     right: 0;
     background: var(--wareeth-primary);
@@ -239,7 +252,7 @@ body.english .form-group {
 .logo-image {
     width: 60px;
     height: 60px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="15" y="15" width="45" height="45" rx="8" ry="8" fill="%23b8743b"/><rect x="40" y="40" width="45" height="45" rx="8" ry="8" fill="%23b8743b"/></svg>') no-repeat center center;
+    background: url('https://i.ibb.co/DDwz1Bjt/image.png') no-repeat center center;
     background-size: contain;
     border-radius: 0;
     flex-shrink: 0;
@@ -373,7 +386,12 @@ body.english .form-group {
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
+    .top-bar {
+        height: 35px;
+    }
+    
     .header {
+        top: 35px;
         height: 70px;
         padding: 0;
     }
@@ -494,6 +512,7 @@ body.english .form-group {
   background-size: cover;
   color: var(--wareeth-primary); /* بيج فاتح */
   padding: 0;
+  padding-top: 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
